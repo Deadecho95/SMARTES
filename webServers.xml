@@ -1,8 +1,8 @@
 <application>
   <component name="WebServers">
     <option name="servers">
-      <webServer id="d4e823a0-b629-4103-ba01-255500fcdddd" name="pivenus" url="http://172.24.24.64">
-        <fileTransfer host="172.24.24.64" port="22" accessType="SFTP">
+      <webServer id="d4e823a0-b629-4103-ba01-255500fcdddd" name="pivenus" url="http://153.109.7.30">
+        <fileTransfer host="153.109.7.30" port="22" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
           </advancedOptions>
