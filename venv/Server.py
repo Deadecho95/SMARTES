@@ -1,6 +1,6 @@
 #---------------------------------------------------------------------------#
 # import the various server implementations
-#---------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------#
 from pymodbus.server.sync import StartTcpServer
 from pymodbus.device import ModbusDeviceIdentification
 from pymodbus.datastore import ModbusSequentialDataBlock, ModbusSparseDataBlock
