@@ -24,3 +24,5 @@ client.write_coil(1, False)
 result = client.read_coils(1,1)
 print(result.bits[0])
 client.close()
+
+#salt c'est vincent
