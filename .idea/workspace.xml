@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98818cb9-49b3-4957-8f94-936509a69e5c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientModBus.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientModBus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,14 +39,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="6" />
-          <entry key="py" value="685" />
-          <entry key="txt" value="11" />
+          <entry key="py" value="726" />
+          <entry key="txt" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="17" />
-          <entry key="Python" value="685" />
+          <entry key="PLAIN_TEXT" value="27" />
+          <entry key="Python" value="726" />
         </counts>
       </usages-collector>
     </session>
@@ -56,11 +56,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ClientModBus.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
+            <state relative-caret-position="85">
+              <caret line="11" selection-start-line="11" selection-end-line="28" selection-end-column="34" />
               <folding>
-                <marker date="1541762285025" expanded="true" signature="815:1022" ph="..." />
-                <marker date="1541762285025" expanded="true" signature="926:935" ph="..." />
+                <marker date="1541763210798" expanded="true" signature="822:1029" ph="..." />
+                <marker date="1541763210798" expanded="true" signature="933:942" ph="..." />
               </folding>
             </state>
           </provider>
@@ -68,7 +68,14 @@
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Controller.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+              <folding>
+                <marker date="1541766544252" expanded="true" signature="265:274" ph="..." />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -297,13 +304,21 @@
       <option name="project" value="LOCAL" />
       <updated>1541762911415</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Controller">
+      <created>1541763135718</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1541763135718</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24716553" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24716553" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -314,7 +329,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.32891247" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.32891247" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.2877984" />
@@ -336,7 +351,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
     <MESSAGE value="Modbus" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modbus" />
+    <MESSAGE value="Controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="Controller" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/pip-10.0.1-py3.7.egg/pip/_vendor/distlib/scripts.py">
@@ -383,17 +399,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ClientModBus.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
+        <state relative-caret-position="85">
+          <caret line="11" selection-start-line="11" selection-end-line="28" selection-end-column="34" />
           <folding>
-            <marker date="1541762285025" expanded="true" signature="815:1022" ph="..." />
-            <marker date="1541762285025" expanded="true" signature="926:935" ph="..." />
+            <marker date="1541763210798" expanded="true" signature="822:1029" ph="..." />
+            <marker date="1541763210798" expanded="true" signature="933:942" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller.py">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding>
+            <marker date="1541766544252" expanded="true" signature="265:274" ph="..." />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
