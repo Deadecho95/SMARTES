@@ -20,7 +20,7 @@ class ClientModBus:
         self.address = address
         self.port = port
         self.clientVenus = ModbusClient(self.address, port=self.port)
-        self.veBus
+
 
     def connect(self):
         """ connect to ServerModBus
