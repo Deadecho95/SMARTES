@@ -3,7 +3,7 @@ from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 # --------------------------------------------------------------------------- #
 # Client to connect to Venus
 # --------------------------------------------------------------------------- #
-class Client:
+class ClientModBus:
     """ Implementation of a client
     """
     def __init__(self,UNIT=0x1,address ='localhost', port=502):
@@ -17,23 +17,36 @@ class Client:
         self.address = address
         self.port = port
         self.clientVenus = ModbusClient(self.address, port=self.port)
+    def Connect(self,clientVenus):
+        """ connect to ServerModBus
+
+
+    :param UNIT: The host to connect to (default 0x1)
+    :param address: The tcp address to connect to (default localhost)
+    :param port: The modbus port to connect to (default 502)
+    """
+        self.clientVenus.connect()
+    def Disconnect(self):
+        """ Disconnect from the ServerModBus
+        """
+        self.clientVenus.close()
+
     def _get_registers(self):
         """ read registers
         """
 
         self.veBus = self.clientVenus.read_holding_registers(3, 58, unit=self.UNIT)
-        self.solarCharger = clientVenus.read_holding_registers(771,20, unit=self.UNIT)
-        self.pvInverter = clientVenus.read_holding_registers(1026,14, unit=self.UNIT)
-        self.battery = clientVenus.read_holding_registers(259,61, unit=self.UNIT)
-        self.batteryExtraParam = clientVenus.read_holding_registers(1282,20, unit=self.UNIT)
-        self.charger = clientVenus.read_holding_registers(2307,16, unit=self.UNIT)
-        self.inverter = clientVenus.read_holding_registers(3100,29, unit=self.UNIT)
-        self.tank = clientVenus.read_holding_registers(3000,6, unit=self.UNIT)
-        self.grid = clientVenus.read_holding_registers(2600,10, unit=self.UNIT)
-        self.gps = clientVenus.read_holding_registers(2800,8, unit=self.UNIT)
-        self.generators = clientVenus.read_holding_registers(3200,24, unit=self.UNIT)
-        self.temperature = clientVenus.read_holding_registers(3200,6, unit=self.UNIT)
-        clientVenus.close()
+        self.solarCharger = self.clientVenus.read_holding_registers(771,20, unit=self.UNIT)
+        self.pvInverter = self.clientVenus.read_holding_registers(1026,14, unit=self.UNIT)
+        self.battery = self.clientVenus.read_holding_registers(259,61, unit=self.UNIT)
+        self.batteryExtraParam = self.clientVenus.read_holding_registers(1282,20, unit=self.UNIT)
+        self.charger = self.clientVenus.read_holding_registers(2307,16, unit=self.UNIT)
+        self.inverter = self.clientVenus.read_holding_registers(3100,29, unit=self.UNIT)
+        self.tank = self.clientVenus.read_holding_registers(3000,6, unit=self.UNIT)
+        self.grid = self.clientVenus.read_holding_registers(2600,10, unit=self.UNIT)
+        self.gps = self.clientVenus.read_holding_registers(2800,8, unit=self.UNIT)
+        self.generators = self.clientVenus.read_holding_registers(3200,24, unit=self.UNIT)
+        self.temperature = self.clientVenus.read_holding_registers(3200,6, unit=self.UNIT)
         print("complete")
 
     def _set_register(self,register,value):
