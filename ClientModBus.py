@@ -6,7 +6,7 @@ from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 
 
 class ClientModBus:
-    """ Implementation of a client
+    """ Implementation of a client modbus
     """
 
     def __init__(self, UNIT=0x1, address ='localhost', port=502):

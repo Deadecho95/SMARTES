@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98818cb9-49b3-4957-8f94-936509a69e5c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quickstart.py" beforeDir="false" afterPath="$PROJECT_DIR$/quickstart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientModBus.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientModBus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,78 +12,41 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/SMARTES$quickstart.coverage" NAME="quickstart Coverage Results" MODIFIED="1541766377934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SMARTES$ClientModBus.coverage" NAME="ClientModBus Coverage Results" MODIFIED="1541762798803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SMARTES$Client.coverage" NAME="Client Coverage Results" MODIFIED="1541762781773" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SMARTES$Client.coverage" NAME="Client Coverage Results" MODIFIED="1541758701221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SMARTES$testConnection.coverage" NAME="testConnection Coverage Results" MODIFIED="1541759262621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SMARTES$Server.coverage" NAME="Server Coverage Results" MODIFIED="1541758678868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-1274906696">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="4" />
+          <entry key="py" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="4" />
+          <entry key="Python" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="6" />
-          <entry key="py" value="122" />
-          <entry key="txt" value="5" />
+          <entry key="py" value="726" />
+          <entry key="txt" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="11" />
-          <entry key="Python" value="122" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="-228632018">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="PNG" value="1" />
-          <entry key="json" value="1" />
-          <entry key="py" value="2" />
-          <entry key="uxf" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Image" value="1" />
-          <entry key="JSON" value="1" />
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="json" value="1" />
-          <entry key="py" value="9" />
-          <entry key="txt" value="17" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JSON" value="1" />
-          <entry key="PLAIN_TEXT" value="17" />
-          <entry key="Python" value="9" />
+          <entry key="PLAIN_TEXT" value="27" />
+          <entry key="Python" value="726" />
         </counts>
       </usages-collector>
     </session>
@@ -93,49 +56,63 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ClientModBus.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="85">
+              <caret line="11" selection-start-line="11" selection-end-line="28" selection-end-column="34" />
+              <folding>
+                <marker date="1541763210798" expanded="true" signature="822:1029" ph="..." />
+                <marker date="1541763210798" expanded="true" signature="933:942" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/quickstart.py">
+        <entry file="file://$PROJECT_DIR$/Controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="170">
+              <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
               <folding>
-                <element signature="e#0#35#0" expanded="true" />
+                <marker date="1541766544252" expanded="true" signature="265:274" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Connard.PNG">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Umlet.uxf">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testConnection.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/pymodbus/client/common.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="113" selection-start-line="113" selection-end-line="113" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/pymodbus/client/sync.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="106" selection-start-line="106" selection-end-line="106" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client_secrets.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="-562">
+              <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
+              <folding>
+                <element signature="e#201#248#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -162,9 +139,9 @@
       <list>
         <option value="$PROJECT_DIR$/Client.py" />
         <option value="$PROJECT_DIR$/fd.py" />
+        <option value="$PROJECT_DIR$/testConnection.py" />
         <option value="$PROJECT_DIR$/ClientModBus.py" />
-        <option value="$PROJECT_DIR$/client_secrets.json" />
-        <option value="$PROJECT_DIR$/quickstart.py" />
+        <option value="$PROJECT_DIR$/Controller.py" />
       </list>
     </option>
   </component>
@@ -177,7 +154,7 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
-    <option name="width" value="2699" />
+    <option name="width" value="2698" />
     <option name="height" value="1584" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -193,11 +170,6 @@
             <path>
               <item name="SMARTES" type="b2602c69:ProjectViewProjectNode" />
               <item name="SMARTES" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SMARTES" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SMARTES" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SMARTES" type="b2602c69:ProjectViewProjectNode" />
@@ -227,7 +199,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.quickstart">
+  <component name="RunManager" selected="Python.testConnection">
     <configuration name="Client" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SMARTES" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -250,7 +222,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ClientModBus" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Server" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SMARTES" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -263,7 +235,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ClientModBus.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Server.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -272,7 +244,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="quickstart" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="testConnection" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SMARTES" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -285,7 +257,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/quickstart.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testConnection.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -296,14 +268,14 @@
     </configuration>
     <list>
       <item itemvalue="Python.Client" />
-      <item itemvalue="Python.ClientModBus" />
-      <item itemvalue="Python.quickstart" />
+      <item itemvalue="Python.testConnection" />
+      <item itemvalue="Python.Server" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.quickstart" />
-        <item itemvalue="Python.ClientModBus" />
+        <item itemvalue="Python.testConnection" />
         <item itemvalue="Python.Client" />
+        <item itemvalue="Python.Server" />
       </list>
     </recent_temporary>
   </component>
@@ -325,42 +297,42 @@
       <option name="project" value="LOCAL" />
       <updated>1541753575984</updated>
     </task>
-    <task id="LOCAL-00002" summary="Google Drive test">
-      <created>1541763026879</created>
+    <task id="LOCAL-00002" summary="Modbus">
+      <created>1541762911415</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1541763026879</updated>
+      <updated>1541762911415</updated>
     </task>
-    <task id="LOCAL-00003" summary="Google Drive test">
-      <created>1541766373543</created>
+    <task id="LOCAL-00003" summary="Controller">
+      <created>1541763135718</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1541766373543</updated>
+      <updated>1541763135718</updated>
     </task>
     <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1455" height="935" extended-state="6" />
+    <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2530466" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24716553" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32793018" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32891247" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32891247" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.32891247" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32793018" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.2877984" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32891247" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -378,8 +350,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
-    <MESSAGE value="Google Drive test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Google Drive test" />
+    <MESSAGE value="Modbus" />
+    <MESSAGE value="Controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="Controller" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/pip-10.0.1-py3.7.egg/pip/_vendor/distlib/scripts.py">
@@ -390,41 +363,57 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fd.py" />
-    <entry file="file://$PROJECT_DIR$/ClientModBus.py">
+    <entry file="file://$PROJECT_DIR$/Main.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="-562">
+          <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
+          <folding>
+            <element signature="e#201#248#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/pymodbus/client/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/pymodbus/client/sync.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testConnection.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client_secrets.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="187">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Umlet.uxf">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Connard.PNG">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quickstart.py">
+    <entry file="file://$PROJECT_DIR$/ClientModBus.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="85">
+          <caret line="11" selection-start-line="11" selection-end-line="28" selection-end-column="34" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <marker date="1541763210798" expanded="true" signature="822:1029" ph="..." />
+            <marker date="1541763210798" expanded="true" signature="933:942" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding>
+            <marker date="1541766544252" expanded="true" signature="265:274" ph="..." />
           </folding>
         </state>
       </provider>
