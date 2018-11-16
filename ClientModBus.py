@@ -40,6 +40,7 @@ class ClientModBus:
         """
 
         veBus = self.clientVenus.read_holding_registers(3, 58, unit=self.UNIT)
+        if veBus.isError() == 0:    # test that we are not an error
         solarCharger = self.clientVenus.read_holding_registers(771,20, unit=self.UNIT)
         spvInverter = self.clientVenus.read_holding_registers(1026,14, unit=self.UNIT)
         battery = self.clientVenus.read_holding_registers(259,61, unit=self.UNIT)
@@ -55,6 +56,7 @@ class ClientModBus:
 
         allRegisters = [veBus, solarCharger, spvInverter, battery, batteryExtraParam, charger, inverter, tank,
                         grid, gps, generators, temperature]
+
         return allRegisters
 
     def _set_registers(self, register, value):

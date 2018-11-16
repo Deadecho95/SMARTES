@@ -1,4 +1,5 @@
 from ClientModBus import ClientModBus
+from ClientModBus import ClientModBus
 from threading import Timer
 
 # --------------------------------------------------------------------------- #
@@ -37,5 +38,5 @@ class Controller:
         """
         for i in range(0, self.data.lenght()):
             for y in range(0, self.data[i].lenght()):
-                value = self.data[i][y]
+                value = self.data[i].re
 
