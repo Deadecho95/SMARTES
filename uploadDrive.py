@@ -33,7 +33,7 @@ class UploadDrive:
 
 
 # Auto-iterate through all files that matches this query
-    def read(self,title='a'):
+    def read(self, title='a'):
         b = 0
 
         file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
@@ -45,3 +45,6 @@ class UploadDrive:
                 b += 1
         if b == 0:
             print('file not found')
+    def addtotext(self,nametable,value=[]):
+        length=value.length()
+        #value.
