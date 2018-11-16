@@ -38,7 +38,7 @@ class UploadDrive:
 
         file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
         for file1 in file_list:
-            self.drive.
+
             print('title: %s, id: %s' % (file1['title'], file1['id']))
             if file1['title'] == title:
                 print('found')
