@@ -1,4 +1,4 @@
-#!C:\Users\chena\PycharmProjects\SMARTES\venv\Scripts\python.exe
+#!C:\Users\Johan\Documents\GitHub\SMARTES\venv\Scripts\python.exe
 #
 # Very simple serial terminal
 #
