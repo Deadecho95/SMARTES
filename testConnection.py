@@ -4,16 +4,13 @@ from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 
 UNIT = 0x1
 
-client = ModbusClient("localhost", port=5020)
+client = ModbusClient("153.109.14.169", port=502)
 client.connect()
 
-result = client.read_holding_registers(3000, 6, unit=UNIT)
-
-
-for i in range(0, 6):
-    if result.isError() == 0:    # test that we are not an error
-        print(result.registers[i])
-    else:
-        print(result);
-        break
+temperature = client.read_holding_registers(0, 6, unit=UNIT)
+if temperature.isError() != 0:    # test that we are not an error
+    print("temperature:", temperature)
+else:
+    for y in range(0, len(temperature.registers)): # stock registers in the
+        print(temperature.registers[y])
 client.close()
