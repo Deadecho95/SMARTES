@@ -1,6 +1,3 @@
-from clientModBus import ClientModBus
-from uploadDrive import UploadDrive
-
 # --------------------------------------------------------------------------- #
 # the controller
 # --------------------------------------------------------------------------- #

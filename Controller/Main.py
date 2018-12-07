@@ -1,11 +1,11 @@
-from controller import Controller
-from clientModBus import ClientModBus
-from threading import Timer
+from Controller.controller import Controller
+from Modbus.clientModBus import ClientModBus
+
 # --------------------------------------------------------------------------- #
 # Main
 # --------------------------------------------------------------------------- #
 
-client = ClientModBus(1, "153.109.14.169", 502)
+client = ClientModBus("153.109.14.169", 502)
 controller = Controller(client)
 controller.getModbusValues()
 """t = Timer(5, controller.getModbusValues(), None)

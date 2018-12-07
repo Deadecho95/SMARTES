@@ -9,14 +9,14 @@ class ClientModBus:
     """ Implementation of a client modbus
     """
 
-    def __init__(self, UNIT=0x1, address ='localhost', port=502):
+    def __init__(self, address ='localhost', port=502):
         """ Initialize a client instance
 
     :param UNIT: The host to connect to (default 0x1)
     :param address: The tcp address to connect to (default localhost)
     :param port: The modbus port to connect to (default 502)
     """
-        self.UNIT = UNIT
+        self.UNIT = 0
         self.address = address
         self.port = port
         self.clientVenus = ModbusClient(self.address, port=self.port)
@@ -40,6 +40,12 @@ class ClientModBus:
     :return allRegisters: the list of all registers
         """
 
+        self.UNIT = 100
+        system = self.clientVenus.read_holding_registers(3, 58, unit=self.UNIT)
+        if system.isError() != 0:    # test that we are not an error
+            print("veBus:", system)
+
+        self.UNIT = 242
         veBus = self.clientVenus.read_holding_registers(3, 58, unit=self.UNIT)
         if veBus.isError() != 0:    # test that we are not an error
             print("veBus:", veBus)
