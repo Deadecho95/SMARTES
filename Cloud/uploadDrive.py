@@ -32,9 +32,10 @@ class UploadDrive:
         file1.SetContentString(text)
         file1.Upload()
 # Auto-iterate through all files that matches this query
+
     def find_file_on_cloud(self, title='a'):
         """Read GoogleDriveFile instance with title 'Hello.txt'
-            :param title:The title of the text file
+        :param title:The title of the text file
         """
         nb_files = 0
         file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
@@ -45,12 +46,10 @@ class UploadDrive:
                 nb_files += 1
         if nb_files == 0:
             print('file not found')
+        return
 
     def download_file_on_cloud(self, file_id, local_fd):
         """Download a Drive file's content to the local filesystem.
-
-        Args:
-          service: Drive API Service instance.
           file_id: ID of the Drive file that will downloaded.
           local_fd: io.Base or file object, the stream that the Drive file's
               contents will be written to.
@@ -71,15 +70,6 @@ class UploadDrive:
                 print
                 'Download Complete'
                 return
-    def addtotext(self,nametable,value=[]):
-        length=value.length()
-        #value.
-
-    def writeFile(self,string,title):
-        fichier = open(title,"w+")
-        import os.path
-        if os.path.exists(filepath):
-            os.remove()
 
     def delete_file_on_cloud(self, file_id):
         # HTTP request DELETE
