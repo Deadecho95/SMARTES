@@ -29,7 +29,9 @@ class ClientModBus:
                           ["Percent_Soc_Battery", 843, 100], ["State_Battery", 844, 100],
                           ["Amphours_Consumed_Battery", 845, 100],
                           ["Sec_TimeToGo_Battery", 846, 100], ["Alarms_HightTemperature", 34, 242],
-                          ["Alarms_LowBattery", 35, 242], ["Alarms_Overload", 36, 242]] #Name, Register, unit ID
+                          ["Alarms_LowBattery", 35, 242], ["Alarms_Overload", 36, 242],
+                          ["State_relay_0", 818, 100]] #Name, Register, unit ID
+
 
 
     def connect(self):
