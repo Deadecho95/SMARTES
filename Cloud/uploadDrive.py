@@ -87,7 +87,7 @@ class UploadDrive:
             'An error occurred: %s' % error
     def check_last_modification(self,file_id):
         #GET https://www.googleapis.com/drive/v2/changes/changeId
-        try:
+
 
 
 
