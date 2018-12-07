@@ -20,6 +20,17 @@ class ClientModBus:
         self.address = address
         self.port = port
         self.clientVenus = ModbusClient(self.address, port=self.port)
+        self.registers = [["Power_PvOnGrid_L1", 811, 100], ["Power_PvOnGrid_L2", 812, 100],
+                          ["Power_PvOnGrid_L3", 813, 100], ["Power_Consumption_L1", 817, 100],
+                          ["Power_Consumption_L2", 818, 100], ["Power_Consumption_L3", 819, 100],
+                          ["Power_Grid_L1", 820, 100], ["Power_Grid_L2", 821, 100],
+                          ["Power_Consumption_L3", 822, 100], ["Volatge_Battery", 840, 100],
+                          ["Current_Battery", 841, 100], ["Power_Battery", 842, 100],
+                          ["Percent_Soc_Battery", 843, 100], ["State_Battery", 844, 100],
+                          ["Amphours_Consumed_Battery", 845, 100],
+                          ["Sec_TimeToGo_Battery", 846, 100], ["Alarms_HightTemperature", 34, 242],
+                          ["Alarms_LowBattery", 35, 242], ["Alarms_Overload", 36, 242],
+                          ["State_relay_0", 818, 100]] #Name, Register, unit ID
 
 
 

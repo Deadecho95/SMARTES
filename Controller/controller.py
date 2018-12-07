@@ -17,6 +17,7 @@ class Controller:
         self.data = 0
         self.client = client
 
+
     def startTransmittToCloud(self):
         """
         start the transmission from the battery to the cloud
