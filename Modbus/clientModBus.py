@@ -30,7 +30,9 @@ class ClientModBus:
                           ["Amphours_Consumed_Battery", 845, 100],
                           ["Sec_TimeToGo_Battery", 846, 100], ["Alarms_HightTemperature", 34, 242],
                           ["Alarms_LowBattery", 35, 242], ["Alarms_Overload", 36, 242],
-                          ["State_relay_0", 818, 100]] #Name, Register, unit ID
+                          ["State_Relay_0", 806, 100], ["State_Relay_1", 807, 100],
+                          ["Power_AC_SetPoint", 2700, 100], ["Percent_Max_Charge", 2701, 100],
+                          ["Percent_Max_Discharge", 2702, 100]] #Name, Register, unit ID
 
 
 
