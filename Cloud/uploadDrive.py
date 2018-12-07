@@ -85,6 +85,11 @@ class UploadDrive:
         except errors.HttpError as error:
             print
             'An error occurred: %s' % error
+    def check_last_modification(self,file_id):
+        #GET https://www.googleapis.com/drive/v2/changes/changeId
+        try:
+            
+
 
     @staticmethod
     def internet_on():
