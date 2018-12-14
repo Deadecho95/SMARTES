@@ -1,6 +1,7 @@
 # --------------------------------------------------------------------------- #
 # the controller
 # --------------------------------------------------------------------------- #
+import time
 
 
 class Controller:
@@ -10,30 +11,55 @@ class Controller:
 
     """
 
-    def __init__(self, client):
+    def __init__(self, client_modbus, client_cloud):
         """ Initialize
         """
         self.name = 0
         self.data = 0
-        self.client = client
+        self.client_modbus = client_modbus
+        self.client_cloud = client_cloud
 
+    def start_cycle(self):
+        """
+        start the cycle of the program
+        :return:
+        """
+        while True:
+            time.sleep(30)  # wait for secs
+            self.read_modbus_values()
+            self.check_consumption()
+            self.start_transmit_to_cloud()
+            self.start_transmit_to_battery()
 
-    def startTransmittToCloud(self):
+    def check_consumption(self):
+        """
+        check te consumption for the IO
+        :return:
+        """
+        for y in range(0, len(self.data)):
+            if self.data[y] == "Percent_Soc_Battery":   # check for battery %
+                batt_state = self.data[y + 1]
+            if self.data[y] == "Power_Consumption_L3":   # check for consumption l1
+                cons_l1 = self.data[y + 1]
+            if self.data[y] == "Power_Consumption_L2":   # check for consumption l2
+                cons_l2 = self.data[y + 1]
+            if self.data[y] == "Power_Consumption_L2":   # check for consumption l3
+                cons_l3 = self.data[y + 1]
+        """classe vincent"""
+
+    def start_transmit_to_cloud(self):
         """
         start the transmission from the battery to the cloud
         :return:
         """
-        self.getModbusValues()
-        self.processingValues()
-        self.transmittValue()
 
-    def startTransmittToBattery(self):
+    def start_transmit_to_battery(self):
             """
             start the transmission from the battery to the cloud
             :return:
             """
 
-    def getModbusValues(self):
+    def read_modbus_values(self):
         """
         get value from the modbus
         :return:
@@ -42,7 +68,7 @@ class Controller:
         self.data = self.client.get_registers()
         self.client.disconnect()
 
-    def setModbusValue(self):
+    def set_modbus_value(self):
         """
         set value to the modbus
         :return:
@@ -52,7 +78,7 @@ class Controller:
         self.set_register("""value""")
         self.disconnect()
 
-    def setModbusValues(self):
+    def set_modbus_values(self):
         """
         set values to the modbus
         :return:
@@ -62,14 +88,18 @@ class Controller:
         self.client.set_registers("""value""")
         self.client.disconnect()
 
-    def WriteCloud(self):
+    def write_cloud(self):
         """
-        transmitt registers and names to the cloud
+        transmit registers and names to the cloud
         :return:
         """
-        i = 0
-        while i <= len(self.data):
-            """uploddrive(data[i],data[i+1].registers)"""   # data[i] = name // data[i+1].registers = list
-            i = i+2
+
+        self.client_cloud.write_file_on_cloud()
+
+
+
+
+
+
 
 

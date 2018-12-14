@@ -12,7 +12,6 @@ class ClientModBus:
     def __init__(self, address ='localhost', port=502):
         """ Initialize a client instance
 
-    :param UNIT: The host to connect to (default 0x1)
     :param address: The tcp address to connect to (default localhost)
     :param port: The modbus port to connect to (default 502)
     """
@@ -24,17 +23,15 @@ class ClientModBus:
                           ["Power_PvOnGrid_L3", 813, 100], ["Power_Consumption_L1", 817, 100],
                           ["Power_Consumption_L2", 818, 100], ["Power_Consumption_L3", 819, 100],
                           ["Power_Grid_L1", 820, 100], ["Power_Grid_L2", 821, 100],
-                          ["Power_Consumption_L3", 822, 100], ["Volatge_Battery", 840, 100],
+                          ["Power_Grid_L3", 822, 100], ["Voltage_Battery", 840, 100],
                           ["Current_Battery", 841, 100], ["Power_Battery", 842, 100],
                           ["Percent_Soc_Battery", 843, 100], ["State_Battery", 844, 100],
                           ["Amphours_Consumed_Battery", 845, 100],
-                          ["Sec_TimeToGo_Battery", 846, 100], ["Alarms_HightTemperature", 34, 242],
+                          ["Sec_TimeToGo_Battery", 846, 100], ["Alarms_High_Temperature", 34, 242],
                           ["Alarms_LowBattery", 35, 242], ["Alarms_Overload", 36, 242],
                           ["State_Relay_0", 806, 100], ["State_Relay_1", 807, 100],
                           ["Power_AC_SetPoint", 2700, 100], ["Percent_Max_Charge", 2701, 100],
-                          ["Percent_Max_Discharge", 2702, 100]] #Name, Register, unit ID
-
-
+                          ["Percent_Max_Discharge", 2702, 100]]  # Name, Register, unit ID
 
     def connect(self):
         """ connect to ServerModBus
@@ -52,68 +49,15 @@ class ClientModBus:
 
     :return allRegisters: the list of all registers
         """
+        all_registers = []
+        for y in range(0, len(self.registers)):
+            self.UNIT = self.registers[y][2]    # unit id
+            all_registers.append(self.registers[y][0])   # name
+            all_registers.append(self.clientVenus.read_holding_registers(all_registers[y][1], 1, unit=self.UNIT))   # value
+            if all_registers.isError() != 0:    # test that we are not an error
+                print("veBus:", all_registers[len(all_registers)])
 
-        self.UNIT = 100
-        system = self.clientVenus.read_holding_registers(3, 58, unit=self.UNIT)
-        if system.isError() != 0:    # test that we are not an error
-            print("veBus:", system)
-
-        self.UNIT = 242
-        veBus = self.clientVenus.read_holding_registers(3, 58, unit=self.UNIT)
-        if veBus.isError() != 0:    # test that we are not an error
-            print("veBus:", veBus)
-
-        solarCharger = self.clientVenus.read_holding_registers(771, 20, unit=self.UNIT)
-        if solarCharger.isError() != 0:    # test that we are not an error
-            print("solarCharger:", solarCharger)
-
-        spvInverter = self.clientVenus.read_holding_registers(1026, 14, unit=self.UNIT)
-        if spvInverter.isError() != 0:    # test that we are not an error
-            print("spvInverter:", spvInverter)
-
-        battery = self.clientVenus.read_holding_registers(259, 61, unit=self.UNIT)
-        if battery.isError() != 0:    # test that we are not an error
-            print("battery:", battery)
-
-        batteryExtraParam = self.clientVenus.read_holding_registers(1282, 20, unit=self.UNIT)
-        if batteryExtraParam.isError() != 0:    # test that we are not an error
-            print("batteryExtraParam:", batteryExtraParam)
-
-        charger = self.clientVenus.read_holding_registers(2307, 16, unit=self.UNIT)
-        if charger.isError() != 0:    # test that we are not an error
-            print("charger:", charger)
-
-        inverter = self.clientVenus.read_holding_registers(3100, 29, unit=self.UNIT)
-        if veBus.isError() != 0:    # test that we are not an error
-            print("inverter:", inverter)
-
-        tank = self.clientVenus.read_holding_registers(3000, 6, unit=self.UNIT)
-        if tank.isError() != 0:    # test that we are not an error
-            print("tank:", tank)
-
-        grid = self.clientVenus.read_holding_registers(2600, 10, unit=self.UNIT)
-        if grid.isError() != 0:    # test that we are not an error
-            print("grid:", grid)
-
-        gps = self.clientVenus.read_holding_registers(2800, 8, unit=self.UNIT)
-        if gps.isError() != 0:    # test that we are not an error
-            print("gps:", gps)
-
-        generators = self.clientVenus.read_holding_registers(3200, 24, unit=self.UNIT)
-        if generators.isError() != 0:    # test that we are not an error
-            print("generators:", generators)
-
-        temperature = self.clientVenus.read_holding_registers(3300, 6, unit=self.UNIT)
-        if temperature.isError() != 0:    # test that we are not an error
-            print("temperature:", temperature)
-
-        print("complete")
-
-        allRegisters = ["veBus", veBus, "solarCharger", solarCharger, "spvInverter", spvInverter, "battery", battery,
-                        "batteryExtraParam", batteryExtraParam, "charger", charger, "inverter", inverter, "tank", tank,
-                        "grid", grid, "gps", gps, "generators", generators, "temperature", temperature]
-
-        return allRegisters
+        return all_registers    # name;value
 
     def set_registers(self, register, value):
         """ write registers
@@ -124,13 +68,13 @@ class ClientModBus:
         """
         # self.writeRegister = self.clientVenus.write_register(register,value)
 
-    def set_register(self,register,value):
+    def set_register(self, register, value):
         """ write registers
 
 
         :param register: a register to set
         :param value: a value of the registers to set
         """
-        writeRegister = self.clientVenus.write_register(register,value)
-        if writeRegister.isError() != 0:    # test that we are not an error
-            print("writeRegister Error:", writeRegister)
+        write_register = self.clientVenus.write_register(register, value)
+        if write_register.isError() != 0:    # test that we are not an error
+            print("write_register Error:", write_register)
