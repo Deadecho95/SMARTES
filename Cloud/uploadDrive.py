@@ -2,7 +2,7 @@ from urllib.error import URLError
 
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
-import datetime
+
 from urllib.request import urlopen
 from apiclient import http
 from apiclient import errors
@@ -23,23 +23,22 @@ class UploadDrive:
         gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
         self.drive = GoogleDrive(gauth)
 
-    def write_file_on_cloud(self, text='hello', title='a'):
+    def write_file_on_cloud(self, path):
         """Create GoogleDriveFile instance with title 'Hello.txt'
-        :param text: The text to be written
-        :param title:The title of the text file
+        :param path: path of the file
         """
-        datetime.datetime.now().now.strftime("%Y-%m-%d %H:%M")
-        file1 = self.drive.CreateFile({'title': title + '.txt'})
-        file1.SetContentString(text)
+        file1 = self.drive.CreateFile()
+        file1.SetContentFile(path)
         file1.Upload()
 
     # Auto-iterate through all files that matches this query
-
-    def find_file_on_cloud(self, title='a'):
+    def find_file_on_cloud(self, title=''):
         """Read GoogleDriveFile instance with title 'Hello.txt'
         :param title:The title of the text file
         :return file_id
         """
+        # results=service.files().list().execute()
+        # file_list=results.get('items',[])
         file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
         for file in file_list:
             print('title: %s, id: %s' % (file['title'], file['id']))
@@ -47,16 +46,17 @@ class UploadDrive:
                 print('found')
                 return file['id']
         print('file not found')
-        return 0
+        return 404
 
-    def download_file_on_cloud(self, file_id, local_fd):
+    def download_file_from_cloud(self, file_id, path):
         """Download a Drive file's content to the local filesystem.
           :param file_id: ID of the Drive file that will downloaded.
-          :param local_fd: io.Base or file object, the stream that the Drive file's contents will be written to.
-          :return
+          :param path: where the file is write
+          :return the success
         """
         if self.internet_on():
-            request = self.drive.files().get_media(fileId=file_id)
+            local_fd = open( path + "command.csv", "w+")
+            request = self.drive.files().get_media(file_id)
             media_request = http.MediaIoBaseDownload(local_fd, request)
             while True:
                 try:
@@ -92,6 +92,9 @@ class UploadDrive:
 
     @staticmethod
     def internet_on():
+        """Check if the connection to the internet works
+               :return the success
+        """
         try:
             urlopen('http://216.58.192.142', timeout=1)
             return True

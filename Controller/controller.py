@@ -1,6 +1,9 @@
 # --------------------------------------------------------------------------- #
 # the controller
 # --------------------------------------------------------------------------- #
+from Cloud.uploadDrive import UploadDrive
+from Controller.localDataBase import LocalDataBase
+from Modbus.clientModBus import ClientModBus
 import time
 
 
@@ -11,13 +14,14 @@ class Controller:
 
     """
 
-    def __init__(self, client_modbus, client_cloud):
+    def __init__(self, client_modbus, client_cloud, database):
         """ Initialize
         """
         self.name = 0
         self.data = 0
         self.client_modbus = client_modbus
         self.client_cloud = client_cloud
+        self.database = database
 
     def start_cycle(self):
         """
@@ -53,13 +57,29 @@ class Controller:
         start the transmission to the cloud
         :return:
         """
-        self.client_cloud.write_file_on_cloud()
+        self.database.add_text(self.data)    # write data on local database
+        file1 = self.client_cloud.find_file_on_cloud("values.csv")
+        if file1 == 404:  # check if error
+            print("error file not found")
+        else:
+            self.client_cloud.delete_file_on_cloud(file1)    # delete old file
+            self.client_cloud.write_file_on_cloud("/home/pi/Desktop")   # write on cloud
+            print("file wrote")
 
     def read_cloud(self):
-            """
-            start the transmission to the battery
-            :return:
-            """
+        """
+        start the transmission to the battery
+        :return:
+        """
+        file1 = self.client_cloud.find_file_on_cloud("command.csv")  # find file on cloud
+        if file1 == 404:
+            print("error file not found")   # not found
+        else:
+            ok = self.client_cloud.download_file_from_cloud(file1, "/home/pi/Desktop")    # download command file
+            if ok == 0:
+                print("Error when read file from cloud")
+            else:
+                print("file read from cloud")
 
     def read_modbus_values(self):
         """
