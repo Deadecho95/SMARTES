@@ -45,7 +45,7 @@ class UploadDrive:
             print('title: %s, id: %s' % (file['title'], file['id']))
             if file['title'] == title:
                 print('found')
-                return file
+                return file['id']
         print('file not found')
         return 404
 
@@ -56,7 +56,7 @@ class UploadDrive:
           :return the success
         """
         if self.internet_on():
-            local_fd = open( path + "command.csv", "w+")
+            local_fd = open(path + "command.csv", "w+")
             request = self.drive.files().get_media(file_id)
             media_request = http.MediaIoBaseDownload(local_fd, request)
             while True:
@@ -82,11 +82,8 @@ class UploadDrive:
         """Permanently delete a file, skipping the trash.
           :param file_id: ID of the file to delete.
         """
-        try:
-            file_id
-        except errors.HttpError as error:
-            print
-            'An error occurred: %s' % error
+
+        self.drive.auth.service.files().delete(file_id).execute()
 
     # def check_last_modification(self,file_id):
     # GET https://www.googleapis.com/drive/v2/changes/changeId
