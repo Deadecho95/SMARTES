@@ -13,7 +13,7 @@ class LocalDataBase:
     """
 
     def __init__(self):
-        self.path = "command.txt"
+        self.path = "values.csv"
         self.file = open(self.path, "w+")
         self.file.write("SMARTES\n")
         self.file.close()

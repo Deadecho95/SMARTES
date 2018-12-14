@@ -29,6 +29,7 @@ class UploadDrive:
         """
         file1 = self.drive.CreateFile()
         file1.SetContentFile(path)
+        file1['title'] = "values.csv"
         file1.Upload()
 
     # Auto-iterate through all files that matches this query
@@ -44,7 +45,7 @@ class UploadDrive:
             print('title: %s, id: %s' % (file['title'], file['id']))
             if file['title'] == title:
                 print('found')
-                return file['id']
+                return file
         print('file not found')
         return 404
 
@@ -82,7 +83,7 @@ class UploadDrive:
           :param file_id: ID of the file to delete.
         """
         try:
-            self.drive.files().delete(fileId=file_id).execute()
+            file_id
         except errors.HttpError as error:
             print
             'An error occurred: %s' % error

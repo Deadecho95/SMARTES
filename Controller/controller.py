@@ -58,9 +58,8 @@ class Controller:
         self.database.add_text(self.data)    # write data on local database
         file1 = self.client_cloud.find_file_on_cloud("values.csv")
         if file1 == 404:  # check if error
-            print("error file not found")
-        self.client_cloud.delete_file_on_cloud(file1)    # delete old file
-        self.client_cloud.write_file_on_cloud("/home/pi/Desktop")   # write on cloud
+            self.client_cloud.delete_file_on_cloud(file1)    # delete old file
+        self.client_cloud.write_file_on_cloud("C:/users/chena/OneDrive/Documents/GitHub/SMARTES/Cloud/values.csv")   # write on cloud
         print("file wrote")
 
     def read_cloud(self):
