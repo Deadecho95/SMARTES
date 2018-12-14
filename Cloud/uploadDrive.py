@@ -7,6 +7,7 @@ from urllib.request import urlopen
 from apiclient import http
 from apiclient import errors
 
+
 # --------------------------------------------------------------------------- #
 # Client to connect to Google Drive
 # --------------------------------------------------------------------------- #
@@ -28,69 +29,66 @@ class UploadDrive:
         :param title:The title of the text file
         """
         datetime.datetime.now().now.strftime("%Y-%m-%d %H:%M")
-        file1 = self.drive.CreateFile({'title': title+'.txt'})
+        file1 = self.drive.CreateFile({'title': title + '.txt'})
         file1.SetContentString(text)
         file1.Upload()
-# Auto-iterate through all files that matches this query
+
+    # Auto-iterate through all files that matches this query
 
     def find_file_on_cloud(self, title='a'):
         """Read GoogleDriveFile instance with title 'Hello.txt'
         :param title:The title of the text file
+        :return file_id
         """
-        nb_files = 0
         file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
-        for file1 in file_list:
-            print('title: %s, id: %s' % (file1['title'], file1['id']))
-            if file1['title'] == title:
+        for file in file_list:
+            print('title: %s, id: %s' % (file['title'], file['id']))
+            if file['title'] == title:
                 print('found')
-                nb_files += 1
-        if nb_files == 0:
-            print('file not found')
-        return
+                return file['id']
+        print('file not found')
+        return 0
 
     def download_file_on_cloud(self, file_id, local_fd):
         """Download a Drive file's content to the local filesystem.
-          file_id: ID of the Drive file that will downloaded.
-          local_fd: io.Base or file object, the stream that the Drive file's
-              contents will be written to.
+          :param file_id: ID of the Drive file that will downloaded.
+          :param local_fd: io.Base or file object, the stream that the Drive file's contents will be written to.
+          :return
         """
-        request = self.drive.files().get_media(fileId=file_id)
-        media_request = http.MediaIoBaseDownload(local_fd, request)
-        while True:
-            try:
-                download_progress, done = media_request.next_chunk()
-            except errors.HttpError as error:
-                print
-                'An error occurred: %s' % error
-                return
-            if download_progress:
-                print
-                'Download Progress: %d%%' % int(download_progress.progress() * 100)
-            if done:
-                print
-                'Download Complete'
-                return
+        if self.internet_on():
+            request = self.drive.files().get_media(fileId=file_id)
+            media_request = http.MediaIoBaseDownload(local_fd, request)
+            while True:
+                try:
+                    download_progress, done = media_request.next_chunk()
+                except errors.HttpError as error:
+                    print
+                    'An error occurred: %s' % error
+                    return False
+                if download_progress:
+                    print
+                    'Download Progress: %d%%' % int(download_progress.progress() * 100)
+                if done:
+                    print
+                    'Download Complete'
+                    return True
+        else:
+            return False
 
     def delete_file_on_cloud(self, file_id):
         # HTTP request DELETE
         # https: // www.googleapis.com / drive / v2 / files / fileId
         """Permanently delete a file, skipping the trash.
-
-        Args:
-          service: Drive API service instance.
-          file_id: ID of the file to delete.
+          :param file_id: ID of the file to delete.
         """
         try:
             self.drive.files().delete(fileId=file_id).execute()
         except errors.HttpError as error:
             print
             'An error occurred: %s' % error
-    def check_last_modification(self,file_id):
-        #GET https://www.googleapis.com/drive/v2/changes/changeId
 
-
-
-
+    # def check_last_modification(self,file_id):
+    # GET https://www.googleapis.com/drive/v2/changes/changeId
 
     @staticmethod
     def internet_on():
@@ -99,4 +97,3 @@ class UploadDrive:
             return True
         except URLError as err:
             return False
-

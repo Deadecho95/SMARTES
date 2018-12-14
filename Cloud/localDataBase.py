@@ -17,8 +17,13 @@ class LocalDataBase:
     def add_text(self, values=[]):
         length = values.length()
         self.file.open(self.path, "a")
+        i = 0
         for value in values:
-            self.file.write("\n" + value)
+            self.file.write(value + ";")
+            if i == 1:
+                i = 0
+                self.file.write(";\n")
+            ++i
 
     def delete_text(self):
         os.remove(self.path)
