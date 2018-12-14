@@ -1,8 +1,15 @@
 from Cloud.uploadDrive import UploadDrive
-from pydrive.files import GoogleDriveFile
-client = UploadDrive()
-client.write_file_on_cloud("ggdd", "tttffff")
+from Controller.controller import Controller
+from Modbus.clientModBus import ClientModBus
+from Controller.localDataBase import LocalDataBase
 
-fileId = client.find_file_on_cloud("ttt.txt")
-gdf =GoogleDriveFile(fileId)
-#client.delete_file_on_cloud(fileId)
+
+# --------------------------------------------------------------------------- #
+# Main
+# --------------------------------------------------------------------------- #
+
+client_modbus = ClientModBus("153.109.14.168", 502)
+client_cloud = UploadDrive()
+dataBase = LocalDataBase()
+controller = Controller(client_modbus, client_cloud, dataBase)
+controller.start_cycle()

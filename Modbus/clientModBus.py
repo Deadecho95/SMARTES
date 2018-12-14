@@ -53,9 +53,11 @@ class ClientModBus:
         for y in range(0, len(self.registers)):
             self.UNIT = self.registers[y][2]    # unit id
             all_registers.append(self.registers[y][0])   # name
-            all_registers.append(self.clientVenus.read_holding_registers(all_registers[y][1], 1, unit=self.UNIT))   # value
-            if all_registers.isError() != 0:    # test that we are not an error
-                print("veBus:", all_registers[len(all_registers)])
+            registers = self.clientVenus.read_holding_registers(self.registers[y][1], 1, unit=self.UNIT)   # value
+            if registers.isError() != 0:    # test that we are not an error
+                print(all_registers.index(len(all_registers)-1), registers)
+            else:
+                all_registers.append(registers.registers[0])
 
         return all_registers    # name;value
 

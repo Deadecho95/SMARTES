@@ -24,14 +24,14 @@ class LocalDataBase:
     """
 
     def add_text(self, values=[]):
-        date = datetime.datetime.now().now.strftime("%Y-%m-%d %H:%M")
+        date = datetime.datetime.now().now().strftime("%Y-%m-%d %H:%M")
 
         if not self.header:
             self.file = open(self.path, "w+")
             i = 0
             self.file.write("datetime" + ";")
             for value in values:
-                self.file.write(value + ";")
+                self.file.write(str(value) + ";")
 
                 if i == 0:
                     self.file.write(";")
@@ -40,12 +40,12 @@ class LocalDataBase:
                     i = 0
             self.file.write(";\n")
             self.header = True
-        self.file.open(self.path, "a")
+        self.file = open(self.path, "a")
         i = 0
         self.file.write(date + ";")
 
         for value in values:
-            self.file.write(value + ";")
+            self.file.write(str(value) + ";")
             if i == 1:
                 i = 0
                 self.file.write(";\n")
