@@ -1,7 +1,15 @@
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
 from Cloud.uploadDrive import UploadDrive
+from Controller.controller import Controller
+from Modbus.clientModBus import ClientModBus
+from Controller.localDataBase import LocalDataBase
 
-client= UploadDrive()
-fileID=client.find_file_on_cloud("ttt.txt")
-client.delete_file_on_cloud(fileID)
+
+# --------------------------------------------------------------------------- #
+# Main
+# --------------------------------------------------------------------------- #
+
+client_modbus = ClientModBus("153.109.14.168", 502)
+client_cloud = UploadDrive()
+dataBase = LocalDataBase()
+controller = Controller(client_modbus, client_cloud, dataBase)
+controller.start_cycle()
