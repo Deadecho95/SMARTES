@@ -9,9 +9,6 @@ import time
 
 class Controller:
     """ Implementation of a client
-
-    :param client: The clientModbus to connect to
-
     """
 
     def __init__(self, client_modbus, client_cloud, database):
@@ -71,7 +68,7 @@ class Controller:
         start the transmission to the battery
         :return:
         """
-        file1 = self.client_cloud.find_file_on_cloud("command.csv")  # find file on cloud
+        file1 = self.client_cloud.find_file_on_cloud("commands.csv")  # find file on cloud
         if file1 == 404:
             print("error file not found")   # not found
         else:
