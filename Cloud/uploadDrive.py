@@ -6,6 +6,7 @@ from pydrive.drive import GoogleDrive
 from urllib.request import urlopen
 from apiclient import http
 from apiclient import errors
+from pydrive.files import GoogleDriveFile
 
 
 # --------------------------------------------------------------------------- #
@@ -82,8 +83,14 @@ class UploadDrive:
         """Permanently delete a file, skipping the trash.
           :param file_id: ID of the file to delete.
         """
-
-        self.drive.auth.service.files().delete(file_id).execute()
+        file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
+        for file in file_list:
+            print('title: %s, id: %s' % (file['title'], file['id']))
+            if file['title'] == file_id:
+                print('found')
+                self.drive.auth.service.files().delete(fileId=file['id']).execute()
+        print('file not found')
+        return 404
 
     # def check_last_modification(self,file_id):
     # GET https://www.googleapis.com/drive/v2/changes/changeId

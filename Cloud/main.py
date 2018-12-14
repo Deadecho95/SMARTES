@@ -10,6 +10,4 @@ from Controller.localDataBase import LocalDataBase
 
 client_modbus = ClientModBus("153.109.14.168", 502)
 client_cloud = UploadDrive()
-dataBase = LocalDataBase()
-controller = Controller(client_modbus, client_cloud, dataBase)
-controller.start_cycle()
+client_cloud.delete_file_on_cloud("ttt")
