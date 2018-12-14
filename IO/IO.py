@@ -19,8 +19,6 @@ class In_out:
         self.set_relay(38)
         self.set_relay(40)
 
-
-
     def set_analog_output(self, pin,value):
         """
         Set analog output 4-20mA
@@ -32,7 +30,6 @@ class In_out:
 
         self.outputs.write_single(pin, (value*29.78+745))
 
-
     def read_digital_input(self, pin):
         """
         Read digital input on external card
@@ -42,15 +39,13 @@ class In_out:
         """
         return self.inputs.read_single(pin)
 
-
-    def set_relay(self, pin):
+    def  set_relay(self, pin):
         """
         Set relay in output
 
         :param pin: the pin
         """
         GPIO.output(pin, GPIO.OUT)
-
 
     def set_relay_value(self, pin, value):
         """
@@ -64,5 +59,3 @@ class In_out:
             GPIO.output(pin, GPIO.LOW)
         else:
             GPIO.output(pin, GPIO.HIGH)
-
-
