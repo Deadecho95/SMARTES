@@ -27,9 +27,9 @@ class UploadDrive:
         """Create GoogleDriveFile instance with title 'Hello.txt'
         :param path: path of the file
         """
-        file1 = self.drive.CreateFile()
-        file1.SetContentFile(path)
-        file1.Upload()
+        file = self.drive.CreateFile()
+        file.SetContentFile(path)
+        file.Upload()
 
     # Auto-iterate through all files that matches this query
     def find_file_on_cloud(self, title=''):
@@ -55,7 +55,7 @@ class UploadDrive:
           :return the success
         """
         if self.internet_on():
-            local_fd = open( path + "command.csv", "w+")
+            local_fd = open(path + "command.csv", "w+")
             request = self.drive.files().get_media(file_id)
             media_request = http.MediaIoBaseDownload(local_fd, request)
             while True:
@@ -81,11 +81,8 @@ class UploadDrive:
         """Permanently delete a file, skipping the trash.
           :param file_id: ID of the file to delete.
         """
-        try:
-            self.drive.files().delete(fileId=file_id).execute()
-        except errors.HttpError as error:
-            print
-            'An error occurred: %s' % error
+
+        self.drive.auth.service.files().delete(file_id).execute()
 
     # def check_last_modification(self,file_id):
     # GET https://www.googleapis.com/drive/v2/changes/changeId
