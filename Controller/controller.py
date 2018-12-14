@@ -27,8 +27,8 @@ class Controller:
         while True:
             time.sleep(30)  # wait for secs
             self.read_modbus_values()
-            self.check_consumption()
             self.start_transmit_to_cloud()
+            self.check_consumption()
             self.start_transmit_to_battery()
 
     def check_consumption(self):
@@ -45,17 +45,19 @@ class Controller:
                 cons_l2 = self.data[y + 1]
             if self.data[y] == "Power_Consumption_L2":   # check for consumption l3
                 cons_l3 = self.data[y + 1]
-        """classe vincent"""
 
-    def start_transmit_to_cloud(self):
+
+
+    def write_cloud(self):
         """
-        start the transmission from the battery to the cloud
+        start the transmission to the cloud
         :return:
         """
+        self.client_cloud.write_file_on_cloud()
 
-    def start_transmit_to_battery(self):
+    def read_cloud(self):
             """
-            start the transmission from the battery to the cloud
+            start the transmission to the battery
             :return:
             """
 
@@ -78,23 +80,9 @@ class Controller:
         self.set_register("""value""")
         self.disconnect()
 
-    def set_modbus_values(self):
-        """
-        set values to the modbus
-        :return:
-        """
 
-        self.client.connect()
-        self.client.set_registers("""value""")
-        self.client.disconnect()
 
-    def write_cloud(self):
-        """
-        transmit registers and names to the cloud
-        :return:
-        """
 
-        self.client_cloud.write_file_on_cloud()
 
 
 
