@@ -27,7 +27,7 @@ class Controller:
         :return:
         """
         while True:
-            # time.sleep(30)  # wait for secs
+            time.sleep(5)  # wait for secs
             self.read_modbus_values()
             self.write_cloud()
             self.read_cloud()
@@ -56,8 +56,8 @@ class Controller:
         :return:
         """
         self.database.add_text(self.data)    # write data on local database
-        file1 = self.client_cloud.find_file_on_cloud("values.csv")
-        if file1 == 404:  # check if error
+        file1 = self.client_cloud.find_file_title_on_cloud("values.csv")
+        if file1 != 404:  # check if error
             self.client_cloud.delete_file_on_cloud(file1)    # delete old file
         self.client_cloud.write_file_on_cloud("C:/users/chena/OneDrive/Documents/GitHub/SMARTES/Cloud/values.csv")   # write on cloud
         print("file wrote")
@@ -67,11 +67,11 @@ class Controller:
         start the transmission to the battery
         :return:
         """
-        file1 = self.client_cloud.find_file_on_cloud("commands.csv")  # find file on cloud
+        file1 = self.client_cloud.find_file_id_on_cloud("commands.csv")  # find file on cloud
         if file1 == 404:
             print("error file not found")   # not found
         else:
-            ok = self.client_cloud.download_file_from_cloud(file1, "/home/pi/Desktop")    # download command file
+            ok = self.client_cloud.download_file_from_cloud(file1, "C:/users/chena/OneDrive/Documents/GitHub/SMARTES/Cloud")    # download command file
             if ok == 0:
                 print("Error when read file from cloud")
             else:

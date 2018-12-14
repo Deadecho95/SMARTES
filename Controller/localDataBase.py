@@ -31,25 +31,22 @@ class LocalDataBase:
             i = 0
             self.file.write("datetime" + ";")
             for value in values:
-                self.file.write(str(value) + ";")
-
                 if i == 0:
-                    self.file.write(";")
+                    self.file.write(str(value) + ";")
                 ++i
                 if i >= 2:
                     i = 0
             self.file.write(";\n")
             self.header = True
         self.file = open(self.path, "a")
-        i = 0
         self.file.write(date + ";")
-
+        i = 0
         for value in values:
-            self.file.write(str(value) + ";")
             if i == 1:
+                self.file.write(str(value) + ";")
                 i = 0
-                self.file.write(";\n")
             ++i
+        self.file.write(";\n")
         self.file.close()
 
     """Delete the file
