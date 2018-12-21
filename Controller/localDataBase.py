@@ -25,27 +25,30 @@ class LocalDataBase:
 
     def add_text(self, values=[]):
         date = datetime.datetime.now().now().strftime("%Y-%m-%d %H:%M")
-
+        # Add an Header at the beginning power voltage
         if not self.header:
             self.file = open(self.path, "w+")
             i = 0
             self.file.write("datetime" + ";")
+
             for value in values:
                 if i == 0:
                     self.file.write(str(value) + ";")
-                ++i
-                if i >= 2:
+                if i == 1:
                     i = 0
+                ++i
             self.file.write(";\n")
             self.header = True
+        # Write the values date;val1;val2;val3
         self.file = open(self.path, "a")
         self.file.write(date + ";")
         i = 0
         for value in values:
             if i == 1:
                 self.file.write(str(value) + ";")
-                i = 0
+                i = -1
             ++i
+
         self.file.write(";\n")
         self.file.close()
 
@@ -54,3 +57,4 @@ class LocalDataBase:
 
     def delete_file(self):
         os.remove(self.path)
+
