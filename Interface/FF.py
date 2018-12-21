@@ -1,12 +1,32 @@
-from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
-import os
+import plotly
 import plotly.graph_objs as go
 
+import pandas as pd
 
-def __init__(self, path="Files/values.csv", title="Smartes\n"):
-    self.path = path
-    if os.path.isfile(self.path) and os.path.getsize(self.path) > 0:
-        self.file = open(self.path, "r")
-        self.file.close()
-        self.header = False
-        plot([go.Scatter(x=[0, 2, 3], y=[3, 1, 6])])
+df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv")
+
+trace_high = go.Scatter(
+                x=df.Date,
+                y=df['AAPL.High'],
+                name = "AAPL High",
+                line = dict(color = '#17BECF'),
+                opacity = 0.8)
+
+trace_low = go.Scatter(
+                x=df.Date,
+                y=df['AAPL.Low'],
+                name = "AAPL Low",
+                line = dict(color = '#7F7F7F'),
+                opacity = 0.8)
+
+data = [trace_high,trace_low]
+
+layout = dict(
+    title = "Manually Set Date Range",
+    xaxis = dict(
+        range = ['2016-07-01','2016-12-31'])
+)
+
+fig = dict(data=data, layout=layout)
+
+plotly.offline.plot(fig,filename = "Manually Set Range")

@@ -1,6 +1,6 @@
 import plotly.plotly as py
 import plotly.graph_objs as go
-
+import numpy as np
 from Cloud import uploadDrive as cloud
 from datetime import datetime
 import pandas_datareader as web
@@ -12,10 +12,18 @@ class Interface:
 
     def readDB(self):
         cloud.download_file_from_cloud()
-        file = open("config.txt", "r")
-        string = file .seek(0)
-        collapsedstring = ';'.join(string.split())
-        collapsedstring.__sizeof__()
+        file = open("csv.txt", "r")
+        lines = file.readlines()
+        i = 0
+        j = 0
+        mat = [3][5]
+        for line in lines:
+            num_lines = sum(1 for line in open('myfile.txt'))
+            strings = ';'.line.split()
+            for string in strings:
+                mat[i][j] = string
+                np.transpose(mat)
+                x:
     py.sign_in('kevinassim', 'r8ano3lbsg')
 
     df = web.DataReader("aapl", 'yahoo',
