@@ -1,25 +1,21 @@
-#---------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------#
 # import the various server implementations
 # ---------------------------------------------------------------------------#
 from widgetlords.pi_spi import *
 import RPi.GPIO as GPIO
 
-class In_out:
 
-    def __init__(self, ):
+class InOut:
+
+    @staticmethod
+    def init(self):
         """ Initialize
         """
         init()
-        self.outputs = Mod2AO()
-        self.inputs = Mod8DI()
-
         GPIO.setmode(GPIO.BCM)
 
-        self.set_relay(37)
-        self.set_relay(38)
-        self.set_relay(40)
-
-    def set_analog_output(self, pin,value):
+    @staticmethod
+    def set_analog_output(pin,value):
         """
         Set analog output 4-20mA
         (4mA at 745 D/A  -  20mA at 3723 D/A)
@@ -27,19 +23,22 @@ class In_out:
         :param pin: number of pin
         :param value: value of output in %
         """
+        outputs = Mod2AO()
+        outputs.write_single(pin, (value*29.78+745))
 
-        self.outputs.write_single(pin, (value*29.78+745))
-
-    def read_digital_input(self, pin):
+    @staticmethod
+    def read_digital_input(pin):
         """
         Read digital input on external card
 
         :param pin: number of pin
         :return: value on the pin
         """
-        return self.inputs.read_single(pin)
+        inputs = Mod8DI()
+        return inputs.read_single(pin)
 
-    def  set_relay(self, pin):
+    @staticmethod
+    def set_relay(pin):
         """
         Set relay in output
 
@@ -47,7 +46,8 @@ class In_out:
         """
         GPIO.output(pin, GPIO.OUT)
 
-    def set_relay_value(self, pin, value):
+    @staticmethod
+    def set_relay_value(pin, value):
         """
         Set value of relay
 

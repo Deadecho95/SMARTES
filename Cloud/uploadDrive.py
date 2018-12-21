@@ -1,9 +1,9 @@
-from urllib.error import URLError
+from urllib2 import URLError
 
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
-from urllib.request import urlopen
+from urllib2 import urlopen
 from apiclient import http
 from apiclient import errors
 from pydrive.files import GoogleDriveFile
