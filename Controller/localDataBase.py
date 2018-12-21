@@ -34,7 +34,7 @@ class LocalDataBase:
         """ Append text to the end of a local file
         :param values : Array of key value table
         """
-        date = datetime.datetime.now().now().strftime("%Y-%m-%d %H:%M")
+        date = datetime.datetime.now().now().strftime("%Y-%m-%d %H:%M:%S")
         # Add an Header at the beginning power voltage
 
         if not self.header:  # add a header
