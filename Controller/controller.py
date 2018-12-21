@@ -11,7 +11,7 @@ class Controller:
     """ Implementation of a client
     """
 
-    def __init__(self, client_modbus, client_cloud, database):
+    def __init__(self, client_modbus, client_cloud, client_io, database):
         """ Initialize
         """
         self.name = 0
@@ -19,6 +19,8 @@ class Controller:
         self.client_modbus = client_modbus
         self.client_cloud = client_cloud
         self.database = database
+        self.client_io = client_io
+        power_relay_1 =-100
 
     def start_cycle(self):
         """
@@ -46,6 +48,28 @@ class Controller:
                 cons_l2 = self.data[y + 1]
             if self.data[y] == "Power_Consumption_L2":   # check for consumption l3
                 cons_l3 = self.data[y + 1]
+
+    def check_relay(self, pin):
+        """
+        Command relay
+        :param pin: number pin
+        """
+        if (cons_l1 + cons_l2 + cons_l3) <= power_relay_1 && self.read_digital_input(pin,1)<=0: # if power PV is higher than
+            self.set_relay_value(pin, 1)
+        else :
+            self.set_relay_value(pin, 0)
+
+     def check_output_analog(self, pin):
+        """
+        Set analog output
+        :param pin:
+        :return:
+        """
+        if  (cons_l1 + cons_l2 + cons_l3) >= 0:
+            self.set_analog_output(pin, batt.state)
+        else:
+            self.set_analog_output(pin, 0)
+
 
 
 
@@ -96,6 +120,7 @@ class Controller:
         self.client.connect()
         self.set_register("""value""")
         self.disconnect()
+
 
 
 
