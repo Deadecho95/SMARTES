@@ -16,7 +16,7 @@ class Interface:
         string = file .seek(0)
         collapsedstring = ';'.join(string.split())
         collapsedstring.__sizeof__()
-    py.sign_in('kevinassim', 'JFc3wS4RqXmLyukVljPB')
+    py.sign_in('kevinassim', 'r8ano3lbsg')
 
     df = web.DataReader("aapl", 'yahoo',
                         datetime(2012, 1, 1),
