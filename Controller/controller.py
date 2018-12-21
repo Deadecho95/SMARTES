@@ -33,6 +33,8 @@ class Controller:
             self.read_cloud()
             self.check_consumption()
 
+            self.write_modbus_values()
+
     def check_consumption(self):
         """
         check te consumption for the IO
@@ -83,6 +85,11 @@ class Controller:
         self.client_modbus.connect()
         self.data = self.client_modbus.get_registers()
         self.client_modbus.disconnect()
+
+    def write_modbus_values(self):
+
+        for y in range(0, ):
+            database.
 
     def set_modbus_value(self):
         """
