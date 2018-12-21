@@ -8,13 +8,8 @@ from Controller.localDataBase import LocalDataBase
 # Main
 # --------------------------------------------------------------------------- #
 
-client_modbus = ClientModBus("153.109.14.169", 502)
+client_modbus = ClientModBus("153.109.14.168", 502)
 client_cloud = UploadDrive()
-dataBase = LocalDataBase()
-controller = Controller(client_modbus, client_cloud, dataBase)
+database = LocalDataBase()
+controller = Controller(client_modbus, client_cloud, database)
 controller.start_cycle()
-
-
-
-
-

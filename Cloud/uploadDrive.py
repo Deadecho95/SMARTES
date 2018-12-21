@@ -6,6 +6,7 @@ from pydrive.drive import GoogleDrive
 from urllib.request import urlopen
 from apiclient import http
 from apiclient import errors
+from pydrive.files import GoogleDriveFile
 
 
 # --------------------------------------------------------------------------- #
@@ -29,10 +30,11 @@ class UploadDrive:
         """
         file1 = self.drive.CreateFile()
         file1.SetContentFile(path)
+        file1['title'] = "values.csv"
         file1.Upload()
 
     # Auto-iterate through all files that matches this query
-    def find_file_on_cloud(self, title=''):
+    def find_file_title_on_cloud(self, title=''):
         """Read GoogleDriveFile instance with title 'Hello.txt'
         :param title:The title of the text file
         :return file_id
@@ -43,20 +45,36 @@ class UploadDrive:
         for file in file_list:
             print('title: %s, id: %s' % (file['title'], file['id']))
             if file['title'] == title:
-                print('found')
+                print('found : ' + title)
+                return file['title']
+        print('file not found : ' + title)
+        return 404
+
+    def find_file_id_on_cloud(self, title=''):
+        """Read GoogleDriveFile instance with title 'Hello.txt'
+        :param title:The title of the text file
+        :return file_id
+        """
+        # results=service.files().list().execute()
+        # file_list=results.get('items',[])
+        file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
+        for file in file_list:
+            print('title: %s, id: %s' % (file['title'], file['id']))
+            if file['title'] == title:
+                print('found : ' + title)
                 return file['id']
-        print('file not found')
+                print('file not found : ' + title)
         return 404
 
     def download_file_from_cloud(self, file_id, path):
         """Download a Drive file's content to the local filesystem.
-          :param file_id: ID of the Drive file that will downloaded.
+          :param file_title: ID of the Drive file that will downloaded.
           :param path: where the file is write
           :return the success
         """
         if self.internet_on():
-            local_fd = open( path + "command.csv", "w+")
-            request = self.drive.files().get_media(file_id)
+            local_fd = open(path + "commands.csv", "wb")
+            request = self.drive.auth.service.files().get_media(fileId=file_id)
             media_request = http.MediaIoBaseDownload(local_fd, request)
             while True:
                 try:
@@ -75,17 +93,20 @@ class UploadDrive:
         else:
             return False
 
-    def delete_file_on_cloud(self, file_id):
+    def delete_file_on_cloud(self, file_title):
         # HTTP request DELETE
         # https: // www.googleapis.com / drive / v2 / files / fileId
         """Permanently delete a file, skipping the trash.
-          :param file_id: ID of the file to delete.
+          :param file_title: ID of the file to delete.
         """
-        try:
-            self.drive.files().delete(fileId=file_id).execute()
-        except errors.HttpError as error:
-            print
-            'An error occurred: %s' % error
+        file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
+        for file in file_list:
+            print('title: %s, id: %s' % (file['title'], file['id']))
+            if file['title'] == file_title:
+                print('found : ' + file_title)
+                self.drive.auth.service.files().delete(fileId=file['id']).execute()
+        print('file not found : ' + file_title)
+        return 404
 
     # def check_last_modification(self,file_id):
     # GET https://www.googleapis.com/drive/v2/changes/changeId

@@ -13,7 +13,7 @@ class LocalDataBase:
     """
 
     def __init__(self):
-        self.path = "command.txt"
+        self.path = "values.csv"
         self.file = open(self.path, "w+")
         self.file.write("SMARTES\n")
         self.file.close()
@@ -24,32 +24,29 @@ class LocalDataBase:
     """
 
     def add_text(self, values=[]):
-        date = datetime.datetime.now().now.strftime("%Y-%m-%d %H:%M")
+        date = datetime.datetime.now().now().strftime("%Y-%m-%d %H:%M")
 
         if not self.header:
             self.file = open(self.path, "w+")
             i = 0
             self.file.write("datetime" + ";")
             for value in values:
-                self.file.write(value + ";")
-
                 if i == 0:
-                    self.file.write(";")
+                    self.file.write(str(value) + ";")
                 ++i
                 if i >= 2:
                     i = 0
             self.file.write(";\n")
             self.header = True
-        self.file.open(self.path, "a")
-        i = 0
+        self.file = open(self.path, "a")
         self.file.write(date + ";")
-
+        i = 0
         for value in values:
-            self.file.write(value + ";")
             if i == 1:
+                self.file.write(str(value) + ";")
                 i = 0
-                self.file.write(";\n")
             ++i
+        self.file.write(";\n")
         self.file.close()
 
     """Delete the file
