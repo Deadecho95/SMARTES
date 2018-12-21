@@ -48,8 +48,6 @@ class Controller:
             if self.data[y] == "Power_Consumption_L2":   # check for consumption l3
                 cons_l3 = self.data[y + 1]
 
-
-
     def write_cloud(self):
         """
         start the transmission to the cloud
