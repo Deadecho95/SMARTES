@@ -60,6 +60,8 @@ class Controller:
         for y in range(0, self.NBR_RELAY):  #write n relays
             self.check_relay(self.RELAY_PINS[y],data,"pmin")
 
+            self.write_modbus_values()
+
     def check_consumption(self):
         """
         check te consumption for the IO
@@ -111,7 +113,8 @@ class Controller:
         file1 = self.client_cloud.find_file_title_on_cloud("values.csv")
         if file1 != 404:  # check if error
             self.client_cloud.delete_file_on_cloud(file1)    # delete old file
-        self.client_cloud.write_file_on_cloud("C:/users/chena/OneDrive/Documents/GitHub/SMARTES/Cloud/values.csv")   # write on cloud
+        self.client_cloud.write_file_on_cloud("C:/users/chena/OneDrive/Documents/GitHub/SMARTES/Files/values.csv")   # write on cloud
+        #self.client_cloud.write_file_on_cloud("Files/values.csv")   # write on cloud
         print("file wrote")
 
     def read_cloud(self):
@@ -124,6 +127,8 @@ class Controller:
             print("error file not found")   # not found
         else:
             ok = self.client_cloud.download_file_from_cloud(file1, "C:/users/chena/OneDrive/Documents/GitHub/SMARTES/Cloud")    # download command file
+            #ok = self.client_cloud.download_file_from_cloud(file1, "Files/")    # download command file
+
             if ok == 0:
                 print("Error when read file from cloud")
             else:
@@ -137,6 +142,11 @@ class Controller:
         self.client_modbus.connect()
         self.data = self.client_modbus.get_registers()
         self.client_modbus.disconnect()
+
+    def write_modbus_values(self):
+
+        for y in range(0, ):
+            "readdatabase"
 
     def set_modbus_value(self):
         """

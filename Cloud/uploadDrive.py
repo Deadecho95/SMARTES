@@ -6,7 +6,6 @@ from pydrive.drive import GoogleDrive
 from urllib2 import urlopen
 from apiclient import http
 from apiclient import errors
-from pydrive.files import GoogleDriveFile
 
 
 # --------------------------------------------------------------------------- #
@@ -17,16 +16,31 @@ from pydrive.files import GoogleDriveFile
 class UploadDrive:
 
     def __init__(self):
-        """ Initialize a client instance
-         :param drive: The Drive connected
-        """
+        """Create an instance of UploadDrive."""
+
         gauth = GoogleAuth()
-        gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
+
+        # Try to load saved client credentials
+        gauth.LoadCredentialsFile("mycreds.txt")
+        if gauth.credentials is None:
+            # Authenticate if they're not there
+            gauth.LocalWebserverAuth()
+        elif gauth.access_token_expired:
+            # Refresh them if expired
+            gauth.Refresh()
+        else:
+            # Initialize the saved creds
+            gauth.Authorize()
+        # Save the current credentials to a file
+        gauth.SaveCredentialsFile("mycreds.txt")
+       # gauth = GoogleAuth()
+        #gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
         self.drive = GoogleDrive(gauth)
 
     def write_file_on_cloud(self, path):
         """Create GoogleDriveFile instance with title 'Hello.txt'
         :param path: path of the file
+        :type path: str
         """
         file1 = self.drive.CreateFile()
         file1.SetContentFile(path)
@@ -37,6 +51,7 @@ class UploadDrive:
     def find_file_title_on_cloud(self, title=''):
         """Read GoogleDriveFile instance with title 'Hello.txt'
         :param title:The title of the text file
+        :type title: str
         :return file_id
         """
         # results=service.files().list().execute()
@@ -53,6 +68,7 @@ class UploadDrive:
     def find_file_id_on_cloud(self, title=''):
         """Read GoogleDriveFile instance with title 'Hello.txt'
         :param title:The title of the text file
+        :type title: str
         :return file_id
         """
         # results=service.files().list().execute()
@@ -68,9 +84,11 @@ class UploadDrive:
 
     def download_file_from_cloud(self, file_id, path):
         """Download a Drive file's content to the local filesystem.
-          :param file_title: ID of the Drive file that will downloaded.
-          :param path: where the file is write
-          :return the success
+        :param file_id: ID of the Drive file that will downloaded.
+        :type file_id: str
+        :param path: where the file is written
+        :type path: str
+        :return if the download succeeded
         """
         if self.internet_on():
             local_fd = open(path + "commands.csv", "wb")
@@ -97,7 +115,9 @@ class UploadDrive:
         # HTTP request DELETE
         # https: // www.googleapis.com / drive / v2 / files / fileId
         """Permanently delete a file, skipping the trash.
-          :param file_title: ID of the file to delete.
+        :param file_title: ID of the file to delete.
+        :type file_title: str
+        :return if file didn't delete
         """
         file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
         for file in file_list:
@@ -114,7 +134,7 @@ class UploadDrive:
     @staticmethod
     def internet_on():
         """Check if the connection to the internet works
-               :return the success
+        :return if there is a internet connexion
         """
         try:
             urlopen('http://216.58.192.142', timeout=1)
