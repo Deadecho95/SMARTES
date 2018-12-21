@@ -1,8 +1,8 @@
 # --------------------------------------------------------------------------- #
 # Client to write and read file on the Raspberry PI
 # --------------------------------------------------------------------------- #
+import os
 
-import os.path
 import datetime
 
 # --------------------------------------------------------------------------- #
@@ -39,13 +39,11 @@ class LocalDataBase:
             self.file.write("datetime" + ";")
             
             for value in values:
-                if i %2 == 0:
+                if i % 2 == 0:
                     self.file.write(str(value) + ";")
-                else:
-                    ++i
+                ++i
             self.file.write(";\n") # end of line
             self.header = True # header done
-
 
         # Write the values date;val1;val2;val3
         self.file = open(self.path, "a")
@@ -54,14 +52,13 @@ class LocalDataBase:
         for value in values:
             if i % 2 == 1:
                 self.file.write(str(value) + ";")
-            else:
-                ++i
-
+            ++i
         self.file.write(";\n")
         self.file.close()
-    #def readifEmpty(self):
-    #    self.file = open(self.path, "r")
-     #   if
+
+    def read_if_empty(self):
+            return os.path.isfile(self.path) and os.path.getsize(self.path) > 0
+
     """Delete the file
     """
     def delete_file(self):
