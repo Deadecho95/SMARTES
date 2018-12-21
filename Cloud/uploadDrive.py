@@ -17,7 +17,9 @@ class UploadDrive:
 
     def __init__(self):
         """Create an instance of UploadDrive."""
+
         gauth = GoogleAuth()
+
         # Try to load saved client credentials
         gauth.LoadCredentialsFile("mycreds.txt")
         if gauth.credentials is None:
