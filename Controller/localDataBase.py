@@ -18,7 +18,7 @@ class LocalDataBase:
     :type path : The path of the file
     """
 
-    def __init__(self, path="C:/Users/chena/OneDrive/Documents/GitHub/SMARTES/Files/values.csv",title="Smartes\n"):
+    def __init__(self, path="Files/values.csv",title="Smartes\n"):
         """
         init function
         :param path of the file

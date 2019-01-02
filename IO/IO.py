@@ -8,7 +8,7 @@ import RPi.GPIO as GPIO
 class InOut:
 
     @staticmethod
-    def init(self):
+    def init():
         """ Initialize
         """
         init()

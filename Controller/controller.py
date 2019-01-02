@@ -27,7 +27,7 @@ class Controller:
         InOut.init()
         for y in range(0, self.NBR_RELAY):
             InOut.set_relay(self.RELAY_PINS[y])
-        InOut.set_relay_value(37,1) #test -------------------------------
+        InOut.set_relay_value(37, 1) #test -------------------------------
 
     def start_cycle(self):
         """
