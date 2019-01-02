@@ -20,7 +20,7 @@ class UploadDrive:
 
         gauth = GoogleAuth()
 
-        # Try to load saved client credentials
+        """"# Try to load saved client credentials
         gauth.LoadCredentialsFile("mycreds.txt")
         if gauth.credentials is None:
             # Authenticate if they're not there
@@ -32,9 +32,9 @@ class UploadDrive:
             # Initialize the saved creds
             gauth.Authorize()
         # Save the current credentials to a file
-        gauth.SaveCredentialsFile("mycreds.txt")
-       # gauth = GoogleAuth()
-        #gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
+        gauth.SaveCredentialsFile("mycreds.txt")"""
+        gauth = GoogleAuth()
+        gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
         self.drive = GoogleDrive(gauth)
 
     def write_file_on_cloud(self, path):

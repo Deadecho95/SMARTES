@@ -19,19 +19,21 @@ class ClientModBus:
         self.address = address
         self.port = port
         self.clientVenus = ModbusClient(self.address, port=self.port)
-        self.registers = [["Power_PvOnGrid_L1", 811, 100], ["Power_PvOnGrid_L2", 812, 100],
-                          ["Power_PvOnGrid_L3", 813, 100], ["Power_Consumption_L1", 817, 100],
-                          ["Power_Consumption_L2", 818, 100], ["Power_Consumption_L3", 819, 100],
-                          ["Power_Grid_L1", 820, 100], ["Power_Grid_L2", 821, 100],
-                          ["Power_Grid_L3", 822, 100], ["Voltage_Battery", 840, 100],
-                          ["Current_Battery", 841, 100], ["Power_Battery", 842, 100],
-                          ["Percent_Soc_Battery", 843, 100], ["State_Battery", 844, 100],
-                          ["Amphours_Consumed_Battery", 845, 100],
-                          ["Sec_TimeToGo_Battery", 846, 100], ["Alarms_High_Temperature", 34, 242],
-                          ["Alarms_LowBattery", 35, 242], ["Alarms_Overload", 36, 242],
-                          ["State_Relay_0", 806, 100], ["State_Relay_1", 807, 100],
-                          ["Power_AC_SetPoint", 2700, 100], ["Percent_Max_Charge", 2701, 100],
-                          ["Percent_Max_Discharge", 2702, 100]]  # Name, Register, unit ID
+        self.registers = [["Power_PvOnGrid_L1", 811, 100, 1], ["Power_PvOnGrid_L2", 812, 100, 1],
+                          ["Power_PvOnGrid_L3", 813, 100, 1], ["Power_Consumption_L1", 817, 100, 1],
+                          ["Power_Consumption_L2", 818, 100, 1], ["Power_Consumption_L3", 819, 100, 1],
+                          ["Power_Grid_L1", 820, 100, 1], ["Power_Grid_L2", 821, 100, 1],
+                          ["Power_Grid_L3", 822, 100, 1], ["Power_Genset_L1", 824, 100, 1],
+                          ["Power_Genset_L2", 824, 100, 1], ["Power_Genset_L3", 824, 100, 1],
+                          ["Voltage_Battery", 840, 100, 0.1],
+                          ["Current_Battery", 841, 100, 0.1], ["Power_Battery", 842, 100, 1],
+                          ["Percent_Soc_Battery", 843, 100, 1], ["State_Battery", 844, 100, 1],
+                          ["Amphours_Consumed_Battery", 845, 100, 0.1],
+                          ["Sec_TimeToGo_Battery", 846, 100, 100], ["Alarms_High_Temperature", 34, 242, 1],
+                          ["Alarms_LowBattery", 35, 242, 1], ["Alarms_Overload", 36, 242, 1],
+                          ["State_Relay_0", 806, 100, 1], ["State_Relay_1", 807, 100, 1],
+                          ["Power_AC_SetPoint", 2700, 100, 1], ["Percent_Max_Charge", 2701, 100, 1],
+                          ["Percent_Max_Discharge", 2702, 100, 1]]  # Name, Register, unit ID, scale
 
     def connect(self):
         """ connect to ServerModBus
@@ -53,6 +55,7 @@ class ClientModBus:
         for y in range(0, len(self.registers)):
             self.UNIT = self.registers[y][2]    # unit id
             all_registers.append(self.registers[y][0])   # name
+            all_registers.append(self.registers[y][3])  # scaling
             registers = self.clientVenus.read_holding_registers(self.registers[y][1], 1, unit=self.UNIT)   # value
             if registers.isError() != 0:    # test that we are not an error
                 print(all_registers.index(len(all_registers)-1), registers)

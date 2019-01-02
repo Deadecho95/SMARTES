@@ -13,4 +13,3 @@ client_cloud = UploadDrive()
 database = LocalDataBase()
 controller = Controller(client_modbus, client_cloud, database)
 controller.start_cycle()
-

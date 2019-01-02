@@ -5,6 +5,7 @@ from Cloud.uploadDrive import UploadDrive as lient_modbus
 from Controller.localDataBase import LocalDataBase as database
 from Modbus.clientModBus import ClientModBus as client_cloud
 import time
+import keyboard  # Using module keyboard
 
 
 class Controller:
@@ -34,6 +35,14 @@ class Controller:
             self.check_consumption()
 
             self.write_modbus_values()
+            try:  # used try so that if user pressed other than the given key error will not be shown
+                if keyboard.is_pressed('q'):  # if key 'q' is pressed
+                    print('You Pressed A Key!')
+                    break  # finishing the loop
+                else:
+                    pass
+            except:
+                break  # if user pressed a key other than the given key the loop will break
 
     def check_consumption(self):
         """
