@@ -65,4 +65,4 @@ class Interface2:
             )
         )
         fig = dict(data=data, layout=layout)
-        plotly.offline.plot(fig, filename="Plot.html")
+        plotly.offline.plot(fig, filename="../Files/Plot.html")
