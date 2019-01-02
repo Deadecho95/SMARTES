@@ -18,18 +18,21 @@ class LocalDataBase:
     :type path : The path of the file
     """
 
-    def __init__(self, path="Files/values.csv",title="Smartes\n"):
+    def __init__(self, path="Files/values.csv", title="Smartes\n"):
         """
         init function
         :param path of the file
         :param title of the file
         """
         self.path = path
-        self.file = open(self.path, "w+")
-        self.file.close()
-        self.header = False
+        if os.path.isfile(path):
+            self.file = open(self.path, "w+")
+            self.file.close()
+            self.header = False
+        else:
+            self.header = True
 
-    def add_text(self, values = []):
+    def add_text(self, values=[]):
         """ Append text to the end of a local file
         :param values : Array of key value table
         """
@@ -42,7 +45,7 @@ class LocalDataBase:
             self.file.write("datetime" + ";")  # add time
             
             for value in values:    # write header
-                if i %3 == 0:
+                if i % 3 == 0:
                     self.file.write(value + ";")
                 i = i+1
             self.file.write(";\n") # end of line
@@ -59,9 +62,9 @@ class LocalDataBase:
 
         self.file.write(";\n")
         self.file.close()
-    #def readifEmpty(self):
-    #    self.file = open(self.path, "r")
-     #   if
+    #   def read_if_empty(self):
+    #   self.file = open(self.path, "r")
+    #   if
     """Delete the file
     """
     def delete_file(self):
