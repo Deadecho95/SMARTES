@@ -7,21 +7,21 @@ class Interface2:
     # cloud.download_file_from_cloud()
     @staticmethod
     def show_values():
-        with open("../Files/example.csv") as f:
+        with open("../Files/values.csv") as f:
             first_line = f.readline()
             lines = f.read().splitlines()
             last_line = lines[-1]
         last = last_line.split(",")
         argList = first_line.split(",")
-        df = pd.read_csv("../Files/example.csv")
+        df = pd.read_csv("../Files/values.csv")
         trace = []
         i = 0
         color = ["RED", "BLUE", "DARKGREEN", "ORANGE", "BLACK", "CYAN", "PURPLE"]
         for arg in argList:
-            if i != 0 and i < 7:
+            if i != 0 and i < len(argList)-2:
                 trace.append(
                     go.Scatter(
-                        x=df['Date'],
+                        x=df['datetime'],
                         y=df[arg],
                         name=arg,
                         line=dict(color=color[i % len(color)]),

@@ -41,25 +41,25 @@ class LocalDataBase:
         if not self.header:  # add a header
             self.file = open(self.path, "w+")
             i = 0
-            self.file.write("datetime" + ";")  # add time
+            self.file.write("datetime" + ",")  # add time
             
             for value in values:    # write header
                 if i % 3 == 0:
-                    self.file.write(value + ";")
+                    self.file.write(value + ",")
                 i = i+1
-            self.file.write(";\n") # end of line
+            self.file.write("\n") # end of line
             self.header = True # header done
             self.file.close()
 
         # Write the values date;val1;val2;val3
         self.file = open(self.path, "a")
-        self.file.write(date + ";")  # write date
+        self.file.write(date + ",")  # write date
         for y in range(0, len(values)):    # write values
             if y % 3 == 1:
 
-                self.file.write(str(values[y]*values[y+1]) + ";")
+                self.file.write(str(values[y]*values[y+1]) + ",")
 
-        self.file.write(";\n")
+        self.file.write("\n")
         self.file.close()
     #   def read_if_empty(self):
     #   self.file = open(self.path, "r")

@@ -1,0 +1,2 @@
+datetime,Power_PvOnGrid_L1,Power_PvOnGrid_L2,Power_PvOnGrid_L3,Power_Consumption_L1,Power_Consumption_L2,Power_Consumption_L3,Power_Grid_L1,Power_Grid_L2,Power_Grid_L3,Power_Genset_L1,Power_Genset_L2,Power_Genset_L3,Voltage_Battery,Current_Battery,Power_Battery,Percent_Soc_Battery,State_Battery,Amphours_Consumed_Battery,Sec_TimeToGo_Battery,Alarms_High_Temperature,Alarms_LowBattery,Alarms_Overload,State_Relay_0,State_Relay_1,Power_AC_SetPoint,Percent_Max_Charge,Percent_Max_Discharge,,
+2019-01-02,0,0,0,0,0,0,0,0,0,0,0,0,51.7,0.0,0,22,0,0.0,0,0,0,0,0,0,50,100,100,,
