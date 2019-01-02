@@ -1,8 +1,9 @@
 from Cloud.uploadDrive import UploadDrive
+import webbrowser
 
 
-def testcloud():
+url = 'http://docs.python.org/'
 
-    drivetest = UploadDrive()
-    drivetest.write_file_on_cloud("aa")
-    drivetest.write_file_on_cloud("/files")
+chrome_path = '/usr/lib/firefox-esr %s'
+
+webbrowser.get(chrome_path).open(url)
