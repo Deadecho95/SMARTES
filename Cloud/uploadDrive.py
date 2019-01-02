@@ -12,15 +12,15 @@ from apiclient import errors
 # Client to connect to Google Drive
 # --------------------------------------------------------------------------- #
 
-
 class UploadDrive:
 
     def __init__(self):
         """Create an instance of UploadDrive."""
 
+        # https: // stackoverflow.com / questions / 24419188 / automating - pydrive - verification - process
         gauth = GoogleAuth()
 
-        """"# Try to load saved client credentials
+        # Try to load saved client credentials
         gauth.LoadCredentialsFile("mycreds.txt")
         if gauth.credentials is None:
             # Authenticate if they're not there
@@ -32,11 +32,11 @@ class UploadDrive:
             # Initialize the saved creds
             gauth.Authorize()
         # Save the current credentials to a file
-        gauth.SaveCredentialsFile("mycreds.txt")"""
-        gauth = GoogleAuth()
-        gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
+        gauth.SaveCredentialsFile("mycreds.txt")
         self.drive = GoogleDrive(gauth)
 
+        #gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
+        #self.drive = GoogleDrive(gauth)
     def write_file_on_cloud(self, path):
         """Create GoogleDriveFile instance with title 'Hello.txt'
         :param path: path of the file

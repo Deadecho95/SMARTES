@@ -18,7 +18,7 @@ class LocalDataBase:
     :type path : The path of the file
     """
 
-    def __init__(self, path="C:/Users/chena/OneDrive/Documents/GitHub/SMARTES/Files/values.csv",title="Smartes\n"):
+    def __init__(self, path="Files/values.csv",title="Smartes\n"):
         """
         init function
         :param path of the file
@@ -34,7 +34,7 @@ class LocalDataBase:
         """ Append text to the end of a local file
         :param values : Array of key value table
         """
-        date = datetime.datetime.now().now().strftime("%Y-%m-%d %H:%M")
+        date = datetime.datetime.now().now().strftime("%Y-%m-%d %H:%M:%S")
         # Add an Header at the beginning power voltage
 
         if not self.header:  # add a header

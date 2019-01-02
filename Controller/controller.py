@@ -4,6 +4,7 @@
 from Cloud.uploadDrive import UploadDrive as lient_modbus
 from Controller.localDataBase import LocalDataBase as database
 from Modbus.clientModBus import ClientModBus as client_cloud
+from IO.IO import InOut
 import time
 import keyboard  # Using module keyboard
 
@@ -12,6 +13,8 @@ class Controller:
     """ Implementation of a client
 
     """
+    RELAY_PINS = [37,38,40]
+    NBR_RELAY = len(RELAY_PINS)
 
     def __init__(self, client_modbus, client_cloud, database):
         """ Initialize
@@ -21,6 +24,11 @@ class Controller:
         self.client_modbus = client_modbus
         self.client_cloud = client_cloud
         self.database = database
+
+        InOut.init()
+        for y in range(0, self.NBR_RELAY):
+            InOut.set_relay(self.RELAY_PINS[y])
+        InOut.set_relay_value(37, 1) #test -------------------------------
 
     def start_cycle(self):
         """
@@ -32,7 +40,26 @@ class Controller:
             self.read_modbus_values()
             self.write_cloud()
             self.read_cloud()
-            self.check_consumption()
+            self.write_relays()
+            self.set_analog_output()
+
+    def set_analog_output(self):
+        """
+        set analog output
+        :return:
+        """
+        data = self.check_consumption()
+        self.check_output_analog(1,data)
+
+    def write_relays(self):
+        """
+        Write relay
+        :return:
+        """
+        data = self.check_consumption()
+
+        for y in range(0, self.NBR_RELAY):  #write n relays
+            self.check_relay(self.RELAY_PINS[y],data,"pmin")
 
             self.write_modbus_values()
             try:  # used try so that if user pressed other than the given key error will not be shown
@@ -49,15 +76,42 @@ class Controller:
         check te consumption for the IO
         :return:
         """
-        for y in range(0, len(self.data)):
+        for y in range(0, len(self.data), 2):
             if self.data[y] == "Percent_Soc_Battery":   # check for battery %
                 batt_state = self.data[y + 1]
-            if self.data[y] == "Power_Consumption_L3":   # check for consumption l1
-                cons_l1 = self.data[y + 1]
-            if self.data[y] == "Power_Consumption_L2":   # check for consumption l2
-                cons_l2 = self.data[y + 1]
-            if self.data[y] == "Power_Consumption_L2":   # check for consumption l3
-                cons_l3 = self.data[y + 1]
+            if self.data[y] == "Power_Grid_L1":   # check for grid power l1
+                grid_l1 = self.data[y + 1]
+            if self.data[y] == "Power_Grid_L1":   # check for grid power l2
+                grid_l2 = self.data[y + 1]
+            if self.data[y] == "Power_Grid_L1":   # check for grid power l3
+                grid_l3 = self.data[y + 1]
+
+        return [batt_state, grid_l1, grid_l2, grid_l3]
+
+    def check_relay(self, pin, data, pmin):
+        """
+        Set the relay
+        :param pin: number pin
+        :param data: data to compare
+        :param pmin: order to compare
+        """
+        if (data[1] + data[2] + data[3]) <= pmin and self.read_digital_input(pin,1)<=0: # if power PV is higher than and DIN is not 1
+            InOut.set_relay_value(pin,1)
+        else:
+            InOut.set_relay_value(pin,0)
+
+    def check_output_analog(self, pin, data, pnom):
+        """
+        Set analog output
+        :param pin: number of pin
+        :param data: power to grid
+        :param pnom : power nominal to set 100%
+        """
+        if (data[1] + data[2] + data[3]) <= 0:
+            InOut.set_analog_output(pin, (data[1] + data[2] + data[3])/pnom*100)
+        else:
+            InOut.set_analog_output(pin, 0)
+
 
     def write_cloud(self):
         """
@@ -112,6 +166,7 @@ class Controller:
         self.client_modbus.connect()
         self.set_register("""value""")
         self.disconnect()
+
 
 
 
