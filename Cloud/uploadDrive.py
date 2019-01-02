@@ -4,8 +4,8 @@ from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
 from urllib.request import urlopen
-from apiclient import http
-from apiclient import errors
+from googleapiclient import http
+from googleapiclient import errors
 
 
 # --------------------------------------------------------------------------- #
@@ -16,8 +16,10 @@ class UploadDrive:
 
     def __init__(self):
         """Create an instance of UploadDrive."""
+
         # https: // stackoverflow.com / questions / 24419188 / automating - pydrive - verification - process
         gauth = GoogleAuth()
+
         # Try to load saved client credentials
         gauth.LoadCredentialsFile("mycreds.txt")
         if gauth.credentials is None:
@@ -33,8 +35,8 @@ class UploadDrive:
         gauth.SaveCredentialsFile("mycreds.txt")
         self.drive = GoogleDrive(gauth)
 
-        # gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
-        # self.drive = GoogleDrive(gauth)
+        #gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
+        #self.drive = GoogleDrive(gauth)
     def write_file_on_cloud(self, path):
         """Create GoogleDriveFile instance with title 'Hello.txt'
         :param path: path of the file
