@@ -18,11 +18,10 @@ class LocalDataBase:
     :type path : The path of the file
     """
 
-    def __init__(self, path="Files/values.csv", title="Smartes\n"):
+    def __init__(self, path="Files/values.csv"):
         """
         init function
         :param path of the file
-        :param title of the file
         """
         self.path = path
         if os.path.isfile(path):
@@ -55,7 +54,7 @@ class LocalDataBase:
         # Write the values date;val1;val2;val3
         self.file = open(self.path, "a")
         self.file.write(date + ";")  # write date
-        for y in range(0,len(values)):    # write values
+        for y in range(0, len(values)):    # write values
             if y % 3 == 1:
 
                 self.file.write(str(values[y]*values[y+1]) + ";")
