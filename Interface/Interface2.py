@@ -1,6 +1,6 @@
 import plotly.graph_objs as go
 import pandas as pd
-import  plotly.offline
+import plotly.offline
 
 class Interface2:
     # To be defined by the Controller how to be connected
@@ -20,7 +20,7 @@ class Interface2:
         for arg in argList:
             if i != 0 and i < 7:
                 trace.append(
-                    go(
+                    go.Scatter(
                         x=df['Date'],
                         y=df[arg],
                         name=arg,
