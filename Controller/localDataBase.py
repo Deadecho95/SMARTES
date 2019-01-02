@@ -29,8 +29,7 @@ class LocalDataBase:
         self.file.close()
         self.header = False
 
-
-    def add_text(self, values=[]):
+    def add_text(self, values = []):
         """ Append text to the end of a local file
         :param values : Array of key value table
         """

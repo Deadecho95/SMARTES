@@ -3,30 +3,35 @@ import plotly.graph_objs as go
 
 import pandas as pd
 
-df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv")
+df = pd.read_csv("example.csv")
 
 trace_high = go.Scatter(
-                x=df.Date,
-                y=df['AAPL.High'],
-                name = "AAPL High",
-                line = dict(color = '#17BECF'),
+                x=df['Date'],
+                y=df["AAPL.High"],
+                line = dict(color = "RED"),
                 opacity = 0.8)
 
 trace_low = go.Scatter(
-                x=df.Date,
+                x=df["Date"],
                 y=df['AAPL.Low'],
-                name = "AAPL Low",
-                line = dict(color = '#7F7F7F'),
-                opacity = 0.8)
+                name="AAPL Low",
+                line=dict(color='#FF7F7F'),
+                opacity=0.8
 
-data = [trace_high,trace_low]
+                )
 
+data = [trace_high, trace_low]
+steps=4
+sliders = [dict(
+    active = 10,
+    currentvalue = {"prefix": "Frequency: "},
+    pad = {"t": 50},
+    steps = steps
+)]
 layout = dict(
-    title = "Manually Set Date Range",
-    xaxis = dict(
-        range = ['2016-07-01','2016-12-31'])
+    title="Manually Set Date Range",
+    xaxis=dict(range=['2016-07-01', '2016-12-31'])
 )
 
 fig = dict(data=data, layout=layout)
-
-plotly.offline.plot(fig,filename = "Manually Set Range")
+plotly.offline.plot(fig, filename="Plot.html")
