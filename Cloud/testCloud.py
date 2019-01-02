@@ -1,7 +1,9 @@
-from Cloud.uploadDrive import UploadDrive
 
-def testcloud():
+import webbrowser
 
-    drivetest = UploadDrive()
-    drivetest.download_file_from_cloud()
 
+url = 'http://docs.python.org/'
+
+chrome_path = '/usr/lib/firefox-esr %s'
+
+webbrowser.get(chrome_path).open(url)

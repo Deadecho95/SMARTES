@@ -42,8 +42,8 @@ class LocalDataBase:
             self.file.write("datetime" + ";")  # add time
             
             for value in values:    # write header
-                if i %2 == 0:
-                    self.file.write(str(value) + ";")
+                if i %3 == 0:
+                    self.file.write(value + ";")
                 i = i+1
             self.file.write(";\n") # end of line
             self.header = True # header done
@@ -52,11 +52,10 @@ class LocalDataBase:
         # Write the values date;val1;val2;val3
         self.file = open(self.path, "a")
         self.file.write(date + ";")  # write date
-        i = 0
-        for value in values:    # write values
-            if i % 2 == 1:
-                self.file.write(str(self.twos_comp(value, 16)) + ";")
-            i = i+1
+        for y in range(0,len(values)):    # write values
+            if y % 3 == 1:
+
+                self.file.write(str(values[y]*values[y+1]) + ";")
 
         self.file.write(";\n")
         self.file.close()
@@ -68,9 +67,4 @@ class LocalDataBase:
     def delete_file(self):
         os.remove(self.path)
 
-    @staticmethod
-    def twos_comp(val, bits):
-        """compute the 2's complement of int value val"""
-        if (val & (1 << (bits - 1))) != 0:  # if sign bit is set e.g., 8bit: 128-255
-            val = val - (1 << bits)  # compute negative value
-        return val
+

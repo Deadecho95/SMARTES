@@ -5,7 +5,7 @@ from pydrive.drive import GoogleDrive
 
 from urllib.request import urlopen
 from apiclient import http
-from googleapiclient import errors
+from apiclient import errors
 
 
 # --------------------------------------------------------------------------- #
@@ -16,6 +16,7 @@ class UploadDrive:
 
     def __init__(self):
         """Create an instance of UploadDrive."""
+
         # https: // stackoverflow.com / questions / 24419188 / automating - pydrive - verification - process
         gauth = GoogleAuth()
 
@@ -53,7 +54,6 @@ class UploadDrive:
         :type title: str
         :return file_id
         """
-
         # results=service.files().list().execute()
         # file_list=results.get('items',[])
         file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
@@ -71,7 +71,6 @@ class UploadDrive:
         :type title: str
         :return file_id
         """
-
         # results=service.files().list().execute()
         # file_list=results.get('items',[])
         file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
