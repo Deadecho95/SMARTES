@@ -7,6 +7,7 @@ from Modbus.clientModBus import ClientModBus as client_cloud
 from IO.IO import InOut
 import time
 import keyboard  # Using module keyboard
+import Interface.Interface2 as interface
 
 
 class Controller:
@@ -42,10 +43,10 @@ class Controller:
             self.read_cloud()
             self.set_relays()
             self.set_analog_output()
-            InOut.set_relay_value(37,1)
+            InOut.set_relay_value(37, 1)
             InOut.set_analog_output(1, 3723)
-
-
+            #database.download_file_from_cloud()
+            interface.Interface2.show_values()
 
     def set_analog_output(self):
         """
