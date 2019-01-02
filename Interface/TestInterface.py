@@ -1,3 +1,3 @@
-import Interface.Interface2 as interface2
+import Interface.Interface2 as face
 
-interface2.Interface2.show_values()
+face.Interface2.show_values()
