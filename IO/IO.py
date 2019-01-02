@@ -24,7 +24,7 @@ class InOut:
         :param value: value of output in %
         """
         outputs = Mod2AO()
-        outputs.write_single(pin, (value*29.78+745))
+        outputs.write_single(pin, (value*30+745))
 
     @staticmethod
     def read_digital_input(pin):
@@ -44,6 +44,7 @@ class InOut:
 
         :param pin: the pin
         """
+        GPIO.setup(pin, GPIO.OUT)
         GPIO.output(pin, GPIO.OUT)
 
     @staticmethod

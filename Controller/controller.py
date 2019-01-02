@@ -40,8 +40,12 @@ class Controller:
             self.read_modbus_values()
             self.write_cloud()
             self.read_cloud()
-            self.write_relays()
+            self.set_relays()
             self.set_analog_output()
+            InOut.set_relay_value(37,1)
+            InOut.set_analog_output(1, 3723)
+
+
 
     def set_analog_output(self):
         """
@@ -49,9 +53,9 @@ class Controller:
         :return:
         """
         data = self.check_consumption()
-        self.check_output_analog(1,data)
+        self.check_output_analog(1,data,100)
 
-    def write_relays(self):
+    def set_relays(self):
         """
         Write relay
         :return:
@@ -59,7 +63,7 @@ class Controller:
         data = self.check_consumption()
 
         for y in range(0, self.NBR_RELAY):  #write n relays
-            self.check_relay(self.RELAY_PINS[y],data,"pmin")
+            self.check_relay(self.RELAY_PINS[y],data, 100)
 
             self.write_modbus_values()
             try:  # used try so that if user pressed other than the given key error will not be shown
@@ -76,6 +80,10 @@ class Controller:
         check te consumption for the IO
         :return:
         """
+        batt_state = 0
+        grid_l1 = 0
+        grid_l2 = 0
+        grid_l3 = 0
         for y in range(0, len(self.data), 2):
             if self.data[y] == "Percent_Soc_Battery":   # check for battery %
                 batt_state = self.data[y + 1]
@@ -95,7 +103,7 @@ class Controller:
         :param data: data to compare
         :param pmin: order to compare
         """
-        if (data[1] + data[2] + data[3]) <= pmin and self.read_digital_input(pin,1)<=0: # if power PV is higher than and DIN is not 1
+        if (data[1] + data[2] + data[3]) <= pmin and InOut.read_digital_input(pin)<=0: # if power PV is higher than and DIN is not 1
             InOut.set_relay_value(pin,1)
         else:
             InOut.set_relay_value(pin,0)
@@ -122,8 +130,8 @@ class Controller:
         file1 = self.client_cloud.find_file_title_on_cloud("values.csv")
         if file1 != 404:  # check if error
             self.client_cloud.delete_file_on_cloud(file1)    # delete old file
-        self.client_cloud.write_file_on_cloud("C:/users/chena/OneDrive/Documents/GitHub/SMARTES/Files/values.csv")   # write on cloud
-        #self.client_cloud.write_file_on_cloud("Files/values.csv")   # write on cloud
+        #self.client_cloud.write_file_on_cloud("C:/users/chena/OneDrive/Documents/GitHub/SMARTES/Files/values.csv")   # write on cloud
+        self.client_cloud.write_file_on_cloud("Files/values.csv")   # write on cloud
         print("file wrote")
 
     def read_cloud(self):
@@ -135,8 +143,8 @@ class Controller:
         if file1 == 404:
             print("error file not found")   # not found
         else:
-            ok = self.client_cloud.download_file_from_cloud(file1, "C:/users/chena/OneDrive/Documents/GitHub/SMARTES/Cloud")    # download command file
-            #ok = self.client_cloud.download_file_from_cloud(file1, "Files/")    # download command file
+            #ok = self.client_cloud.download_file_from_cloud(file1, "C:/users/chena/OneDrive/Documents/GitHub/SMARTES/Cloud")    # download command file
+            ok = self.client_cloud.download_file_from_cloud(file1, "Files/")    # download command file
 
             if ok == 0:
                 print("Error when read file from cloud")

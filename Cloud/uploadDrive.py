@@ -4,8 +4,8 @@ from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
 from urllib.request import urlopen
-from googleapiclient import http
-from googleapiclient import errors
+from apiclient import http
+from apiclient import errors
 
 
 # --------------------------------------------------------------------------- #
