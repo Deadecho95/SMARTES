@@ -7,6 +7,7 @@ from Modbus.clientModBus import ClientModBus as client_cloud
 from IO.IO import InOut
 import time
 import keyboard  # Using module keyboard
+import Interface.Interface2 as face
 
 
 class Controller:
@@ -28,7 +29,7 @@ class Controller:
         InOut.init()
         for y in range(0, self.NBR_RELAY):
             InOut.set_relay(self.RELAY_PINS[y])
-        InOut.set_relay_value(37, 1) #test -------------------------------
+
 
     def start_cycle(self):
         """
@@ -40,10 +41,15 @@ class Controller:
             self.read_modbus_values()
             self.write_cloud()
             self.read_cloud()
-            self.set_relays()
-            self.set_analog_output()
+            #self.set_relays()
+            #self.set_analog_output()
             InOut.set_relay_value(37,1)
-            InOut.set_analog_output(1, 3723)
+            InOut.set_relay_value(38, 1)
+            InOut.set_relay_value(40, 1)
+            InOut.set_analog_output(1, 100)
+
+
+
 
 
 
@@ -66,14 +72,7 @@ class Controller:
             self.check_relay(self.RELAY_PINS[y],data, 100)
 
             self.write_modbus_values()
-            try:  # used try so that if user pressed other than the given key error will not be shown
-                if keyboard.is_pressed('q'):  # if key 'q' is pressed
-                    print('You Pressed A Key!')
-                    break  # finishing the loop
-                else:
-                    pass
-            except:
-                break  # if user pressed a key other than the given key the loop will break
+
 
     def check_consumption(self):
         """

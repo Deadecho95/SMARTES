@@ -12,7 +12,15 @@ class InOut:
         """ Initialize
         """
         init()
-        GPIO.setmode(GPIO.BCM)
+        GPIO.setmode(GPIO.BOARD)
+
+    @staticmethod
+    def close():
+        """
+
+        :return:
+        """
+        GPIO.cleanup()
 
     @staticmethod
     def set_analog_output(pin,value):
@@ -56,7 +64,7 @@ class InOut:
         :param value: value 0 for hight and 1 for hight
         """
 
-        if value == 0:
+        if value == 1:
             GPIO.output(pin, GPIO.LOW)
         else:
             GPIO.output(pin, GPIO.HIGH)
