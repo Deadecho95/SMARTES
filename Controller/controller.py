@@ -41,15 +41,9 @@ class Controller:
             self.read_modbus_values()
             self.write_cloud()
             self.read_cloud()
-            #self.set_relays()
-            #self.set_analog_output()
-            InOut.set_relay_value(37,1)
-            InOut.set_relay_value(38, 1)
-            InOut.set_relay_value(40, 1)
-            InOut.set_analog_output(1, 100)
-
-
-
+            self.set_relays()
+            self.set_analog_output()
+            InOut.set_analog_output(1, 3723)
 
 
 
