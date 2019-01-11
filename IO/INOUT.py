@@ -47,8 +47,10 @@ class InOut:
         :param pin: number of pin
         :return: value on the pin
         """
+        chip = MCP23S08()
+        chip.set_direction()
 
-
+        return chip.get_values()
 
     @staticmethod
     def set_relay(pin):
