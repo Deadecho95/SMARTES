@@ -41,10 +41,11 @@ class Controller:
         :return:
         """
         while True:
-            time.sleep(5)  # wait for secs
+            time.sleep(15)  # wait for secs
             self.read_modbus_values()
             self.write_cloud()
             self.read_cloud()
+            self.create_plot()
             self.set_relays()
             self.set_analog_output()
             #self.set_digital_input()
@@ -133,7 +134,7 @@ class Controller:
         download command.csv file from cloud
         :return:
         """
-        file1 = self.client_cloud.find_file_title_on_cloud("commands.csv")  # find file on cloud
+        file1 = self.client_cloud.find_file_id_on_cloud("commands.csv")  # find file on cloud
         if file1 == 404:
             print("error file not found")   # not found
         else:
@@ -152,6 +153,9 @@ class Controller:
         self.client_modbus.connect()
         self.data = self.client_modbus.get_registers()
         self.client_modbus.disconnect()
+
+    def create_plot(self):
+        face.Interface2.show_values()
 
     def write_modbus_values(self):
 

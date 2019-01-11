@@ -8,12 +8,12 @@ class Interface2:
     @staticmethod
     def show_values():
         #for linux
-        #filepath="values.csv"
-        #htmlpath="/Files/Plot.html"
+        filepath="Files/values.csv"
+        htmlpath="Files/Plot.html"
 
         #for windows
-        filepath="../Files/values.csv"
-        htmlpath="../Files/Plot.html"
+        #filepath="../Files/values.csv"
+        #htmlpath="../Files/Plot.html"
         with open(filepath) as f:
             first_line = f.readline()
             lines = f.read().splitlines()
@@ -27,7 +27,7 @@ class Interface2:
         i = 0
         color = ["RED", "BLUE", "DARKGREEN", "ORANGE", "BLACK", "CYAN", "PURPLE"]
         for arg in argList:
-            if i != 0 and i < len(argList)-1:
+            if i != 0 and i < len(argList)-2:
                 trace.append(
                     go.Scatter(
                         x=df['datetime'],
