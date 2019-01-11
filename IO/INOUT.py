@@ -72,7 +72,7 @@ class InOut:
         :param value: value 0 for hight and 1 for hight
         """
 
-        if value == 0:
-            GPIO.output(pin, GPIO.LOW)
-        else:
+        if value == 1:
             GPIO.output(pin, GPIO.HIGH)
+        else:
+            GPIO.output(pin, GPIO.LOW)
