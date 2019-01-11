@@ -7,20 +7,27 @@ class Interface2:
     # cloud.download_file_from_cloud()
     @staticmethod
     def show_values():
-        with open("Files/values.csv") as f:
+        #for linux
+        #filepath="values.csv"
+        #htmlpath="/Files/Plot.html"
+
+        #for windows
+        filepath="../Files/values.csv"
+        htmlpath="../Files/Plot.html"
+        with open(filepath) as f:
             first_line = f.readline()
             lines = f.read().splitlines()
             last_line = lines[-1]
         last = last_line.split(",")
         argList = first_line.split(",")
-        df = pd.read_csv("Files/values.csv")
+        df = pd.read_csv(filepath)
         trace = []
         legend = []
         visible = []
         i = 0
         color = ["RED", "BLUE", "DARKGREEN", "ORANGE", "BLACK", "CYAN", "PURPLE"]
         for arg in argList:
-            if i != 0 and i < len(argList)-2:
+            if i != 0 and i < len(argList)-1:
                 trace.append(
                     go.Scatter(
                         x=df['datetime'],
@@ -95,7 +102,6 @@ class Interface2:
             ),
 
         ])
-
         layout['updatemenus'] = updatemenus
         fig = dict(data=data, layout=layout)
-        plotly.offline.plot(fig, filename="Files/Plot.html")
+        plotly.offline.plot(fig, filename=htmlpath)

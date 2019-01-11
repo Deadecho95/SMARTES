@@ -113,7 +113,6 @@ class Controller:
         else:
             InOut.set_analog_output(pin, 0)
 
-
     def write_cloud(self):
         """
         start the transmission to the cloud
@@ -129,7 +128,7 @@ class Controller:
 
     def read_cloud(self):
         """
-        start the transmission to the battery
+        download command.csv file from cloud
         :return:
         """
         file1 = self.client_cloud.find_file_id_on_cloud("commands.csv")  # find file on cloud
@@ -140,9 +139,9 @@ class Controller:
             ok = self.client_cloud.download_file_from_cloud(file1, "Files/")    # download command file
 
             if ok == 0:
-                print("Error when read file from cloud")
+                print("Error when read file commands.csv from cloud")
             else:
-                print("file read from cloud")
+                print("file commands.csv read from cloud")
 
     def read_modbus_values(self):
         """

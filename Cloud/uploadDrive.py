@@ -15,11 +15,8 @@ from googleapiclient import errors
 class UploadDrive:
 
     def __init__(self):
-        """Create an instance of UploadDrive."""
-
-        # https: // stackoverflow.com / questions / 24419188 / automating - pydrive - verification - process
+        """Create an instance of UploadDrive which waits for an approval"""
         gauth = GoogleAuth()
-
         # Try to load saved client credentials
         gauth.LoadCredentialsFile("mycreds.txt")
         if gauth.credentials is None:
@@ -35,10 +32,11 @@ class UploadDrive:
         gauth.SaveCredentialsFile("mycreds.txt")
         self.drive = GoogleDrive(gauth)
 
+        #version without the saved credentials
         #gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
         #self.drive = GoogleDrive(gauth)
     def write_file_on_cloud(self, path):
-        """Create GoogleDriveFile instance with title 'Hello.txt'
+        """Write a file on google drive
         :param path: path of the file
         :type path: str
         """
@@ -49,7 +47,7 @@ class UploadDrive:
 
     # Auto-iterate through all files that matches this query
     def find_file_title_on_cloud(self, title=''):
-        """Read GoogleDriveFile instance with title 'Hello.txt'
+        """Find GoogleDriveFile instance with the given title
         :param title:The title of the text file
         :type title: str
         :return file_id
@@ -67,7 +65,7 @@ class UploadDrive:
 
     def find_file_id_on_cloud(self, title=''):
         """Read GoogleDriveFile instance with title 'Hello.txt'
-        :param title:The title of the text file
+        :param title: The title of the GoogleDriveFile
         :type title: str
         :return file_id
         """
@@ -84,7 +82,7 @@ class UploadDrive:
 
     def download_file_from_cloud(self, file_id, path):
         """Download a Drive file's content to the local filesystem.
-        :param file_id: ID of the Drive file that will downloaded.
+        :param file_id: ID of the Drive file that will be downloaded.
         :type file_id: str
         :param path: where the file is written
         :type path: str
