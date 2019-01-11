@@ -11,24 +11,28 @@ import Interface.Interface2 as face
 
 
 class Controller:
-    """ Implementation of a client
-
+    """ the controller manage the connection between
+    the venus the raspberry and the cloud
     """
-    RELAY_PINS = [37,38,40]
-    NBR_RELAY = len(RELAY_PINS)
+
+    RELAY_PINS = [37,38,40] #pin of each relay
+    NBR_RELAY = len(RELAY_PINS) #nbr of relay
 
     def __init__(self, client_modbus, client_cloud, database):
-        """ Initialize
         """
-        self.name = 0
-        self.data = 0
+
+        :param client_modbus is the client for the modbus
+        :param client_cloud is the client for the cloud
+        :param database is the local database
+        """
+        self.data = 0 #all data from modbus
         self.client_modbus = client_modbus
         self.client_cloud = client_cloud
         self.database = database
 
-        InOut.init()
+        InOut.init() #init IO
         for y in range(0, self.NBR_RELAY):
-            InOut.set_relay(self.RELAY_PINS[y])
+            InOut.set_relay(self.RELAY_PINS[y]) #set all relays
 
 
     def start_cycle(self):
@@ -39,11 +43,11 @@ class Controller:
         while True:
             time.sleep(5)  # wait for secs
             self.read_modbus_values()
-            #self.write_cloud()
-            #self.read_cloud()
+            self.write_cloud()
+            self.read_cloud()
             self.set_relays()
             self.set_analog_output()
-            InOut.set_analog_output(1, 3723)
+            self.set_digital_input()
 
 
 
@@ -57,7 +61,7 @@ class Controller:
 
     def set_relays(self):
         """
-        Write relay
+        set relays
         :return:
         """
         data = self.check_consumption()
@@ -65,18 +69,17 @@ class Controller:
         for y in range(0, self.NBR_RELAY):  #write n relays
             self.check_relay(self.RELAY_PINS[y],data, 100)
 
-            self.write_modbus_values()
-
 
     def check_consumption(self):
         """
         check te consumption for the IO
-        :return:
+        :return: state of battery and grid
         """
         batt_state = 0
         grid_l1 = 0
         grid_l2 = 0
         grid_l3 = 0
+
         for y in range(0, len(self.data), 2):
             if self.data[y] == "Percent_Soc_Battery":   # check for battery %
                 batt_state = self.data[y + 1]

@@ -2,7 +2,8 @@
 # import the various server implementations
 # ---------------------------------------------------------------------------#
 
-from IO.mcp4922 import MCP4922
+from IO.chip.mcp4922 import MCP4922
+from IO.chip.mcp23s08 import MCP23S08
 import RPi.GPIO as GPIO
 class InOut:
 
