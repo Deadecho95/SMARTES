@@ -4,7 +4,7 @@
 from Cloud.uploadDrive import UploadDrive as lient_modbus
 from Controller.localDataBase import LocalDataBase as database
 from Modbus.clientModBus import ClientModBus as client_cloud
-from IO.IO import InOut
+from IO.INOUT import InOut
 import time
 import keyboard  # Using module keyboard
 import Interface.Interface2 as face
@@ -39,8 +39,8 @@ class Controller:
         while True:
             time.sleep(5)  # wait for secs
             self.read_modbus_values()
-            self.write_cloud()
-            self.read_cloud()
+            #self.write_cloud()
+            #self.read_cloud()
             self.set_relays()
             self.set_analog_output()
             InOut.set_analog_output(1, 3723)

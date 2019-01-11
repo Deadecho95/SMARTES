@@ -1,17 +1,17 @@
 # ---------------------------------------------------------------------------#
 # import the various server implementations
 # ---------------------------------------------------------------------------#
-from widgetlords.pi_spi import *
+
+from IO.mcp4922 import MCP4922
 import RPi.GPIO as GPIO
-
-
 class InOut:
+
 
     @staticmethod
     def init():
         """ Initialize
         """
-        init()
+        GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)
 
     @staticmethod
@@ -21,9 +21,8 @@ class InOut:
         :return:
         """
         GPIO.cleanup()
-
     @staticmethod
-    def set_analog_output(pin,value):
+    def set_analog_output(chan,value):
         """
         Set analog output 4-20mA
         (4mA at 745 D/A  -  20mA at 3723 D/A)
@@ -31,8 +30,13 @@ class InOut:
         :param pin: number of pin
         :param value: value of output in %
         """
-        outputs = Mod2AO()
-        outputs.write_single(pin, (value*30+745))
+        chip = MCP4922()
+
+        # Set gain
+        chip.set_gain(2)
+
+        # Output analog voltage to channel B
+        chip.output(channel=chan,prefix=value)
 
     @staticmethod
     def read_digital_input(pin):
@@ -42,8 +46,8 @@ class InOut:
         :param pin: number of pin
         :return: value on the pin
         """
-        inputs = Mod8DI()
-        return inputs.read_single(pin)
+
+
 
     @staticmethod
     def set_relay(pin):

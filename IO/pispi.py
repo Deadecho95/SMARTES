@@ -28,12 +28,12 @@ class PiSPI:
     This class provides basic feature of SPI protocol.
     """
     spi = spidev.SpiDev()
-    cs_pin = 22
+    cs_pin = 40
     b_opened = False
     mode = 0
     speed = 100000
 
-    def __init__(self, cs_pin=22, mode=0, speed=100000):
+    def __init__(self, cs_pin, mode=0, speed=100000):
         """
         :param cs_pin:  Auxiliary SPI_CS pin number
         :param mode:    SPI mode
@@ -63,10 +63,9 @@ class PiSPI:
         Initialize GPIO of RPi
         :return:
         """
-        GPIO.setwarnings(False)
-        GPIO.setmode(GPIO.BCM)
+        GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.cs_pin, GPIO.OUT)
-        GPIO.output(self.cs_pin, True)
+        GPIO.output(self.cs_pin, GPIO.OUT)
         return True
 
     def close(self):
