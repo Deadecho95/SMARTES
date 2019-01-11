@@ -193,17 +193,10 @@ class Controller:
         """
         for y in range(1,len(self.command), 3):
             if self.command[y] != -1:
-                self.set_modbus_value(y+1)
+                self.client_modbus.connect()
+                self.client_modbus.set_register(self.command[y], self.command[y+1])
+                self.client_modbus.disconnect()
 
-    def set_modbus_value(self,value):
-        """
-        set value to the modbus
-        :return:
-        """
-
-        self.client_modbus.connect()
-        self.set_register(value)
-        self.disconnect()
 
 
 
