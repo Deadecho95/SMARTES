@@ -80,18 +80,28 @@ class Controller:
         grid_l1 = 0
         grid_l2 = 0
         grid_l3 = 0
+        pv_l1 = 0
+        pv_l2 = 0
+        pv_l3 = 0
+
 
         for y in range(0, len(self.data), 2):
             if self.data[y] == "Percent_Soc_Battery":   # check for battery %
                 batt_state = self.data[y + 1]
-            if self.data[y] == "Power_Grid_L1":   # check for grid power l1
+            if self.data[y] == "Power_Grid_L1":   # check for load power l1
                 grid_l1 = self.data[y + 1]
-            if self.data[y] == "Power_Grid_L1":   # check for grid power l2
+            if self.data[y] == "Power_Grid_L1":   # check for load power l2
                 grid_l2 = self.data[y + 1]
-            if self.data[y] == "Power_Grid_L1":   # check for grid power l3
+            if self.data[y] == "Power_Grid_L1":   # check for load power l3
                 grid_l3 = self.data[y + 1]
+            if self.data[y] == "Power_PvOnGrid_L1":  # Check for pc power L1
+                pv_l1 = self.data[y + 1]
+            if self.data[y] == "Power_PvOnGrid_L2":  # Check for pc power L1
+                pv_l2 = self.data[y + 1]
+            if self.data[y] == "Power_PvOnGrid_L3":  # Check for pc power L1
+                pv_l3 = self.data[y + 1]
 
-        return [batt_state, grid_l1, grid_l2, grid_l3]
+        return [batt_state, grid_l1, grid_l2, grid_l3, pv_l1, pv_l2, pv_l3]
 
     def check_relay(self, pin, data, pmin):
         """
@@ -100,11 +110,11 @@ class Controller:
         :param data: data to compare
         :param pmin: order to compare
         """
-        """if (data[1] + data[2] + data[3]) <= pmin and InOut.read_digital_input(pin)<=0: # if power PV is higher than and DIN is not 1
+        if (data[4] + data[5] + data[6])-(data[1] + data[2] + data[3]) >= pmin and data[0] >= 99: #if power pv - power load >= pNom and soc >=99
             InOut.set_relay_value(pin,1)
         else:
             InOut.set_relay_value(pin,0)
-"""
+
     def check_output_analog(self, pin, data, pnom):
         """
         Set analog output
