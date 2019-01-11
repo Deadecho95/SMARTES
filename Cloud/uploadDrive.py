@@ -19,7 +19,7 @@ class UploadDrive:
 
         # https: // stackoverflow.com / questions / 24419188 / automating - pydrive - verification - process
         gauth = GoogleAuth()
-        """
+
         # Try to load saved client credentials
         gauth.LoadCredentialsFile("mycreds.txt")
         if gauth.credentials is None:
@@ -34,7 +34,7 @@ class UploadDrive:
         # Save the current credentials to a file
         gauth.SaveCredentialsFile("mycreds.txt")
         self.drive = GoogleDrive(gauth)
-        """
+
         gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
         self.drive = GoogleDrive(gauth)
 
@@ -65,7 +65,7 @@ class UploadDrive:
         print('file not found : ' + title)
         return 404
 
-    def f(self, title=''):
+    def find_file_id_on_cloud(self, title=''):
         """Read GoogleDriveFile instance with title 'Hello.txt'
         :param title:The title of the text file
         :type title: str

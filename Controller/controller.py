@@ -47,7 +47,7 @@ class Controller:
             self.read_cloud()
             self.set_relays()
             self.set_analog_output()
-            self.set_digital_input()
+            #self.set_digital_input()
 
 
 
@@ -57,7 +57,7 @@ class Controller:
         :return:
         """
         data = self.check_consumption()
-        self.check_output_analog(1,data,100)
+        self.check_output_analog('a',data,100)
 
     def set_relays(self):
         """
@@ -99,11 +99,11 @@ class Controller:
         :param data: data to compare
         :param pmin: order to compare
         """
-        if (data[1] + data[2] + data[3]) <= pmin and InOut.read_digital_input(pin)<=0: # if power PV is higher than and DIN is not 1
+        """if (data[1] + data[2] + data[3]) <= pmin and InOut.read_digital_input(pin)<=0: # if power PV is higher than and DIN is not 1
             InOut.set_relay_value(pin,1)
         else:
             InOut.set_relay_value(pin,0)
-
+"""
     def check_output_analog(self, pin, data, pnom):
         """
         Set analog output
@@ -125,7 +125,6 @@ class Controller:
         file1 = self.client_cloud.find_file_title_on_cloud("values.csv")
         if file1 != 404:  # check if error
             self.client_cloud.delete_file_on_cloud(file1)    # delete old file
-        #self.client_cloud.write_file_on_cloud("C:/users/chena/OneDrive/Documents/GitHub/SMARTES/Files/values.csv")   # write on cloud
         self.client_cloud.write_file_on_cloud("Files/values.csv")   # write on cloud
         print("file wrote")
 
@@ -134,11 +133,10 @@ class Controller:
         download command.csv file from cloud
         :return:
         """
-        file1 = self.client_cloud.find_file_id_on_cloud("commands.csv")  # find file on cloud
+        file1 = self.client_cloud.find_file_title_on_cloud("commands.csv")  # find file on cloud
         if file1 == 404:
             print("error file not found")   # not found
         else:
-            #ok = self.client_cloud.download_file_from_cloud(file1, "C:/users/chena/OneDrive/Documents/GitHub/SMARTES/Cloud")    # download command file
             ok = self.client_cloud.download_file_from_cloud(file1, "Files/")    # download command file
 
             if ok == 0:

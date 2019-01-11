@@ -25,11 +25,9 @@ class LocalDataBase:
         """
         self.path = path
         if os.path.isfile(path):
-            self.file = open(self.path, "w+")
-            self.file.close()
-            self.header = False
-        else:
             self.header = True
+        else:
+            self.header = False
 
     def add_text(self, values=[]):
         """ Append text to the end of a local file

@@ -37,7 +37,7 @@ class InOut:
         chip.set_gain(2)
 
         # Output analog voltage to channel B
-        chip.output(channel=chan,prefix=value)
+        chip.output_percent(channel=chan,percent=value)
 
     @staticmethod
     def read_digital_input(pin):
