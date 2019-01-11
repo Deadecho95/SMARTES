@@ -148,14 +148,15 @@ class Controller:
             print("error file not found")   # not found
         else:
             ok = self.client_cloud.download_file_from_cloud(file1, "Files/")    # download command file
-            file = open("commands.csv", "rw+")
-            lines = list(file)
-            self.command = lines.split(',')
-            file.close
             if ok == 0:
                 print("Error when read file commands.csv from cloud")
             else:
                 print("file commands.csv read from cloud")
+                file = open("commands.csv", "rw+")
+                lines = list(file)
+                self.command = lines.split(',')
+                file.close
+
 
     def read_modbus_values(self):
         """
@@ -170,18 +171,22 @@ class Controller:
         face.Interface2.show_values()
 
     def write_modbus_values(self):
+        """
+        write modbus registers from the command file
+        :return:
+        """
+        for y in range(1,len(self.command), 3):
+            if self.command[y] != -1:
+                self.set_modbus_value(y+1)
 
-        for y in range(0, ):
-            "readdatabase"
-
-    def set_modbus_value(self):
+    def set_modbus_value(self,value):
         """
         set value to the modbus
         :return:
         """
 
         self.client_modbus.connect()
-        self.set_register("""value""")
+        self.set_register(value)
         self.disconnect()
 
 
