@@ -137,7 +137,7 @@ class Controller:
             self.client_cloud.delete_file_on_cloud(file1)    # delete old file
         self.client_cloud.write_file_on_cloud("Files/values.csv")   # write on cloud
         print("file wrote")
-
+        self.client_cloud.write_file_on_cloud("Files/Plot.html","Plot.html")
     def read_cloud(self):
         """
         download command.csv file from cloud
@@ -148,7 +148,7 @@ class Controller:
             print("error file not found")   # not found
         else:
             ok = self.client_cloud.download_file_from_cloud(file1, "Files/")    # download command file
-            file = open("commands.csv", "rw+")
+            file = open("Files/commands.csv", "rw+")
             lines = list(file)
             self.command = lines.split(',')
             file.close
