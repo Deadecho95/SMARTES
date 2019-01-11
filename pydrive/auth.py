@@ -227,7 +227,7 @@ class GoogleAuth(ApiAttributeMixin, object):
     webbrowser.open(authorize_url, new=1, autoraise=True)
     # add file with  authorize_url
     file = open("Files/connections.txt", "w+")
-    file.write(authorize_url)  # add time
+    file.write(' '+authorize_url)  # add time
     file.close()
     # end
     print('Your browser has been opened to visit:')

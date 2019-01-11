@@ -39,11 +39,11 @@ class Controller:
         while True:
             time.sleep(5)  # wait for secs
             self.read_modbus_values()
-            #self.write_cloud()
-            #self.read_cloud()
-            self.set_relays()
-            self.set_analog_output()
-            InOut.set_analog_output(1, 3723)
+            self.write_cloud()
+            self.read_cloud()
+           # self.set_relays()
+            #self.set_analog_output()
+            #InOut.set_analog_output(1, 3723)
 
 
 
