@@ -1,6 +1,7 @@
 import plotly.graph_objs as go
 import pandas as pd
 import plotly.offline
+import Cloud.uploadDrive as drive
 
 class Interface2:
     # To be defined by the Controller how to be connected
@@ -105,3 +106,4 @@ class Interface2:
         layout['updatemenus'] = updatemenus
         fig = dict(data=data, layout=layout)
         plotly.offline.plot(fig, filename=htmlpath)
+        drive.UploadDrive.write_file_on_cloud(drive, htmlpath, "Plot.html")

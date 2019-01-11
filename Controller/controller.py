@@ -25,6 +25,7 @@ class Controller:
         :param client_cloud is the client for the cloud
         :param database is the local database
         """
+        self.command = 0 #array from commands
         self.data = 0 #all data from modbus
         self.client_modbus = client_modbus
         self.client_cloud = client_cloud
@@ -139,7 +140,10 @@ class Controller:
             print("error file not found")   # not found
         else:
             ok = self.client_cloud.download_file_from_cloud(file1, "Files/")    # download command file
-
+            file = open("commands.csv", "rw+")
+            lines = list(file)
+            self.command = lines.split(',')
+            file.close
             if ok == 0:
                 print("Error when read file commands.csv from cloud")
             else:
