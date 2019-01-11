@@ -9,12 +9,11 @@ class Interface2:
     @staticmethod
     def show_values():
         #for linux
-        filepath="Files/values.csv"
+        filepath="values.csv"
         htmlpath="Files/Plot.html"
 
-        #for windows
-        #filepath="../Files/values.csv"
-        #htmlpath="../Files/Plot.html"
+
+
         with open(filepath) as f:
             first_line = f.readline()
             lines = f.read().splitlines()
@@ -106,4 +105,3 @@ class Interface2:
         layout['updatemenus'] = updatemenus
         fig = dict(data=data, layout=layout)
         plotly.offline.plot(fig, filename=htmlpath)
-        drive.UploadDrive.write_file_on_cloud(drive, htmlpath, "Plot.html")
