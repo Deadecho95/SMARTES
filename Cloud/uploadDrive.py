@@ -17,7 +17,6 @@ class UploadDrive:
     def __init__(self):
         """Create an instance of UploadDrive."""
 
-        # https: // stackoverflow.com / questions / 24419188 / automating - pydrive - verification - process
         gauth = GoogleAuth()
 
         # Try to load saved client credentials
@@ -34,10 +33,11 @@ class UploadDrive:
         # Save the current credentials to a file
         gauth.SaveCredentialsFile("mycreds.txt")
         self.drive = GoogleDrive(gauth)
-
+        """""
+        # there is some issue with the refresh token use this instead
         gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
         self.drive = GoogleDrive(gauth)
-
+        """""
     def write_file_on_cloud(self, path, title="values.csv"):
         """Create GoogleDriveFile instance
         :param path: path of the file
@@ -115,7 +115,6 @@ class UploadDrive:
 
     def delete_file_on_cloud(self, file_title):
         # HTTP request DELETE
-        # https: // www.googleapis.com / drive / v2 / files / fileId
         """Permanently delete a file, skipping the trash.
         :param file_title: ID of the file to delete.
         :type file_title: str
@@ -129,9 +128,6 @@ class UploadDrive:
                 self.drive.auth.service.files().delete(fileId=file['id']).execute()
         print('file not found : ' + file_title)
         return 404
-
-    # def check_last_modification(self,file_id):
-    # GET https://www.googleapis.com/drive/v2/changes/changeId
 
     @staticmethod
     def internet_on():
