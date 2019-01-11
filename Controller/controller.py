@@ -25,7 +25,7 @@ class Controller:
         :param client_cloud is the client for the cloud
         :param database is the local database
         """
-        self.command = 0 #array from commands
+        self.command = [] #array from commands
         self.data = 0 #all data from modbus
         self.client_modbus = client_modbus
         self.client_cloud = client_cloud
@@ -48,7 +48,7 @@ class Controller:
             self.read_cloud()
             self.create_plot()
             self.check_output()
-
+            self.write_modbus_values()
 
     def check_consumption(self):
         """
@@ -149,7 +149,7 @@ class Controller:
             self.client_cloud.delete_file_on_cloud(file1)    # delete old file
         self.client_cloud.write_file_on_cloud("Files/values.csv")   # write on cloud
         print("file wrote")
-        self.client_cloud.write_file_on_cloud("Files/Plot.html","Plot.html")
+       # self.client_cloud.write_file_on_cloud(path="Files/Plot.html",title="Plot.html")
     def read_cloud(self):
         """
         download command.csv file from cloud
@@ -168,9 +168,11 @@ class Controller:
                 print("Error when read file commands.csv from cloud")
             else:
                 print("file commands.csv read from cloud")
-                file = open("commands.csv", "rw+")
+                file = open("Files/commands.csv", "r")
+
                 lines = list(file)
-                self.command = lines.split(',')
+                for line in lines:
+                    self.command.append(line.split(';'))
                 file.close
 
 
@@ -191,10 +193,10 @@ class Controller:
         write modbus registers from the command file
         :return:
         """
-        for y in range(1,len(self.command), 3):
-            if self.command[y] != -1:
+        for y in range(1,len(self.command)):
+            if int(self.command[y][1]) != -1:
                 self.client_modbus.connect()
-                self.client_modbus.set_register(self.command[y], self.command[y+1])
+                self.client_modbus.set_register(int(self.command[y][1]), int(self.command[y][2]))
                 self.client_modbus.disconnect()
 
 
