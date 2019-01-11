@@ -13,7 +13,7 @@ class Controller:
     """ the controller manage the connection between
     the venus the raspberry and the cloud
     """
-    AO_PIN = [a] #Channel of 4-20mA output
+    AO_PIN = ['a'] #Channel of 4-20mA output
     RELAY_PINS = [37,38,40] #pin of each relay
     DI_PIN = [1, 2] #Channel of digital input
     NBR_RELAY = len(RELAY_PINS) #nbr of relay
@@ -160,14 +160,19 @@ class Controller:
             print("error file not found")   # not found
         else:
             ok = self.client_cloud.download_file_from_cloud(file1, "Files/")    # download command file
-            file = open("Files/commands.csv", "rw+")
-            lines = list(file)
-            self.command = lines.split(',')
-            file.close
             if ok == 0:
                 print("Error when read file commands.csv from cloud")
             else:
                 print("file commands.csv read from cloud")
+            if ok == 0:
+                print("Error when read file commands.csv from cloud")
+            else:
+                print("file commands.csv read from cloud")
+                file = open("commands.csv", "rw+")
+                lines = list(file)
+                self.command = lines.split(',')
+                file.close
+
 
     def read_modbus_values(self):
         """
@@ -182,19 +187,16 @@ class Controller:
         face.Interface2.show_values()
 
     def write_modbus_values(self):
-
-        for y in range(0, ):
-            "readdatabase"
-
-    def set_modbus_value(self):
         """
-        set value to the modbus
+        write modbus registers from the command file
         :return:
         """
+        for y in range(1,len(self.command), 3):
+            if self.command[y] != -1:
+                self.client_modbus.connect()
+                self.client_modbus.set_register(self.command[y], self.command[y+1])
+                self.client_modbus.disconnect()
 
-        self.client_modbus.connect()
-        self.set_register("""value""")
-        self.disconnect()
 
 
 

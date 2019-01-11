@@ -63,15 +63,6 @@ class ClientModBus:
 
         return all_registers    # name;value
 
-    def set_registers(self, register, value):
-        """ write registers
-
-
-        :param register: a list of all registers to set
-        :param value: a list of all value of the registers to set
-        """
-        # self.writeRegister = self.clientVenus.write_register(register,value)
-
     def set_register(self, register, value):
         """ write registers
 
