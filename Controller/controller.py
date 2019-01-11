@@ -48,7 +48,7 @@ class Controller:
             self.create_plot()
             self.set_relays()
             self.set_analog_output()
-            #self.set_digital_input()
+
 
 
 

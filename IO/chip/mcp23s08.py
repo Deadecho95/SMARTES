@@ -29,7 +29,7 @@ class MCP23S08(PiSPI):
     """
     address = 0
 
-    def __init__(self, address=0, cs_pin=17):                        # AI module uses GPIO7 for SPI_CS
+    def __init__(self, address=0, cs_pin=11):                        # AI module uses GPIO7 for SPI_CS
         # Though MCP23S08 has maximum clock of 10MHz, I set it as 61KHz
         # See below for more details.
         # https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md
@@ -39,27 +39,13 @@ class MCP23S08(PiSPI):
             raise ValueError("Address error, it must be 0, 1, 2, or 3")
         self.address = address
 
-    def set_direction(self, channel, direction):
+    def set_direction(self):
         """
-        Set direction of given channel
-        :param channel:
-        :param direction:
+        Set the input direction
         :return:
         """
-        if direction in [0, 'in', 'IN', 'input', 'INPUT']:
-            d = '1'
-        elif direction in [1, 'out', 'OUT', 'output', 'OUTPUT']:
-            d = '0'
-        else:
-            raise ValueError("Invalid direction value")
-
-        # Get current GPIO directions from IODIR(0x00) Register
-        old_val = '{0:8b}'.format(self.read_register(0x00))
-
-        old_val[7-channel] = d
-
         # Write to IODIR(0x00) Register
-        self.write_register(0x00, int(old_val, 2))
+        self.write_register(0x00, 0xFF)
 
     def read_register(self, address):
         """
