@@ -1,9 +1,9 @@
 # --------------------------------------------------------------------------- #
 # the controller
 # --------------------------------------------------------------------------- #
-from Cloud.uploadDrive import UploadDrive as lient_modbus
-from Controller.localDataBase import LocalDataBase as database
-from Modbus.clientModBus import ClientModBus as client_cloud
+from Cloud.uploadDrive import UploadDrive
+from Controller.localDataBase import LocalDataBase
+from Modbus.clientModBus import ClientModBus
 from IO.INOUT import InOut
 import time
 import keyboard  # Using module keyboard
