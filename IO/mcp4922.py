@@ -15,24 +15,25 @@ MERCHANTABILITY or FITNESS
 
 import os
 import sys
-import IO.pispi as pispi
+from IO.pispi import PiSPI
 
 # Add parent directory to path for `pispi.py`.
 sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir))
 __version__ = 0.1
 
 
-class MCP4922(pispi):
+class MCP4922(PiSPI):
 
     gain = 1
     v_ref = 3.3
 
-    def __init__(self, cs_pin=4, gain=1, v_ref=3.3):               # AO module uses GPIO4 for SPI_CS
+    def __init__(self, cs_pin=15, gain=1, v_ref=3.3):               # AO module uses GPIO4 for SPI_CS
         # Though MCP4922 has maximum clock of 20MHz, I set it as 61KHz
         # See below for more details.
         # https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md
         # PiSPI.__init__(self, cs_pin=cs_pin, speed=61000, bus=bus, device=device)
-        pispi.__init__(self, cs_pin=cs_pin, speed=61000)
+
+        PiSPI.__init__(self, cs_pin=cs_pin, speed=61000)
         self.v_ref = v_ref
         if gain not in [1, 2]:
             raise ValueError('Error, Gain must be 1 or 2')
@@ -50,7 +51,7 @@ class MCP4922(pispi):
         :param val:
         :return:
         """
-        if not (0 < val < 4096):
+        if not (0 <= val <= 4096):
             raise ValueError('Input value must be range of 0~4095.')
 
         cmd = prefix | val
@@ -58,20 +59,22 @@ class MCP4922(pispi):
         buf2 = cmd & 0xff
         self.send_cmd([buf1, buf2])
 
-    def output_voltage(self, channel='a', volt=0.0):
+    def output_percent(self, channel='a', percent=0.0):
         """
         Analog output
         :param channel: Channel label, `A` or `B`
-        :param volt:
+        :param percent:
         :return:
         """
-        if volt < 0 or volt > self.v_ref:
-            raise ValueError('Invalid output voltage, should be 0 ~ 3.3')
+        val = percent*29.8+745
+
+        if val < 745 or percent > 3723:
+            raise ValueError('Invalid percent')
 
         if channel.lower() not in ['a', 'b']:
             raise ValueError('Invalid channel label, must be `a` or `b`')
 
-        val = int(4096 * volt / self.v_ref)
+        val = int(4096 * percent / self.v_ref)
        # print 'Analog output, channel: {}, voltage: {}V'.format(channel, volt)
         if channel.lower() == 'a':
             if self.gain == 1:
@@ -83,18 +86,4 @@ class MCP4922(pispi):
                 self.output(0xb000, val)
             else:
                 self.output(0x9000, val)
-
-
-if __name__ == '__main__':
-
-    a = MCP4922()
-
-    # Set gain
-    a.set_gain(2)
-
-    # Output analog voltage to channel A
-    a.output_voltage(channel='a', volt=2.5)
-
-    # Output analog voltage to channel B
-    a.output_voltage(channel='b', volt=1.5)
 
