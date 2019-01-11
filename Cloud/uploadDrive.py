@@ -55,8 +55,7 @@ class UploadDrive:
         :type title: str
         :return file_id
         """
-        # results=service.files().list().execute()
-        # file_list=results.get('items',[])
+       
         file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
         for file in file_list:
             print('title: %s, id: %s' % (file['title'], file['id']))
@@ -66,7 +65,7 @@ class UploadDrive:
         print('file not found : ' + title)
         return 404
 
-    def find_file_id_on_cloud(self, title=''):
+    def f(self, title=''):
         """Read GoogleDriveFile instance with title 'Hello.txt'
         :param title:The title of the text file
         :type title: str
