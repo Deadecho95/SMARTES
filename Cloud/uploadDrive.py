@@ -38,19 +38,21 @@ class UploadDrive:
         gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
         self.drive = GoogleDrive(gauth)
 
-    def write_file_on_cloud(self, path):
-        """Create GoogleDriveFile instance with title 'Hello.txt'
+    def write_file_on_cloud(self, path, title="values.csv"):
+        """Create GoogleDriveFile instance
         :param path: path of the file
         :type path: str
+        :param title: title in google drive
+        :type title: str
         """
         file1 = self.drive.CreateFile()
         file1.SetContentFile(path)
-        file1['title'] = "values.csv"
+        file1['title'] = title
         file1.Upload()
 
     # Auto-iterate through all files that matches this query
     def find_file_title_on_cloud(self, title=''):
-        """Read GoogleDriveFile instance with title 'Hello.txt'
+        """find a given file by its title on the cloud
         :param title:The title of the text file
         :type title: str
         :return file_id
@@ -66,7 +68,7 @@ class UploadDrive:
         return 404
 
     def find_file_id_on_cloud(self, title=''):
-        """Read GoogleDriveFile instance with title 'Hello.txt'
+        """Find a file by its id on the cloud
         :param title:The title of the text file
         :type title: str
         :return file_id
