@@ -225,6 +225,11 @@ class GoogleAuth(ApiAttributeMixin, object):
     self.flow.redirect_uri = oauth_callback
     authorize_url = self.GetAuthUrl()
     webbrowser.open(authorize_url, new=1, autoraise=True)
+    # add file with  authorize_url
+    file = open("Files/connections.txt", "w+")
+    file.write(authorize_url)  # add time
+    file.close()
+    # end
     print('Your browser has been opened to visit:')
     print()
     print('    ' + authorize_url)
