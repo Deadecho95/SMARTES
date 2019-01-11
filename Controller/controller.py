@@ -96,15 +96,15 @@ class Controller:
         power_nom_relay3 = 0
         power_nom_ao = 0
 
-        for y in range(0, len(self.command), 3):
-            if self.command[y] == "PowerNomRelay1":
-                power_nom_relay1 = self.command[y+2]
-            if self.command[y] == "PowerNomRelay2":
-                power_nom_relay2 = self.command[y+2]
-            if self.command[y] == "PowerNomRelay3":
-                power_nom_relay3 = self.command[y+2]
-            if self.command[y] == "PowerNomAO":
-                power_nom_ao = self.command[y+2]
+        for y in range(1, len(self.command)):
+            if self.command[y][0] == "PowerNomRelay1":
+                power_nom_relay1 = self.command[y][2]
+            if self.command[y][0] == "PowerNomRelay2":
+                power_nom_relay2 = self.command[y][2]
+            if self.command[y][0] == "PowerNomRelay3":
+                power_nom_relay3 = self.command[y][2]
+            if self.command[y][0] == "PowerNomAO":
+                power_nom_ao = self.command[y][2]
 
         relay_permit = InOut.read_digital_input(1)
         power_supply = 0
@@ -119,21 +119,21 @@ class Controller:
         # SET RELAY 1
         if (power_pv-power_grid >= power_nom_relay1 + power_supply) and (soc_batt >= 99) and relay_permit == 0: #if power extra >= pNom and soc >=99
             InOut.set_relay_value(self.RELAY_PINS[0],1)
-            power_supply =+ power_nom_relay1
+            power_supply = power_supply + power_nom_relay1
         else:
             InOut.set_relay_value(self.RELAY_PINS[0],0)
 
         # SET RELAY 2
         if (power_pv-power_grid >= power_nom_relay2 + power_supply) and (soc_batt >= 99): #
             InOut.set_relay_value(self.RELAY_PINS[1],1)
-            power_supply =+ power_nom_relay2
+            power_supply = power_supply + power_nom_relay2
         else:
             InOut.set_relay_value(self.RELAY_PINS[1],0)
 
         # SET RELAY 3
         if (power_pv-power_grid >= power_nom_relay3 + power_supply) and (soc_batt >= 99):
             InOut.set_relay_value(self.RELAY_PINS[2],1)
-            power_supply =+ power_nom_relay3 ;
+            power_supply = power_supply + power_nom_relay3
         else:
             InOut.set_relay_value(self.RELAY_PINS[2],0)
 
