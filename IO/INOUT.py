@@ -34,7 +34,7 @@ class InOut:
         chip = MCP4922()
 
         # Set gain
-        chip.set_gain(2)
+        chip.set_gain(1)
 
         # Output analog voltage to channel B
         chip.output_percent(channel=chan,percent=value)
@@ -50,7 +50,8 @@ class InOut:
         chip = MCP23S08()
         chip.set_direction()
 
-        return chip.get_values()
+
+        return ((chip.get_values() >> (pin-1)) & 0b00000001)
 
     @staticmethod
     def set_relay(pin):
@@ -71,7 +72,7 @@ class InOut:
         :param value: value 0 for hight and 1 for hight
         """
 
-        if value == 1:
+        if value == 0:
             GPIO.output(pin, GPIO.LOW)
         else:
             GPIO.output(pin, GPIO.HIGH)
