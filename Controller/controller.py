@@ -6,7 +6,6 @@ from Controller.localDataBase import LocalDataBase
 from Modbus.clientModBus import ClientModBus
 from IO.INOUT import InOut
 import time
-import keyboard  # Using module keyboard
 import Interface.Interface2 as face
 
 
