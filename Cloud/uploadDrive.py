@@ -23,7 +23,7 @@ class UploadDrive:
         self.drive = GoogleDrive(gauth)
 
         # Try to load saved client credentials
-        """
+
         gauth.LoadCredentialsFile("mycreds.txt")
         if gauth.credentials is None:
             # Authenticate if they're not there
@@ -37,7 +37,7 @@ class UploadDrive:
         # Save the current credentials to a file
         gauth.SaveCredentialsFile("mycreds.txt")
         self.drive = GoogleDrive(gauth)
-        """
+
         # there is some issue with the refresh token use this instead
 
 

@@ -33,7 +33,7 @@ class ClientModBus:
                           ["Alarms_LowBattery", 35, 242, 1, "uint", 16], ["Alarms_Overload", 36, 242, 1, "uint", 16],
                           ["State_Relay_0", 806, 100, 1, "uint", 16], ["State_Relay_1", 807, 100, 1, "uint", 16],
                           ["Power_AC_SetPoint", 2700, 100, 1, "int", 16], ["Percent_Max_Charge", 2701, 100, 1, "uint", 16],
-                          ["Percent_Max_Discharge", 2702, 100, 1, "uint", 16]]  # Name, Register, unit ID, scale, type, length
+                          ["Percent_Max_Discharge", 2702, 100, 1, "uint", 16]]  # Name, Register, unit ID, scale, type, length in bits
 
     def connect(self):
         """ connect to ServerModBus

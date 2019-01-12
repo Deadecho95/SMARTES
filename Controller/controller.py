@@ -13,7 +13,7 @@ class Controller:
     """
     AO_PIN = ['a', 'b'] #Channel of 4-20mA output
     RELAY_PINS = [37,38,40] #pin of each relay
-    DI_PIN = [1, 2] #Channel of digital input
+    DI_PIN = [1, 2, 3, 4] #Channel of digital input
     NBR_RELAY = len(RELAY_PINS) #nbr of relay
 
     def __init__(self, client_modbus, client_cloud, database):
@@ -61,14 +61,14 @@ class Controller:
         pv_l2 = 0
         pv_l3 = 0
 
-        for y in range(0, len(self.data), 2):
+        for y in range(0, len(self.data), 3):
             if self.data[y] == "Percent_Soc_Battery":   # check for battery %
                 batt_state = self.data[y + 2]*self.data[y + 1]
             if self.data[y] == "Power_Grid_L1":   # check for load power l1
                 grid_l1 = self.data[y + 2]*self.data[y + 1]
-            if self.data[y] == "Power_Grid_L1":   # check for load power l2
+            if self.data[y] == "Power_Grid_L2":   # check for load power l2
                 grid_l2 = self.data[y + 2]*self.data[y + 1]
-            if self.data[y] == "Power_Grid_L1":   # check for load power l3
+            if self.data[y] == "Power_Grid_L3":   # check for load power l3
                 grid_l3 = self.data[y + 2]*self.data[y + 1]
             if self.data[y] == "Power_PvOnGrid_L1":  # Check for pc power L1
                 pv_l1 = self.data[y + 2]
@@ -104,32 +104,37 @@ class Controller:
             if self.command[y][0] == "PowerNomAO":
                 power_nom_ao = int(self.command[y][2])
 
-        relay_permit = InOut.read_digital_input(self.DI_PIN[0])
+        analog_out_permit = InOut.read_digital_input(self.DI_PIN[0])
+        relay1_permit = InOut.read_digital_input(self.DI_PIN[1])
+        relay2_permit = InOut.read_digital_input(self.DI_PIN[2])
+        relay3_permit = InOut.read_digital_input(self.DI_PIN[3])
         power_supply = 0
 
+        #TEST
+        soc_batt = 100
         # SET ANALOG OUTPUT (4-20mA)
-        if (power_pv-power_grid >= 1) and (soc_batt >= 99):
+        if (power_pv-power_grid >= 1) and (soc_batt >= 99) and analog_out_permit == 1 and power_nom_ao >0:
             InOut.set_analog_output(self.AO_PIN[0], (power_pv-power_grid)/power_nom_ao*100)
             power_supply = power_nom_ao
         else:
             InOut.set_analog_output(self.AO_PIN[0], 0)
 
         # SET RELAY 1
-        if (power_pv-power_grid >= power_nom_relay1 + power_supply) and (soc_batt >= 99) and relay_permit == 1: #if power extra >= pNom and soc >=99
+        if (power_pv-power_grid >= power_nom_relay1 + power_supply) and (soc_batt >= 99) and relay1_permit == 1 and power_nom_relay1 >0: #if power extra >= pNom and soc >=99
             InOut.set_relay_value(self.RELAY_PINS[0],1)
             power_supply = power_supply + power_nom_relay1
         else:
             InOut.set_relay_value(self.RELAY_PINS[0],0)
 
         # SET RELAY 2
-        if (power_pv-power_grid >= power_nom_relay2 + power_supply) and (soc_batt >= 99): #
+        if (power_pv-power_grid >= power_nom_relay2 + power_supply) and (soc_batt >= 99) and relay2_permit == 1 and power_nom_relay2 >0: #
             InOut.set_relay_value(self.RELAY_PINS[1],1)
             power_supply = power_supply + power_nom_relay2
         else:
             InOut.set_relay_value(self.RELAY_PINS[1],0)
 
         # SET RELAY 3
-        if (power_pv-power_grid >= power_nom_relay3 + power_supply) and (soc_batt >= 99):
+        if (power_pv-power_grid >= power_nom_relay3 + power_supply) and (soc_batt >= 99) and relay3_permit == 1 and power_nom_relay3 >0:
             InOut.set_relay_value(self.RELAY_PINS[2],1)
             power_supply = power_supply + power_nom_relay3
         else:
@@ -169,6 +174,7 @@ class Controller:
                 file = open("Files/commands.csv", "r")
 
                 lines = list(file)
+                self.command.clear()
                 for line in lines:
                     self.command.append(line.split(';'))
                 file.close
@@ -191,10 +197,12 @@ class Controller:
         write modbus registers from the command file
         :return:
         """
-        for y in range(1,len(self.command)):
+        for y in range(1, len(self.command)):
             if int(self.command[y][1]) != -1:
+                value = int(self.command[y][2])
+                register = int(self.command[y][1])
                 self.client_modbus.connect()
-                self.client_modbus.set_register(int(self.command[y][1]), int(self.command[y][2]))
+                self.client_modbus.set_register(register, value)
                 self.client_modbus.disconnect()
 
 

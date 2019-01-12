@@ -15,6 +15,10 @@ class InOut:
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)
 
+        chip = MCP4922()
+        chip.output_percent(channel='a', percent=0)
+        chip.output_percent(channel='b', percent=0)
+
     @staticmethod
     def close():
         """
@@ -37,7 +41,17 @@ class InOut:
         chip.set_gain(1)
 
         # Output analog voltage to channel B
-        chip.output_percent(channel=chan,percent=value)
+
+        if value >= 100:
+            value =100
+            chip.output_percent(channel=chan,percent=value)
+
+        elif value <= 0:
+            value = 0
+            chip.output_percent(channel=chan,percent=value)
+
+        else:
+            chip.output_percent(channel=chan, percent=value)
 
     @staticmethod
     def read_digital_input(pin):
