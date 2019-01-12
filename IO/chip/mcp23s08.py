@@ -47,6 +47,9 @@ class MCP23S08(PiSPI):
         # Write to IODIR(0x00) Register
         self.write_register(0x00, 0xFF)
 
+        #
+        self.write_register(0x00, 0xFF)
+
     def read_register(self, address):
         """
         Read Register value

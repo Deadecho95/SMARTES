@@ -7,13 +7,11 @@ from Modbus.clientModBus import ClientModBus
 from IO.INOUT import InOut
 import time
 import Interface.Interface2 as face
-
-
 class Controller:
     """ the controller manage the connection between
     the venus the raspberry and the cloud
     """
-    AO_PIN = ['a'] #Channel of 4-20mA output
+    AO_PIN = ['a', 'b'] #Channel of 4-20mA output
     RELAY_PINS = [37,38,40] #pin of each relay
     DI_PIN = [1, 2] #Channel of digital input
     NBR_RELAY = len(RELAY_PINS) #nbr of relay
@@ -65,19 +63,19 @@ class Controller:
 
         for y in range(0, len(self.data), 2):
             if self.data[y] == "Percent_Soc_Battery":   # check for battery %
-                batt_state = self.data[y + 1]
+                batt_state = self.data[y + 2]*self.data[y + 1]
             if self.data[y] == "Power_Grid_L1":   # check for load power l1
-                grid_l1 = self.data[y + 1]
+                grid_l1 = self.data[y + 2]*self.data[y + 1]
             if self.data[y] == "Power_Grid_L1":   # check for load power l2
-                grid_l2 = self.data[y + 1]
+                grid_l2 = self.data[y + 2]*self.data[y + 1]
             if self.data[y] == "Power_Grid_L1":   # check for load power l3
-                grid_l3 = self.data[y + 1]
+                grid_l3 = self.data[y + 2]*self.data[y + 1]
             if self.data[y] == "Power_PvOnGrid_L1":  # Check for pc power L1
-                pv_l1 = self.data[y + 1]
+                pv_l1 = self.data[y + 2]
             if self.data[y] == "Power_PvOnGrid_L2":  # Check for pc power L1
-                pv_l2 = self.data[y + 1]
+                pv_l2 = self.data[y + 2]*self.data[y + 1]
             if self.data[y] == "Power_PvOnGrid_L3":  # Check for pc power L1
-                pv_l3 = self.data[y + 1]
+                pv_l3 = self.data[y + 2]*self.data[y + 1]
 
         return [batt_state, grid_l1, grid_l2, grid_l3, pv_l1, pv_l2, pv_l3]
 
@@ -98,15 +96,15 @@ class Controller:
 
         for y in range(1, len(self.command)):
             if self.command[y][0] == "PowerNomRelay1":
-                power_nom_relay1 = self.command[y][2]
+                power_nom_relay1 = int(self.command[y][2])
             if self.command[y][0] == "PowerNomRelay2":
-                power_nom_relay2 = self.command[y][2]
+                power_nom_relay2 = int(self.command[y][2])
             if self.command[y][0] == "PowerNomRelay3":
-                power_nom_relay3 = self.command[y][2]
+                power_nom_relay3 = int(self.command[y][2])
             if self.command[y][0] == "PowerNomAO":
-                power_nom_ao = self.command[y][2]
+                power_nom_ao = int(self.command[y][2])
 
-        relay_permit = InOut.read_digital_input(1)
+        relay_permit = InOut.read_digital_input(self.DI_PIN[0])
         power_supply = 0
 
         # SET ANALOG OUTPUT (4-20mA)
@@ -117,7 +115,7 @@ class Controller:
             InOut.set_analog_output(self.AO_PIN[0], 0)
 
         # SET RELAY 1
-        if (power_pv-power_grid >= power_nom_relay1 + power_supply) and (soc_batt >= 99) and relay_permit == 0: #if power extra >= pNom and soc >=99
+        if (power_pv-power_grid >= power_nom_relay1 + power_supply) and (soc_batt >= 99) and relay_permit == 1: #if power extra >= pNom and soc >=99
             InOut.set_relay_value(self.RELAY_PINS[0],1)
             power_supply = power_supply + power_nom_relay1
         else:
