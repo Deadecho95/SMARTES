@@ -2,6 +2,7 @@ import socket
 import webbrowser
 import httplib2
 import oauth2client.clientsecrets as clientsecrets
+import os
 from six.moves import input
 
 from googleapiclient.discovery import build
@@ -225,7 +226,7 @@ class GoogleAuth(ApiAttributeMixin, object):
     self.flow.redirect_uri = oauth_callback
     authorize_url = self.GetAuthUrl()
     # add file with  authorize_url
-    file = open("File/connections.txt", "w")
+    file = open("Files/connections.txt", "w")
     file.write('' + authorize_url)
     file.close()
     # end
@@ -236,6 +237,9 @@ class GoogleAuth(ApiAttributeMixin, object):
     print('    ' + authorize_url)
     print()
     httpd.handle_request()
+
+    os.system("pkill firefox")
+
     if 'error' in httpd.query_params:
       print('Authentication request was rejected')
       raise AuthenticationRejected('User rejected authentication')

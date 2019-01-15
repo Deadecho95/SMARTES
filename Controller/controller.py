@@ -42,6 +42,7 @@ class Controller:
         while True:
             time.sleep(15)  # wait for secs
             self.read_modbus_values()
+            self.connect_cloud()
             self.write_cloud()
             self.read_cloud()
             self.create_plot()
@@ -140,6 +141,12 @@ class Controller:
         else:
             InOut.set_relay_value(self.RELAY_PINS[2],0)
 
+    def connect_cloud(self):
+        """
+
+        :return:
+        """
+        self.client_cloud.connect()
 
     def write_cloud(self):
         """

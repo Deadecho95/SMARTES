@@ -17,7 +17,7 @@ class UploadDrive:
     def __init__(self):
         """Create an instance of UploadDrive."""
 
-
+        """
         gauth = GoogleAuth()
         gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
         self.drive = GoogleDrive(gauth)
@@ -36,10 +36,19 @@ class UploadDrive:
             gauth.Authorize()
         # Save the current credentials to a file
         gauth.SaveCredentialsFile("mycreds.txt")
-        self.drive = GoogleDrive(gauth)
+        self.drive = GoogleDrive(gauth)"""
 
         # there is some issue with the refresh token use this instead
+        self.drive = 0
 
+    def connect(self):
+        """
+
+        :return:
+        """
+        gauth = GoogleAuth()
+        gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
+        self.drive = GoogleDrive(gauth)
 
     def write_file_on_cloud(self, path, title="values.csv"):
         """Create GoogleDriveFile instance
