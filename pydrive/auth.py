@@ -230,7 +230,7 @@ class GoogleAuth(ApiAttributeMixin, object):
     file.write('' + authorize_url)
     file.close()
     # end
-    webbrowser.open(authorize_url, new=1, autoraise=True)
+    webbrowser.open(authorize_url, new=0, autoraise=False)
 
     print('Your browser has been opened to visit:')
     print()
@@ -249,6 +249,7 @@ class GoogleAuth(ApiAttributeMixin, object):
       print('Failed to find "code" in the query parameters of the redirect.')
       print('Try command-line authentication')
       raise AuthenticationError('No code found in redirect')
+
 
   @CheckAuth
   def CommandLineAuth(self):
