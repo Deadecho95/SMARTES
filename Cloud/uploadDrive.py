@@ -1,3 +1,7 @@
+#from pydrive.auth import GoogleAuth
+#import google.oauth2.credentials
+import google_auth_oauthlib.flow
+
 from urllib.error import URLError
 
 from pydrive.auth import GoogleAuth
@@ -6,49 +10,37 @@ from pydrive.drive import GoogleDrive
 from urllib.request import urlopen
 from googleapiclient import http
 from googleapiclient import errors
-
+import google.oauth2.credentials
+import google_auth_oauthlib.flow
 
 # --------------------------------------------------------------------------- #
 # Client to connect to Google Drive
 # --------------------------------------------------------------------------- #
 
 class UploadDrive:
-
     def __init__(self):
         """Create an instance of UploadDrive."""
-
-        """
-        gauth = GoogleAuth()
-        gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
-        self.drive = GoogleDrive(gauth)
-
-        # Try to load saved client credentials
-
-        gauth.LoadCredentialsFile("mycreds.txt")
-        if gauth.credentials is None:
-            # Authenticate if they're not there
-            gauth.LocalWebserverAuth()
-        elif gauth.access_token_expired:
-            # Refresh them if expired
-            gauth.Refresh()
-        else:
-            # Initialize the saved creds
-            gauth.Authorize()
-        # Save the current credentials to a file
-        gauth.SaveCredentialsFile("mycreds.txt")
-        self.drive = GoogleDrive(gauth)"""
-
-        # there is some issue with the refresh token use this instead
-        self.drive = 0
+        self.gauth = GoogleAuth()
+        self.connect()
+        self.drive = GoogleDrive(self.gauth)
 
     def connect(self):
-        """
-
-        :return:
-        """
-        gauth = GoogleAuth()
-        gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication.
-        self.drive = GoogleDrive(gauth)
+        # https: // github.com / gsuitedevs / PyDrive / issues / 104
+        self.gauth.LoadCredentialsFile("mycreds.txt")
+        if self.gauth.credentials is None:
+            # Authenticate if they're not there
+            self.gauth.GetFlow()
+            self.gauth.flow.params.update({'access_type': 'offline'})
+            self.gauth.flow.params.update({'approval_prompt': 'force'})
+            self.gauth.LocalWebserverAuth()
+        elif self.gauth.access_token_expired:
+            # Refresh them if expired
+            self.gauth.Refresh()
+        else:
+            # Initialize the saved creds
+            self.gauth.Refresh()
+        # Save the current credentials to a file
+        self.gauth.SaveCredentialsFile("mycreds.txt")
 
     def write_file_on_cloud(self, path, title="values.csv"):
         """Create GoogleDriveFile instance
@@ -57,6 +49,7 @@ class UploadDrive:
         :param title: title in google drive
         :type title: str
         """
+        self.connect()
         file1 = self.drive.CreateFile()
         file1.SetContentFile(path)
         file1['title'] = title
@@ -69,7 +62,8 @@ class UploadDrive:
         :type title: str
         :return file_id
         """
-       
+        self.connect()
+
         file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
         for file in file_list:
             print('title: %s, id: %s' % (file['title'], file['id']))
@@ -87,6 +81,8 @@ class UploadDrive:
         """
         # results=service.files().list().execute()
         # file_list=results.get('items',[])
+        self.connect()
+
         file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
         for file in file_list:
             print('title: %s, id: %s' % (file['title'], file['id']))
@@ -104,6 +100,8 @@ class UploadDrive:
         :type path: str
         :return if the download succeeded
         """
+        self.connect()
+
         if self.internet_on():
             local_fd = open(path + "commands.csv", "wb")
             request = self.drive.auth.service.files().get_media(fileId=file_id)
@@ -132,6 +130,8 @@ class UploadDrive:
         :type file_title: str
         :return if file didn't delete
         """
+        self.connect()
+
         file_list = self.drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
         for file in file_list:
             print('title: %s, id: %s' % (file['title'], file['id']))
