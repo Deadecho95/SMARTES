@@ -6,11 +6,13 @@ from IO.chip.mcp4922 import MCP4922
 from IO.chip.mcp23s08 import MCP23S08
 import RPi.GPIO as GPIO
 class InOut:
-
+    """
+    manage the IO
+    """
 
     @staticmethod
     def init():
-        """ Initialize
+        """ Initialize the IP
         """
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)
@@ -19,13 +21,6 @@ class InOut:
         chip.output_percent(channel='a', percent=0)
         chip.output_percent(channel='b', percent=0)
 
-    @staticmethod
-    def close():
-        """
-
-        :return:
-        """
-        GPIO.cleanup()
     @staticmethod
     def set_analog_output(chan,value):
         """
@@ -66,7 +61,6 @@ class InOut:
 
         str_result = chip.get_values()
 
-
         return int(str_result[len(str_result)-pin])
 
     @staticmethod
@@ -77,7 +71,7 @@ class InOut:
         :param pin: the pin
         """
         GPIO.setup(pin, GPIO.OUT)
-        GPIO.output(pin, GPIO.HIGH) #inverted the relay is low in this state
+        GPIO.output(pin, GPIO.HIGH)  # inverted the relay is low in this state
 
     @staticmethod
     def set_relay_value(pin, value):
