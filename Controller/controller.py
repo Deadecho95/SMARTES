@@ -2,7 +2,7 @@
 # the controller
 # --------------------------------------------------------------------------- #
 from IO.INOUT import InOut
-from Interface.graphic import Graph
+from Interface.graphic import Graphic
 from Cloud.driveManager import DriveManager
 
 
@@ -46,7 +46,8 @@ class Controller:
                 self.connect_cloud()
                 self.read_cloud()
         except ConnectionAbortedError:
-            self.check_output()
+            print("ConnectionAbortedError")
+        self.check_output()
         try:
             if DriveManager.internet_on():
                 self.write_cloud()
@@ -100,6 +101,7 @@ class Controller:
         Set all output
         :return:
         """
+        self.data_inout.clear()
         data = self.check_consumption()
         power_pv = (data[4] + data[5] + data[6])  # Power on PV
         power_grid = (data[1] + data[2] + data[3])  # Power load
@@ -240,7 +242,7 @@ class Controller:
         :return:
         """
         self.client_modbus.connect()
-        self.data = self.client_modbus.get_registers()
+        self.data = self.client_modbus.get_registers().copy()
         self.client_modbus.disconnect()
 
     def create_plot(self):
@@ -248,7 +250,7 @@ class Controller:
         #TODO Connard
         :return:
         """
-        Graph.show_values()
+        Graphic.show_values()
 
     def write_modbus_values(self):
         """

@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.offline
 
 
-class Graph:
+class Graphic:
     # To be defined by the Controller how to be connected
     # cloud.download_file_from_cloud()
 
