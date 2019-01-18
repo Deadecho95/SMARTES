@@ -27,7 +27,7 @@ class MainWindow:
         self.controller = Controller(client_modbus, client_cloud, database)  # create new controller with clients
 
         self.window = Tk()
-        self.window.configure(background='white')
+        self.window.configure(background='white', text="SMARTES")
         frame1 = Frame(self.window, borderwidth=0, background='white')
         frame1.pack(side=TOP, padx=50, pady=0)
         frame2 = Frame(self.window, borderwidth=0, background='white')
