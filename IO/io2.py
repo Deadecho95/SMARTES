@@ -1,5 +1,5 @@
 
-from IO.mcp4922 import MCP4922
+from IO.chip.mcp4922 import MCP4922
 import time
 
 while True:
@@ -15,6 +15,3 @@ while True:
     a.output_percent(channel='b', percent=3)
 
     a.output_percent(channel='a', percent=3)
-
-
-

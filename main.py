@@ -1,4 +1,4 @@
-from Cloud.uploadDrive import UploadDrive
+from Cloud.driveManager import UploadDrive
 from Controller.controller import Controller
 from Modbus.clientModBus import ClientModBus
 from Controller.localDataBase import LocalDataBase

@@ -24,7 +24,7 @@ class InOut:
         chip.output_percent(channel='b', percent=0)
 
     @staticmethod
-    def set_analog_output(chan,value):
+    def set_analog_output(chan, value):
         """
         Set analog output 4-20mA
         (4mA at 745 D/A  -  20mA at 3723 D/A)
