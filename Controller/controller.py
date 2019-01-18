@@ -41,10 +41,10 @@ class Controller:
 
         self.read_modbus_values()
         self.connect_cloud()
-        self.write_cloud()
         self.read_cloud()
-        self.create_plot()
         self.check_output()
+        self.write_cloud()
+        self.create_plot()
         self.write_modbus_values()
 
     def check_consumption(self):
@@ -92,6 +92,7 @@ class Controller:
         Set all output
         :return:
         """
+        self.data_inout.clear()
         data = self.check_consumption()
         power_pv = (data[4] + data[5] + data[6])  # Power on PV
         power_grid = (data[1] + data[2] + data[3])  # Power load
@@ -172,7 +173,7 @@ class Controller:
             self.data_inout.append(1)
             self.data_inout.append(100)
             InOut.set_relay_value(self.RELAY_PINS[2], 1)
-            power_supply = power_supply + power_nom_relay3
+            # power_supply = power_supply + power_nom_relay3
         else:
             self.data_inout.append("State_relay_3")
             InOut.set_relay_value(self.RELAY_PINS[2], 0)
@@ -191,8 +192,10 @@ class Controller:
         start the transmission to the cloud
         :return:
         """
-        self.data.extend(self.data_inout)
-        self.database.add_text(self.data)    # write data on local database
+
+        all_data = self.data.copy()
+        all_data.extend(self.data_inout)
+        self.database.add_text(all_data)    # write data on local database
         file1 = self.client_cloud.find_file_title_on_cloud("values.csv")
         if file1 != 404:  # check if error
             self.client_cloud.delete_file_on_cloud(file1)    # delete old file
@@ -224,7 +227,7 @@ class Controller:
                 self.command.clear()
                 for line in lines:
                     self.command.append(line.split(';'))
-                file.close
+                file.close()
 
     def read_modbus_values(self):
         """
@@ -232,7 +235,7 @@ class Controller:
         :return:
         """
         self.client_modbus.connect()
-        self.data = self.client_modbus.get_registers()
+        self.data = self.client_modbus.get_registers().copy()
         self.client_modbus.disconnect()
 
     def create_plot(self):
