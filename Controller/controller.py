@@ -16,7 +16,6 @@ class Controller:
 
     def __init__(self, client_modbus, client_cloud, database):
         """
-
         :param client_modbus is the client for the modbus
         :param client_cloud is the client for the cloud
         :param database is the local database
@@ -39,13 +38,13 @@ class Controller:
         start the cycle of the program
         :return:
         """
-        self.check_output()
+
         self.read_modbus_values()
         self.connect_cloud()
         self.write_cloud()
         self.read_cloud()
         self.create_plot()
-
+        self.check_output()
         self.write_modbus_values()
 
     def check_consumption(self):
@@ -60,6 +59,9 @@ class Controller:
         pv_l1 = 0
         pv_l2 = 0
         pv_l3 = 0
+        cons_l1 = 0
+        cons_l2 = 0
+        cons_l3 = 0
 
         for y in range(0, len(self.data), 3):
             if self.data[y] == "Percent_Soc_Battery":   # check for battery %
@@ -76,8 +78,14 @@ class Controller:
                 pv_l2 = self.data[y + 2]*self.data[y + 1]
             if self.data[y] == "Power_PvOnGrid_L3":  # Check for pc power L1
                 pv_l3 = self.data[y + 2]*self.data[y + 1]
+            if self.data[y] == "Power_Consumption_L1":  # Check for pc power L1
+                cons_l1 = self.data[y + 2]
+            if self.data[y] == "Power_Consumption_L2":  # Check for pc power L1
+                cons_l2 = self.data[y + 2]*self.data[y + 1]
+            if self.data[y] == "Power_Consumption_L3":  # Check for pc power L1
+                cons_l3 = self.data[y + 2]*self.data[y + 1]
 
-        return [batt_state, grid_l1, grid_l2, grid_l3, pv_l1, pv_l2, pv_l3]
+        return [batt_state, grid_l1, grid_l2, grid_l3, pv_l1, pv_l2, pv_l3, cons_l1, cons_l2, cons_l3]
 
     def check_output(self):
         """
@@ -121,8 +129,7 @@ class Controller:
             InOut.set_analog_output(self.AO_PIN[0], (power_pv-power_grid)/power_nom_ao*100)
             power_supply = power_nom_ao
             self.data_inout.append(1)
-            self.data_inout.append((power_pv-power_grid)/power_nom_ao*100)
-
+            self.data_inout.append((power_pv - power_grid) / power_nom_ao * 100)
         else:
             self.data_inout.append("AO_Current4-20")
             InOut.set_analog_output(self.AO_PIN[0], 0)
@@ -229,6 +236,10 @@ class Controller:
         self.client_modbus.disconnect()
 
     def create_plot(self):
+        """
+        #TODO Connard
+        :return:
+        """
         face.Interface2.show_values()
 
     def write_modbus_values(self):
@@ -243,3 +254,15 @@ class Controller:
                 self.client_modbus.connect()
                 self.client_modbus.set_register(register, value)
                 self.client_modbus.disconnect()
+
+    def return_values(self):
+        """
+        :return: array of grid, pv, load power and the soc battery
+        """
+        data = self.check_consumption()
+        power_pv = (data[4] + data[5] + data[6])  # Power on PV
+        power_grid = (data[1] + data[2] + data[3])  # Power load
+        soc_batt = data[0]  # percent charge battery
+        power_consumption = data[7] + data[8] + data[9]
+
+        return [power_grid, power_consumption, power_pv, soc_batt]

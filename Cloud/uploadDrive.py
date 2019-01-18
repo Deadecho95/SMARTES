@@ -23,6 +23,10 @@ class UploadDrive:
         self.drive = GoogleDrive(self.gauth)
 
     def connect(self):
+        """
+        #TODO Connard
+        :return:
+        """
         # https: // github.com / gsuitedevs / PyDrive / issues / 104
         self.gauth.LoadCredentialsFile("mycreds.txt")
         if self.gauth.credentials is None:
@@ -87,7 +91,7 @@ class UploadDrive:
             if file['title'] == title:
                 print('found : ' + title)
                 return file['id']
-                print('file not found : ' + title)
+
         return 404
 
     def download_file_from_cloud(self, file_id, path):
@@ -108,15 +112,12 @@ class UploadDrive:
                 try:
                     download_progress, done = media_request.next_chunk()
                 except errors.HttpError as error:
-                    print
-                    'An error occurred: %s' % error
+                    print('An error occurred: %s' % error)
                     return False
                 if download_progress:
-                    print
-                    'Download Progress: %d%%' % int(download_progress.progress() * 100)
+                    print('Download Progress: %d%%' % int(download_progress.progress() * 100))
                 if done:
-                    print
-                    'Download Complete'
+                    print('Download Complete')
                     return True
         else:
             return False
