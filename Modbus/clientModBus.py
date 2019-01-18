@@ -10,7 +10,7 @@ class ClientModBus:
     """ Implementation of a client modbus
     """
 
-    def __init__(self, address ='localhost', port=502):
+    def __init__(self, address='localhost', port=502):
         """ Initialize a modbus client instance
     :param address: The tcp address to connect to (default localhost)
     :param port: The modbus port to connect to (default 502)

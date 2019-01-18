@@ -71,20 +71,19 @@ class MainWindow:
         button3.pack(side=RIGHT, padx=5, pady=5)
         button2.pack(side=TOP, padx=5, pady=5)
 
-
     def start(self):
         """
         the program make cycles
         :return:
         """
-        while self.is_quit == 0: # quit if isquit
-            while self.is_running == 1: # stop run if !is running
+        while self.is_quit == 0:  # quit if isquit
+            while self.is_running == 1:  # stop run if !is running
 
                 self.controller.start_cycle()   # run the program
                 self.data()
                 old_time = new_time = time()
 
-                while new_time-old_time <= 30 and self.is_running ==1: # wait for 30sc
+                while new_time-old_time <= 30 and self.is_running == 1:  # wait for 30sc
                     self.window.update_idletasks()  # update GUI
                     self.window.update()
                     new_time = time()

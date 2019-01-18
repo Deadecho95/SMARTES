@@ -14,10 +14,7 @@ class Interface2:
         # filepath="../Files/values.csv"
         # htmlpath="../Files/Plot.html"
         # for Linux
-        #for Windows
-        #filepath="../Files/values.csv"
-        #htmlpath="../Files/Plot.html"
-        #for Linux
+
         filepath = "Files/values.csv"
         htmlpath = "Files/Plot.html"
         total = 0

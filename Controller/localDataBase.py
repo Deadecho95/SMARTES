@@ -29,7 +29,7 @@ class LocalDataBase:
         else:
             self.header = False
 
-    def add_text(self, values=[]):
+    def add_text(self, values):
         """ Append text to the end of a local file
         :param values : Array of key value table
         """
@@ -37,29 +37,29 @@ class LocalDataBase:
         # Add an Header at the beginning power voltage
 
         if not self.header:  # add a header
-            self.file = open(self.path, "w+")
+            file = open(self.path, "w+")
             i = 0
-            self.file.write("datetime" + ",")  # add time
+            file.write("datetime" + ",")  # add time
             
             for value in values:    # write header
                 if i % 3 == 0:
-                    self.file.write(value + ",")
+                    file.write(value + ",")
                 i = i+1
                 print("Header Written")
-            self.file.write("\n") # end of line
+            file.write("\n") # end of line
             self.header = True # header done
-            self.file.close()
+            file.close()
 
         # Write the values date;val1;val2;val3
-        self.file = open(self.path, "a")
-        self.file.write(date + ",")  # write date
+        file = open(self.path, "a")
+        file.write(date + ",")  # write date
         for y in range(0, len(values)):    # write values
             if y % 3 == 1:
 
-                self.file.write(str(values[y]*values[y+1]) + ",")
+                file.write(str(values[y]*values[y+1]) + ",")
 
-        self.file.write("\n")
-        self.file.close()
+        file.write("\n")
+        file.close()
     #   def read_if_empty(self):
     #   self.file = open(self.path, "r")
     #   if
