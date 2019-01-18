@@ -1,20 +1,18 @@
 # --------------------------------------------------------------------------- #
 # the controller
 # --------------------------------------------------------------------------- #
-from Cloud.uploadDrive import UploadDrive
-from Controller.localDataBase import LocalDataBase
-from Modbus.clientModBus import ClientModBus
 from IO.INOUT import InOut
-import time
 import Interface.Interface2 as face
+
+
 class Controller:
     """ the controller manage the connection between
     the venus the raspberry and the cloud
     """
-    AO_PIN = ['a', 'b'] #Channel of 4-20mA output
-    RELAY_PINS = [37,38,40] #pin of each relay
-    DI_PIN = [1, 2, 3, 4] #Channel of digital input
-    NBR_RELAY = len(RELAY_PINS) #nbr of relay
+    AO_PIN = ['a', 'b']  # Channel of 4-20mA output
+    RELAY_PINS = [37,38,40]  # pin of each relay
+    DI_PIN = [1, 2, 3, 4]  # Channel of digital input
+    NBR_RELAY = len(RELAY_PINS)  # nbr of relay
 
     def __init__(self, client_modbus, client_cloud, database):
         """
@@ -23,31 +21,31 @@ class Controller:
         :param client_cloud is the client for the cloud
         :param database is the local database
         """
-        self.command = [] #array from commands
-        self.data = 0 #all data from modbus
+        
+        self.run = 0
+        self.command = []  # array from commands
+        self.data = []  # all data from modbus
         self.client_modbus = client_modbus
         self.client_cloud = client_cloud
         self.database = database
 
-        InOut.init() #init IO
+        InOut.init()  # init IO
         for y in range(0, self.NBR_RELAY):
-            InOut.set_relay(self.RELAY_PINS[y]) #set all relays
-
+            InOut.set_relay(self.RELAY_PINS[y])  # set all relays
 
     def start_cycle(self):
         """
         start the cycle of the program
         :return:
         """
-        while True:
-            time.sleep(15)  # wait for secs
-            self.read_modbus_values()
-            self.connect_cloud()
-            self.write_cloud()
-            self.read_cloud()
-            self.create_plot()
-            self.check_output()
-            self.write_modbus_values()
+
+        self.read_modbus_values()
+        self.connect_cloud()
+        self.write_cloud()
+        self.read_cloud()
+        self.create_plot()
+        self.check_output()
+        self.write_modbus_values()
 
     def check_consumption(self):
         """
@@ -86,9 +84,9 @@ class Controller:
         :return:
         """
         data = self.check_consumption()
-        power_pv = (data[4] + data[5] + data[6]) #Power on PV
-        power_grid = (data[1] + data[2] + data[3]) #Power load
-        soc_batt = data[0] #percent charge battery
+        power_pv = (data[4] + data[5] + data[6])  # Power on PV
+        power_grid = (data[1] + data[2] + data[3])  # Power load
+        soc_batt = data[0]  # percent charge battery
 
         power_nom_relay1 = 0
         power_nom_relay2 = 0
@@ -112,34 +110,40 @@ class Controller:
         power_supply = 0
 
         #TEST
+        ############
         soc_batt = 100
+        #############
+
         # SET ANALOG OUTPUT (4-20mA)
-        if (power_pv-power_grid >= 1) and (soc_batt >= 99) and analog_out_permit == 1 and power_nom_ao >0:
+        if (power_pv-power_grid >= 1) and (soc_batt >= 99) and analog_out_permit == 1 and power_nom_ao > 0:
             InOut.set_analog_output(self.AO_PIN[0], (power_pv-power_grid)/power_nom_ao*100)
             power_supply = power_nom_ao
         else:
             InOut.set_analog_output(self.AO_PIN[0], 0)
 
         # SET RELAY 1
-        if (power_pv-power_grid >= power_nom_relay1 + power_supply) and (soc_batt >= 99) and relay1_permit == 1 and power_nom_relay1 >0: #if power extra >= pNom and soc >=99
-            InOut.set_relay_value(self.RELAY_PINS[0],1)
+        if (power_pv-power_grid >= power_nom_relay1 + power_supply) and (soc_batt >= 99) and relay1_permit == 1\
+                and power_nom_relay1 > 0:  # if power extra >= pNom and soc >=99
+            InOut.set_relay_value(self.RELAY_PINS[0], 1)
             power_supply = power_supply + power_nom_relay1
         else:
-            InOut.set_relay_value(self.RELAY_PINS[0],0)
+            InOut.set_relay_value(self.RELAY_PINS[0], 0)
 
         # SET RELAY 2
-        if (power_pv-power_grid >= power_nom_relay2 + power_supply) and (soc_batt >= 99) and relay2_permit == 1 and power_nom_relay2 >0: #
-            InOut.set_relay_value(self.RELAY_PINS[1],1)
+        if (power_pv-power_grid >= power_nom_relay2 + power_supply) and (soc_batt >= 99) and relay2_permit == 1 \
+                and power_nom_relay2 > 0:
+            InOut.set_relay_value(self.RELAY_PINS[1], 1)
             power_supply = power_supply + power_nom_relay2
         else:
-            InOut.set_relay_value(self.RELAY_PINS[1],0)
+            InOut.set_relay_value(self.RELAY_PINS[1], 0)
 
         # SET RELAY 3
-        if (power_pv-power_grid >= power_nom_relay3 + power_supply) and (soc_batt >= 99) and relay3_permit == 1 and power_nom_relay3 >0:
-            InOut.set_relay_value(self.RELAY_PINS[2],1)
+        if (power_pv-power_grid >= power_nom_relay3 + power_supply) and (soc_batt >= 99) and relay3_permit == 1\
+                and power_nom_relay3 > 0:
+            InOut.set_relay_value(self.RELAY_PINS[2], 1)
             power_supply = power_supply + power_nom_relay3
         else:
-            InOut.set_relay_value(self.RELAY_PINS[2],0)
+            InOut.set_relay_value(self.RELAY_PINS[2], 0)
 
     def connect_cloud(self):
         """
@@ -159,7 +163,8 @@ class Controller:
             self.client_cloud.delete_file_on_cloud(file1)    # delete old file
         self.client_cloud.write_file_on_cloud("Files/values.csv")   # write on cloud
         print("file wrote")
-       # self.client_cloud.write_file_on_cloud(path="Files/Plot.html",title="Plot.html")
+        # self.client_cloud.write_file_on_cloud(path="Files/Plot.html",title="Plot.html")
+
     def read_cloud(self):
         """
         download command.csv file from cloud
@@ -186,7 +191,6 @@ class Controller:
                     self.command.append(line.split(';'))
                 file.close
 
-
     def read_modbus_values(self):
         """
         get value from the modbus
@@ -211,17 +215,3 @@ class Controller:
                 self.client_modbus.connect()
                 self.client_modbus.set_register(register, value)
                 self.client_modbus.disconnect()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
