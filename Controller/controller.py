@@ -43,12 +43,15 @@ class Controller:
         try:
             if cloud.UploadDrive.internet_on():
                 self.connect_cloud()
-                self.write_cloud()
                 self.read_cloud()
+        except ConnectionAbortedError as err:
+            self.check_output()
+        try:
+            if cloud.UploadDrive.internet_on():
+                self.write_cloud()
                 self.create_plot()
         except ConnectionAbortedError as err:
             print("ConnectionAbortedError")
-        self.check_output()
         self.write_modbus_values()
 
     def check_consumption(self):
