@@ -6,13 +6,16 @@ import Cloud.uploadDrive as drive
 class Interface2:
     # To be defined by the Controller how to be connected
     # cloud.download_file_from_cloud()
+
     @staticmethod
     def show_values():
-        #for linux
-        filepath="values.csv"
-        htmlpath="Files/Plot.html"
-
-
+        #for Windows
+        #filepath="../Files/values.csv"
+        #htmlpath="../Files/Plot.html"
+        #for Linux
+        filepath = "Files/values.csv"
+        htmlpath = "Files/Plot.html"
+        total = 0
 
         with open(filepath) as f:
             first_line = f.readline()
@@ -27,6 +30,7 @@ class Interface2:
         i = 0
         color = ["RED", "BLUE", "DARKGREEN", "ORANGE", "BLACK", "CYAN", "PURPLE"]
         for arg in argList:
+
             if i != 0 and i < len(argList)-2:
                 trace.append(
                     go.Scatter(
@@ -34,10 +38,22 @@ class Interface2:
                         y=df[arg],
                         name=arg,
                         line=dict(color=color[i % len(color)]),
-                        opacity=0.8))
-                legend.append('legendonly')
-                visible.append(True)
+                        opacity=0.8,
+                        visible='legendonly'))
+            if (arg.find("1") != -1) or(arg.find("2") != -1):
+                total += df[arg]
+            if arg.find("3") != -1:
+                trace.append(
+                    go.Scatter(
+                    x=df['datetime'],
+                    y=total,
+                    name=arg.replace("L3", "Total"),
+                    line=dict(color=color[(i+1) % len(color)]),
+                    opacity=0.8,
+                    visible=True))
+                total = 0
             i += 1
+
         print(i)
         data = trace
         layout = dict(
@@ -104,4 +120,4 @@ class Interface2:
         ])
         layout['updatemenus'] = updatemenus
         fig = dict(data=data, layout=layout)
-        plotly.offline.plot(fig, filename=htmlpath)
+        plotly.offline.plot(fig, filename=htmlpath, auto_open=False)

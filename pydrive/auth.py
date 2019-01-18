@@ -2,6 +2,7 @@ import socket
 import webbrowser
 import httplib2
 import oauth2client.clientsecrets as clientsecrets
+import os
 from six.moves import input
 
 from googleapiclient.discovery import build
@@ -225,17 +226,20 @@ class GoogleAuth(ApiAttributeMixin, object):
     self.flow.redirect_uri = oauth_callback
     authorize_url = self.GetAuthUrl()
     # add file with  authorize_url
-    file = open("File/connections.txt", "w")
+    file = open("Files/connections.txt", "w")
     file.write('' + authorize_url)
     file.close()
     # end
-    webbrowser.open(authorize_url, new=1, autoraise=True)
+    webbrowser.open(authorize_url, new=0, autoraise=False)
 
     print('Your browser has been opened to visit:')
     print()
     print('    ' + authorize_url)
     print()
     httpd.handle_request()
+
+    #os.system("pkill firefox")
+
     if 'error' in httpd.query_params:
       print('Authentication request was rejected')
       raise AuthenticationRejected('User rejected authentication')
@@ -245,6 +249,7 @@ class GoogleAuth(ApiAttributeMixin, object):
       print('Failed to find "code" in the query parameters of the redirect.')
       print('Try command-line authentication')
       raise AuthenticationError('No code found in redirect')
+
 
   @CheckAuth
   def CommandLineAuth(self):

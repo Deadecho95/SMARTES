@@ -13,3 +13,4 @@ client_cloud = UploadDrive() # the client cloud
 database = LocalDataBase()
 controller = Controller(client_modbus, client_cloud, database) #create new controller with clients to connect
 controller.start_cycle() #start the program
+

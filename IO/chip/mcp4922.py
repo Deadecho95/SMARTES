@@ -54,7 +54,7 @@ class MCP4922(PiSPI):
         if not (0 <= val <= 4096):
             raise ValueError('Input value must be range of 0~4095.')
 
-        cmd = prefix | val
+        cmd = prefix | int(val) #convert float in int
         buf1 = (cmd >> 8) & 0xff
         buf2 = cmd & 0xff
         self.send_cmd([buf1, buf2])
@@ -66,15 +66,15 @@ class MCP4922(PiSPI):
         :param percent:
         :return:
         """
-        val = percent*29.8+745
+        val = percent*29.78+745
 
-        if val < 745 or percent > 3723:
+        if val < 743 or percent > 3725:
             raise ValueError('Invalid percent')
 
         if channel.lower() not in ['a', 'b']:
             raise ValueError('Invalid channel label, must be `a` or `b`')
 
-        val = int(4096 * percent / self.v_ref)
+
        # print 'Analog output, channel: {}, voltage: {}V'.format(channel, volt)
         if channel.lower() == 'a':
             if self.gain == 1:

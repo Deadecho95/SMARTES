@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3172fa55-d465-44af-806e-dad95d3d221b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modbus/clientModBus.py" beforeDir="false" afterPath="$PROJECT_DIR$/Modbus/clientModBus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pydrive/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/pydrive/auth.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,80 +12,22 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/SMARTES$bite.coverage" NAME="bite Coverage Results" MODIFIED="1544810520130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Cloud" />
     <SUITE FILE_PATH="coverage/SMARTES$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1547202144375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SMARTES$pi_spi_2ao_demo.coverage" NAME="pi_spi_2ao_demo Coverage Results" MODIFIED="1546458140508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SMARTES$testCloud__1_.coverage" NAME="testCloud (1) Coverage Results" MODIFIED="1546429849767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Cloud" />
-    <SUITE FILE_PATH="coverage/SMARTES$main.coverage" NAME="main Coverage Results" MODIFIED="1547213486418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SMARTES$bite.coverage" NAME="bite Coverage Results" MODIFIED="1544810520130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Cloud" />
     <SUITE FILE_PATH="coverage/SMARTES$testCloud.coverage" NAME="testCloud Coverage Results" MODIFIED="1544814670802" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Cloud" />
+    <SUITE FILE_PATH="coverage/SMARTES$main.coverage" NAME="main Coverage Results" MODIFIED="1547646057500" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SMARTES$Main.coverage" NAME="Main Coverage Results" MODIFIED="1544810485052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Controller" />
+    <SUITE FILE_PATH="coverage/SMARTES$testCloud__1_.coverage" NAME="testCloud (1) Coverage Results" MODIFIED="1546429849767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Cloud" />
     <SUITE FILE_PATH="coverage/SMARTES$io2.coverage" NAME="io2 Coverage Results" MODIFIED="1547202624530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IO" />
-  </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="319070518">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.opened" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="py" value="1051" />
-          <entry key="txt" value="20" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="PLAIN_TEXT" value="20" />
-          <entry key="Python" value="1051" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="py" value="4" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Python" value="4" />
-        </counts>
-      </usages-collector>
-    </session>
+    <SUITE FILE_PATH="coverage/SMARTES$pi_spi_2ao_demo.coverage" NAME="pi_spi_2ao_demo Coverage Results" MODIFIED="1546458140508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IO/INOUT.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="47" column="33" lean-forward="true" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
-              <folding>
-                <element signature="e#203#238#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cloud/uploadDrive.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-370">
-              <caret line="67" column="21" lean-forward="true" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controller/controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="15" column="44" lean-forward="true" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+            <state relative-caret-position="-850">
+              <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
               <folding>
                 <element signature="e#177#218#0" expanded="true" />
               </folding>
@@ -93,25 +35,40 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Modbus/clientModBus.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pydrive/__init__.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cloud/uploadDrive.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="28" column="73" selection-start-line="28" selection-start-column="73" selection-end-line="28" selection-end-column="73" />
+            <state relative-caret-position="765">
+              <caret line="52" column="60" selection-start-line="52" selection-start-column="60" selection-end-line="52" selection-end-column="60" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pydrive/auth.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="163">
+              <caret line="241" selection-start-line="241" selection-end-line="241" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modbus/Server.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modbus/testConnection.py">
+        <entry file="file://$PROJECT_DIR$/pydrive/drive.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="952">
-              <caret line="56" column="29" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
+            <state relative-caret-position="255">
+              <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -119,8 +76,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="272">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -129,31 +86,46 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Controller/localDataBase.py">
+        <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1543569403/201545290/codecs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="5270">
+              <caret line="310" selection-start-line="310" selection-end-line="310" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IO/INOUT.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
               <folding>
-                <element signature="e#213#227#0" expanded="true" />
+                <element signature="e#203#238#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cloud/testCloud.py">
+        <entry file="file://$PROJECT_DIR$/Modbus/clientModBus.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="901">
+              <caret line="54" column="45" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#64#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+        <entry file="file://$PROJECT_DIR$/IO/pispi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28288">
-              <caret line="1664" selection-start-line="1664" selection-end-line="1664" />
+            <state relative-caret-position="765">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
+              <folding>
+                <element signature="e#570#583#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -178,6 +150,8 @@
       <find>A</find>
       <find>Increasing</find>
       <find>Decreasing</find>
+      <find>comm</find>
+      <find>open</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -194,37 +168,34 @@
         <option value="$PROJECT_DIR$/Cloud/Main.py" />
         <option value="$PROJECT_DIR$/Cloud/main.py" />
         <option value="$PROJECT_DIR$/Cloud/values.csv" />
-        <option value="$PROJECT_DIR$/Controller/localDataBase.py" />
         <option value="$USER_HOME$/.PyCharm2018.2/system/remote_sources/-1539072611/1405239563/pydrive/auth.py" />
         <option value="$PROJECT_DIR$/venv/Lib/site-packages/pydrive/auth.py" />
-        <option value="$PROJECT_DIR$/pydrive/auth.py" />
+        <option value="$PROJECT_DIR$/Cloud/testCloud.py" />
         <option value="$PROJECT_DIR$/IO/IO.py" />
         <option value="$PROJECT_DIR$/pi_spi_2ao_demo.py" />
         <option value="$PROJECT_DIR$/pydrive/test/test_file.py" />
         <option value="$PROJECT_DIR$/Interface/TestInterface.py" />
-        <option value="$PROJECT_DIR$/Interface/values.csv" />
         <option value="$PROJECT_DIR$/Files/values.csv" />
         <option value="$PROJECT_DIR$/Files/example.csv" />
-        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/Controller/localDataBase.py" />
+        <option value="$PROJECT_DIR$/Interface/values.csv" />
         <option value="$PROJECT_DIR$/Interface/Interface2.py" />
-        <option value="$PROJECT_DIR$/Cloud/testCloud.py" />
-        <option value="$PROJECT_DIR$/Cloud/uploadDrive.py" />
-        <option value="$PROJECT_DIR$/Controller/controller.py" />
+        <option value="$PROJECT_DIR$/IO/chip/mcp23s08.py" />
+        <option value="$PROJECT_DIR$/IO/chip/mcp4922.py" />
         <option value="$PROJECT_DIR$/IO/INOUT.py" />
         <option value="$PROJECT_DIR$/Modbus/clientModBus.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/Controller/controller.py" />
+        <option value="$PROJECT_DIR$/Cloud/uploadDrive.py" />
+        <option value="$PROJECT_DIR$/pydrive/auth.py" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-11" />
-    <option name="width" value="1100" />
-    <option name="height" value="1391" />
+    <option name="x" value="394" />
+    <option name="y" value="4" />
+    <option name="width" value="2190" />
+    <option name="height" value="1470" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -246,12 +217,38 @@
             <path>
               <item name="SMARTES" type="b2602c69:ProjectViewProjectNode" />
               <item name="SMARTES" type="462c0819:PsiDirectoryNode" />
+              <item name="Cloud" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMARTES" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMARTES" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMARTES" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMARTES" type="462c0819:PsiDirectoryNode" />
+              <item name="Interface" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMARTES" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMARTES" type="462c0819:PsiDirectoryNode" />
               <item name="IO" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SMARTES" type="b2602c69:ProjectViewProjectNode" />
               <item name="SMARTES" type="462c0819:PsiDirectoryNode" />
+              <item name="IO" type="462c0819:PsiDirectoryNode" />
+              <item name="chip" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMARTES" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMARTES" type="462c0819:PsiDirectoryNode" />
               <item name="Modbus" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SMARTES" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SMARTES" type="462c0819:PsiDirectoryNode" />
+              <item name="pydrive" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -269,11 +266,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\chena\OneDrive\Documents\GitHub\SMARTES" />
+      <recent name="C:\Users\chena\OneDrive\Documents\GitHub\SMARTES\Interface" />
       <recent name="C:\Users\safia\Desktop\SMARTES\Files" />
       <recent name="C:\Users\safia\Desktop\SMARTES\Interface" />
-      <recent name="C:\Users\chena\OneDrive\Documents\GitHub\SMARTES" />
       <recent name="C:\Users\chena\OneDrive\Documents\GitHub\SMARTES\Cloud" />
-      <recent name="C:\Users\vince\HES\PGA\PI\SMARTES" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -337,8 +334,12 @@
       <workItem from="1546451795755" duration="9755000" />
       <workItem from="1547113153944" duration="214000" />
       <workItem from="1547191743089" duration="8199000" />
-      <workItem from="1547211750597" duration="1892000" />
-      <workItem from="1547223135198" duration="936000" />
+      <workItem from="1547211750597" duration="13017000" />
+      <workItem from="1547233993244" duration="21060000" />
+      <workItem from="1547549657518" duration="537000" />
+      <workItem from="1547552890910" duration="3118000" />
+      <workItem from="1547622598977" duration="53000" />
+      <workItem from="1547645616180" duration="2391000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/Deadecho95/SMARTES&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <created>1544806069314</created>
@@ -417,39 +418,88 @@
       <option name="project" value="LOCAL" />
       <updated>1546448694633</updated>
     </task>
-    <task id="LOCAL-00012" summary="Bug fix DIN2">
-      <created>1547225580319</created>
+    <task id="LOCAL-00012" summary="bug fixe">
+      <created>1547213655629</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1547225580319</updated>
+      <updated>1547213655629</updated>
     </task>
-    <task id="LOCAL-00013" summary="Bug fix INOUT">
-      <created>1547233947268</created>
+    <task id="LOCAL-00013" summary="bug fixe">
+      <created>1547218744360</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1547233947268</updated>
+      <updated>1547218744360</updated>
     </task>
-    <task id="LOCAL-00014" summary=" Inouut tab">
-      <created>1547237663124</created>
+    <task id="LOCAL-00014" summary="bug fixe">
+      <created>1547221436711</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1547237663124</updated>
+      <updated>1547221436711</updated>
     </task>
-    <task id="LOCAL-00015" summary=" Inouut tab 2">
-      <created>1547238402825</created>
+    <task id="LOCAL-00015" summary="bug fixe">
+      <created>1547225284530</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1547238402825</updated>
+      <updated>1547225284530</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="bug fixe">
+      <created>1547225439110</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1547225439110</updated>
+    </task>
+    <task id="LOCAL-00017" summary="bug fixe">
+      <created>1547234035515</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1547234035515</updated>
+    </task>
+    <task id="LOCAL-00018" summary="bug fixe">
+      <created>1547234673996</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1547234673996</updated>
+    </task>
+    <task id="LOCAL-00019" summary="bug fixe write cloud">
+      <created>1547238875696</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1547238875696</updated>
+    </task>
+    <task id="LOCAL-00020" summary="bug fixe values sent from modbus">
+      <created>1547288596177</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1547288596177</updated>
+    </task>
+    <task id="LOCAL-00021" summary="bug fixe">
+      <created>1547300016103</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1547300016103</updated>
+    </task>
+    <task id="LOCAL-00022" summary="bug fixe">
+      <created>1547555477350</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1547555477350</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66886000" />
+    <option name="totallyTimeSpent" value="104234000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -461,64 +511,35 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1455" height="935" extended-state="6" />
-    <editor active="true" />
+    <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15125448" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25245655" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" sideWeight="0.4988662" weight="0.32980132" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.81934994" visible="true" weight="0.3152318" />
-      <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.8291761" weight="0.24503312" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.8072562" weight="0.3152318" />
+      <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.81934994" weight="0.24503312" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49962208" weight="0.32847682" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4973545" weight="0.10397946" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49357522" weight="0.33642384" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5026455" side_tool="true" weight="0.33642384" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50188965" side_tool="true" visible="true" weight="0.3271523" />
       <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4973545" weight="0.09773371" />
-      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.4988662" weight="0.3271523" />
-      <window_info anchor="bottom" id="File Transfer" order="14" sideWeight="0.4988662" visible="true" weight="0.32734275" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="13" sideWeight="0.49811035" visible="true" weight="0.3271523" />
+      <window_info anchor="bottom" id="File Transfer" order="14" sideWeight="0.49584278" weight="0.32847682" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.35913977" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="0" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32991013" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.8034769" visible="true" weight="0.32862645" />
-      <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.8306878" weight="0.3992298" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49962208" weight="0.32862645" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49811035" weight="0.32862645" />
-      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.16931216" side_tool="true" weight="0.4" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4973545" weight="0.32862645" />
-      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.4988662" weight="0.32734275" />
-      <window_info anchor="bottom" id="File Transfer" order="14" weight="0.32862645" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge branch 'master' of https://github.com/Deadecho95/SMARTES&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
@@ -526,30 +547,14 @@
     <MESSAGE value="works" />
     <MESSAGE value="write modbus" />
     <MESSAGE value="test" />
-    <MESSAGE value="Bug fix DIN" />
-    <MESSAGE value="Bug fix DIN2" />
-    <MESSAGE value="Bug fix INOUT" />
-    <MESSAGE value=" Inouut tab" />
-    <MESSAGE value=" Inouut tab 2" />
-    <option name="LAST_COMMIT_MESSAGE" value=" Inouut tab 2" />
+    <MESSAGE value="bug fixe write cloud" />
+    <MESSAGE value="bug fixe values sent from modbus" />
+    <MESSAGE value="bug fixe" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fixe" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/698595965/201544331/urllib.py</url>
-          <line>24</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/698595965/201544331/urllib2.py</url>
-          <line>91</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1000378074/49296014/pydrive/auth.py</url>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/IO/IO.py</url>
           <line>34</line>
@@ -561,9 +566,14 @@
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Interface/Interface2.py</url>
-          <line>30</line>
-          <option name="timeStamp" value="16" />
+          <url>file://$PROJECT_DIR$/Controller/controller.py</url>
+          <line>206</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Controller/controller.py</url>
+          <line>108</line>
+          <option name="timeStamp" value="67" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -575,30 +585,26 @@
       </default-breakpoints>
     </breakpoint-manager>
   </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="setValue">
+      <expression>
+        <expression-string>3723</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>3720.0</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>100</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/-1183490239/1405239563/apiclient/__init__.py" />
-    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/-1183490239/1405239563/pydrive/auth.py" />
-    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1000378074/49296014/pydrive/auth.py" />
-    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1000378074/201545290/http/client.py" />
-    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1000378074/49296014/oauth2client/client.py" />
-    <entry file="file://$PROJECT_DIR$/pydrive/files.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="158" column="27" selection-start-line="158" selection-start-column="27" selection-end-line="158" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pydrive/apiattr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/python_stubs/1000378074/RPi/_GPIO.py" />
-    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1000378074/201545290/codecs.py" />
-    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1000378074/49296014/pandas/core/indexes/base.py" />
-    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/-1183490239/1405239563/pyasn1_modules/rfc2459.py" />
     <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/-1183490239/1405239563/oauth2client/_pure_python_crypt.py" />
     <entry file="file://$PROJECT_DIR$/pi_spi_2ao_demo.py" />
     <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/-1183490239/1405239563/oauth2client/crypt.py" />
@@ -610,17 +616,32 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/pydrive/settings.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pydrive/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IO/IO.py" />
     <entry file="file://$PROJECT_DIR$/pydrive/test/test_util.py">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pydrive/test/test_oauth.py">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pydrive/test/test_file.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -628,153 +649,240 @@
     <entry file="file://$PROJECT_DIR$/Interface/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Interface/TestInterface.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="15" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Files/commands.csv">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Files/Plot.html" />
-    <entry file="file://$PROJECT_DIR$/Files/example.csv" />
-    <entry file="file://$PROJECT_DIR$/Interface/values.csv" />
-    <entry file="file://$PROJECT_DIR$/Files/values.csv" />
-    <entry file="file://$PROJECT_DIR$/Controller/__init__.py">
+    <entry file="file://$PROJECT_DIR$/Modbus/testConnection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="56" column="29" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modbus/Server.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/IO/pispi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/Controller/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/IO/io2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#1#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IO/chip/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pydrive/auth.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3383">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="406">
+          <caret line="1689" selection-start-line="1689" selection-end-line="1689" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Interface/Interface2.py">
+    <entry file="file://$PROJECT_DIR$/example.csv" />
+    <entry file="file://$PROJECT_DIR$/Interface/values.csv" />
+    <entry file="file://$PROJECT_DIR$/values.csv" />
+    <entry file="file://$PROJECT_DIR$/Files/commands.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+        <state relative-caret-position="51">
+          <caret line="3" column="11" lean-forward="true" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IO/chip/mcp23s08.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="49" column="11" selection-start-line="49" selection-start-column="11" selection-end-line="49" selection-end-column="11" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/client_secrets.json">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/IO/chip/mcp4922.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" selection-start-line="17" selection-end-line="17" selection-end-column="26" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/Cloud/client_secrets.json">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller/localDataBase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="17">
+          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
           <folding>
             <element signature="e#213#227#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Interface/TestInterface.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="10" selection-start-line="1" selection-end-line="1" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Interface/Interface2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1543569403/49296014/pymodbus/pdu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="97" selection-start-line="97" selection-end-line="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1543569403/49296014/pymodbus/register_write_message.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1543569403/49296014/pymodbus/utilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1543569403/49296014/pymodbus/transaction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1543569403/49296014/pymodbus/client/sync.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1543569403/49296014/pymodbus/client/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="91" selection-start-line="91" selection-end-line="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1543569403/49296014/RPi/GPIO/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/python_stubs/1543569403/RPi/_GPIO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-533">
+          <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IO/chip/mcp4922.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="e#486#495#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Cloud/testCloud.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="272">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+    <entry file="file://$PROJECT_DIR$/IO/chip/mcp23s08.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28288">
-          <caret line="1664" selection-start-line="1664" selection-end-line="1664" />
+        <state relative-caret-position="816">
+          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modbus/__init__.py">
+    <entry file="file://$PROJECT_DIR$/pydrive/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modbus/Server.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modbus/testConnection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="56" column="29" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/controller.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="15" column="44" lean-forward="true" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
-          <folding>
-            <element signature="e#177#218#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IO/INOUT.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="33" lean-forward="true" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
-          <folding>
-            <element signature="e#203#238#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Cloud/uploadDrive.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-370">
-          <caret line="67" column="21" lean-forward="true" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
+        <state relative-caret-position="765">
+          <caret line="52" column="60" selection-start-line="52" selection-start-column="60" selection-end-line="52" selection-end-column="60" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pydrive/drive.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/1543569403/201545290/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5270">
+          <caret line="310" selection-start-line="310" selection-end-line="310" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IO/INOUT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+          <folding>
+            <element signature="e#203#238#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Modbus/clientModBus.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="54" column="45" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IO/pispi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="e#570#583#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="28" column="73" selection-start-line="28" selection-start-column="73" selection-end-line="28" selection-end-column="73" />
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-850">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+          <folding>
+            <element signature="e#177#218#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pydrive/auth.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="241" selection-start-line="241" selection-end-line="241" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

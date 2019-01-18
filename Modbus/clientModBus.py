@@ -1,4 +1,5 @@
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
+import numpy as np
 
 # --------------------------------------------------------------------------- #
 # Client to connect to Venus
@@ -32,7 +33,7 @@ class ClientModBus:
                           ["Alarms_LowBattery", 35, 242, 1, "uint", 16], ["Alarms_Overload", 36, 242, 1, "uint", 16],
                           ["State_Relay_0", 806, 100, 1, "uint", 16], ["State_Relay_1", 807, 100, 1, "uint", 16],
                           ["Power_AC_SetPoint", 2700, 100, 1, "int", 16], ["Percent_Max_Charge", 2701, 100, 1, "uint", 16],
-                          ["Percent_Max_Discharge", 2702, 100, 1, "uint", 16]]  # Name, Register, unit ID, scale, type, length
+                          ["Percent_Max_Discharge", 2702, 100, 1, "uint", 16]]  # Name, Register, unit ID, scale, type, length in bits
 
     def connect(self):
         """ connect to ServerModBus
@@ -59,7 +60,21 @@ class ClientModBus:
             if registers.isError() != 0:    # test that we are not an error
                 print(all_registers.index(len(all_registers)-1), registers)
             else:
-                all_registers.append(registers.registers[0])
+
+                # CONVERT TO GOOD TYPE
+                if self.registers[y][4] == "uint":
+                    if self.registers[y][5] == 16:
+                        all_registers.append(np.uint16(registers.registers[0])) # uint16
+
+                    elif self.registers[y][5] == 32:
+                        all_registers.append(np.uint32(registers.registers[0])) # uint32
+
+                elif self.registers[y][4] == "int":
+                    if self.registers[y][5] == 16:
+                        all_registers.append(np.int16(registers.registers[0])) # int16
+
+                    elif self.registers[y][5] == 32:
+                        all_registers.append(np.int32(registers.registers[0])) # int32
 
         return all_registers    # name;value
 
