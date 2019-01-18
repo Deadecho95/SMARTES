@@ -7,4 +7,3 @@ from GUI.mainWindow import MainWindow
 
 m1 = MainWindow()
 m1.start()
-
