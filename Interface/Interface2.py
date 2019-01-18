@@ -14,10 +14,6 @@ class Interface2:
         # filepath="../Files/values.csv"
         # htmlpath="../Files/Plot.html"
         # for Linux
-        """
-        #TODO Connard + commente ton code
-        :return:
-        """
         #for Windows
         #filepath="../Files/values.csv"
         #htmlpath="../Files/Plot.html"
