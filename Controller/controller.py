@@ -58,6 +58,9 @@ class Controller:
         pv_l1 = 0
         pv_l2 = 0
         pv_l3 = 0
+        cons_l1 = 0
+        cons_l2 = 0
+        cons_l3 = 0
 
         for y in range(0, len(self.data), 3):
             if self.data[y] == "Percent_Soc_Battery":   # check for battery %
