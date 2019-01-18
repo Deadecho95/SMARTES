@@ -41,7 +41,7 @@ class Controller:
 
         self.read_modbus_values()
         try:
-            if cloud.internet_on():
+            if cloud.UploadDrive.internet_on():
                 self.connect_cloud()
                 self.write_cloud()
                 self.read_cloud()

@@ -36,7 +36,10 @@ class Interface2:
         color = ["RED", "BLUE", "DARKGREEN", "ORANGE", "BLACK", "CYAN", "PURPLE"]
         # add trace for each argument and add a trace for the total of 3 phases
         for arg in arg_list:
+            isVisible = 'legendonly'
             if i != 0 and i < len(arg_list) - 2:
+                if arg.find("Percent_Soc_Battery"):
+                    isVisible = True
                 trace.append(
                     go.Scatter(
                         x=df['datetime'],
@@ -44,14 +47,21 @@ class Interface2:
                         name=arg,
                         line=dict(color=color[i % len(color)]),
                         opacity=0.8,
-                        visible='legendonly'))
+                        visible=isVisible))
             if (arg.find("1") != -1) or (arg.find("2") != -1):
                 total += df[arg]
+
             if arg.find("3") != -1:
-                if arg.find("Grid"):
-                    color1 = "RED"
-                if arg.find("PVOnGrid"):
+                if arg.find("Power_Consumption_Total"):
+                    color1 = "GREEN"
+                if arg.find("Power_PvOnGrid"):
                     color1 = "ORANGE"
+                    isVisible=True
+                if arg.find("Power_Grid"):
+                    color1 = "RED"
+                    isVisible=True
+                if arg.find("Power_Genset"):
+                    color1 = "PURPLE"
                 else:
                     color1 = "GREY"
                 trace.append(
@@ -61,11 +71,13 @@ class Interface2:
                         name=arg.replace("L3", "Total"),
                         line=dict(color=color1),
                         opacity=0.8,
-                        visible=True))
+                        visible=isVisible
+                    )
+                )
                 total = 0
             i += 1
 
-        print(i)
+        print("Nb of traces : "+i)
         data = trace
         # add buttons to select some trace
         layout = dict(
