@@ -39,13 +39,13 @@ class Controller:
         start the cycle of the program
         :return:
         """
-
+        self.check_output()
         self.read_modbus_values()
         self.connect_cloud()
         self.write_cloud()
         self.read_cloud()
         self.create_plot()
-        self.check_output()
+
         self.write_modbus_values()
 
     def check_consumption(self):
@@ -117,74 +117,60 @@ class Controller:
 
         # SET ANALOG OUTPUT (4-20mA)
         if (power_pv-power_grid >= 1) and (soc_batt >= 99) and analog_out_permit == 1 and power_nom_ao > 0:
-            self.data_inout.append = ["AO_Current4-20",(power_pv-power_grid)/power_nom_ao*100]
+            self.data_inout.append("AO_Current4-20")
             InOut.set_analog_output(self.AO_PIN[0], (power_pv-power_grid)/power_nom_ao*100)
             power_supply = power_nom_ao
+            self.data_inout.append(1)
+            self.data_inout.append((power_pv-power_grid)/power_nom_ao*100)
+
         else:
-            self.data_inout.append = ["AO_Current4-20",0]
+            self.data_inout.append("AO_Current4-20")
             InOut.set_analog_output(self.AO_PIN[0], 0)
+            self.data_inout.append(1)
+            self.data_inout.append(0)
 
         # SET RELAY 1
         if (power_pv-power_grid >= power_nom_relay1 + power_supply) and (soc_batt >= 99) and relay1_permit == 1\
                 and power_nom_relay1 > 0:  # if power extra >= pNom and soc >=99
-            self.data_inout.append = ["State_relay_1", 100]
+            self.data_inout.append("State_relay_1")
             InOut.set_relay_value(self.RELAY_PINS[0], 1)
             power_supply = power_supply + power_nom_relay1
+            self.data_inout.append(1)
+            self.data_inout.append(100)
         else:
-            self.data_inout.append = ["State_relay_1", 0]
+            self.data_inout.append("State_relay_1")
             InOut.set_relay_value(self.RELAY_PINS[0], 0)
+            self.data_inout.append(1)
+            self.data_inout.append(0)
 
         # SET RELAY 2
         if (power_pv-power_grid >= power_nom_relay2 + power_supply) and (soc_batt >= 99) and relay2_permit == 1 \
                 and power_nom_relay2 > 0:
-            self.data_inout.append = ["State_relay_2", 100]
+            self.data_inout.append("State_relay_2")
+            self.data_inout.append(1)
+            self.data_inout.append(100)
+
             InOut.set_relay_value(self.RELAY_PINS[1], 1)
             power_supply = power_supply + power_nom_relay2
         else:
-            self.data_inout.append = ["State_relay_2", 0]
+            self.data_inout.append("State_relay_2")
             InOut.set_relay_value(self.RELAY_PINS[1], 0)
+            self.data_inout.append(1)
+            self.data_inout.append(0)
 
         # SET RELAY 3
         if (power_pv-power_grid >= power_nom_relay3 + power_supply) and (soc_batt >= 99) and relay3_permit == 1\
                 and power_nom_relay3 > 0:
-            self.data_inout.append = ["State_relay_3", 100]
+            self.data_inout.append("State_relay_3")
+            self.data_inout.append(1)
+            self.data_inout.append(100)
             InOut.set_relay_value(self.RELAY_PINS[2], 1)
             power_supply = power_supply + power_nom_relay3
         else:
-            self.data_inout.append = ["State_relay_3", 0]
+            self.data_inout.append("State_relay_3")
             InOut.set_relay_value(self.RELAY_PINS[2], 0)
-
-    def get_registers_inout(self):
-        """ read registers
-
-    :return allRegisters: the list of all registers
-        """
-        all_registers = []
-        for y in range(0, len(self.registers)):
-            self.UNIT = self.registers[y][2]    # unit id
-            all_registers.append(self.registers[y][0])   # name
-            all_registers.append(self.registers[y][3])  # scaling
-            registers = self.clientVenus.read_holding_registers(self.registers[y][1], 1, unit=self.UNIT)   # value
-            if registers.isError() != 0:    # test that we are not an error
-                print(all_registers.index(len(all_registers)-1), registers)
-            else:
-
-                # CONVERT TO GOOD TYPE
-                if self.registers[y][4] == "uint":
-                    if self.registers[y][5] == 16:
-                        all_registers.append(np.uint16(registers.registers[0])) # uint16
-
-                    elif self.registers[y][5] == 32:
-                        all_registers.append(np.uint32(registers.registers[0])) # uint32
-
-                elif self.registers[y][4] == "int":
-                    if self.registers[y][5] == 16:
-                        all_registers.append(np.int16(registers.registers[0])) # int16
-
-                    elif self.registers[y][5] == 32:
-                        all_registers.append(np.int32(registers.registers[0])) # int32
-
-        return all_registers    # name;value
+            self.data_inout.append(1)
+            self.data_inout.append(0)
 
     def connect_cloud(self):
         """
@@ -198,6 +184,7 @@ class Controller:
         start the transmission to the cloud
         :return:
         """
+        self.data.extend(self.data_inout)
         self.database.add_text(self.data)    # write data on local database
         file1 = self.client_cloud.find_file_title_on_cloud("values.csv")
         if file1 != 404:  # check if error

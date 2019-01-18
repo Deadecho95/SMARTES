@@ -45,6 +45,7 @@ class LocalDataBase:
                 if i % 3 == 0:
                     self.file.write(value + ",")
                 i = i+1
+                print("Header Written")
             self.file.write("\n") # end of line
             self.header = True # header done
             self.file.close()

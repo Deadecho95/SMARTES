@@ -3,35 +3,36 @@ import pandas as pd
 import plotly.offline
 import Cloud.uploadDrive as drive
 
+
 class Interface2:
     # To be defined by the Controller how to be connected
     # cloud.download_file_from_cloud()
 
     @staticmethod
     def show_values():
-        #for Windows
-        #filepath="../Files/values.csv"
-        #htmlpath="../Files/Plot.html"
-        #for Linux
+        # for Windows
+        # filepath="../Files/values.csv"
+        # htmlpath="../Files/Plot.html"
+        # for Linux
         filepath = "Files/values.csv"
         htmlpath = "Files/Plot.html"
         total = 0
-
+        # Open a csv file and read it
         with open(filepath) as f:
             first_line = f.readline()
             lines = f.read().splitlines()
             last_line = lines[-1]
         last = last_line.split(",")
-        argList = first_line.split(",")
+        arg_list = first_line.split(",")
         df = pd.read_csv(filepath)
         trace = []
         legend = []
         visible = []
         i = 0
         color = ["RED", "BLUE", "DARKGREEN", "ORANGE", "BLACK", "CYAN", "PURPLE"]
-        for arg in argList:
-
-            if i != 0 and i < len(argList)-2:
+        # add trace for each argument and add a trace for the total of 3 phases
+        for arg in arg_list:
+            if i != 0 and i < len(arg_list) - 2:
                 trace.append(
                     go.Scatter(
                         x=df['datetime'],
@@ -40,22 +41,29 @@ class Interface2:
                         line=dict(color=color[i % len(color)]),
                         opacity=0.8,
                         visible='legendonly'))
-            if (arg.find("1") != -1) or(arg.find("2") != -1):
+            if (arg.find("1") != -1) or (arg.find("2") != -1):
                 total += df[arg]
             if arg.find("3") != -1:
+                if arg.find("Grid"):
+                    color1 = "RED"
+                if arg.find("PVOnGrid"):
+                    color1 = "ORANGE"
+                else:
+                    color1 = "GREY"
                 trace.append(
                     go.Scatter(
-                    x=df['datetime'],
-                    y=total,
-                    name=arg.replace("L3", "Total"),
-                    line=dict(color=color[(i+1) % len(color)]),
-                    opacity=0.8,
-                    visible=True))
+                        x=df['datetime'],
+                        y=total,
+                        name=arg.replace("L3", "Total"),
+                        line=dict(color=color1),
+                        opacity=0.8,
+                        visible=True))
                 total = 0
             i += 1
 
         print(i)
         data = trace
+        # add buttons to select some trace
         layout = dict(
             title='SMARTES 1 DATE: ' + str(last[0]),
 
@@ -92,7 +100,7 @@ class Interface2:
                 type='date'
             )
         )
-
+        # add of the menus for the selection of the trace
         updatemenus = list([
             dict(
                 buttons=list([
@@ -105,7 +113,6 @@ class Interface2:
                         args=['visible', legend],
                         label='Select None',
                         method='restyle',
-
                     )
                 ]),
                 direction='down',
