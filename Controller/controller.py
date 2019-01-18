@@ -3,7 +3,7 @@
 # --------------------------------------------------------------------------- #
 from IO.INOUT import InOut
 import Interface.Interface2 as face
-
+import Cloud.uploadDrive as cloud
 
 class Controller:
     """ the controller manage the connection between
@@ -40,10 +40,14 @@ class Controller:
         """
 
         self.read_modbus_values()
-        self.connect_cloud()
-        self.write_cloud()
-        self.read_cloud()
-        self.create_plot()
+        try:
+            if cloud.internet_on():
+                self.connect_cloud()
+                self.write_cloud()
+                self.read_cloud()
+                self.create_plot()
+        except ConnectionAbortedError as err:
+            print("ConnectionAbortedError")
         self.check_output()
         self.write_modbus_values()
 

@@ -23,10 +23,8 @@ class UploadDrive:
         self.drive = GoogleDrive(self.gauth)
 
     def connect(self):
-        """
-        #TODO Connard
-        :return:
-        """
+        """Connect to the drive with the flow
+             """
         # https: // github.com / gsuitedevs / PyDrive / issues / 104
         self.gauth.LoadCredentialsFile("mycreds.txt")
         if self.gauth.credentials is None:

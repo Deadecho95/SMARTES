@@ -238,8 +238,6 @@ class GoogleAuth(ApiAttributeMixin, object):
     print()
     httpd.handle_request()
 
-    #os.system("pkill firefox")
-
     if 'error' in httpd.query_params:
       print('Authentication request was rejected')
       raise AuthenticationRejected('User rejected authentication')
