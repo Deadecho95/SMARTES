@@ -1,6 +1,4 @@
-#from pydrive.auth import GoogleAuth
-#import google.oauth2.credentials
-import google_auth_oauthlib.flow
+
 
 from urllib.error import URLError
 
@@ -10,14 +8,14 @@ from pydrive.drive import GoogleDrive
 from urllib.request import urlopen
 from googleapiclient import http
 from googleapiclient import errors
-import google.oauth2.credentials
-import google_auth_oauthlib.flow
 
 # --------------------------------------------------------------------------- #
 # Client to connect to Google Drive
 # --------------------------------------------------------------------------- #
 
+
 class UploadDrive:
+
     def __init__(self):
         """Create an instance of UploadDrive."""
         self.gauth = GoogleAuth()

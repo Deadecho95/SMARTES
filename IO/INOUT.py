@@ -43,12 +43,12 @@ class InOut:
         # Output analog voltage to channel B
 
         if value >= 100:
-            value =100
-            chip.output_percent(channel=chan,percent=value)
+            value = 100
+            chip.output_percent(channel=chan, percent=value)
 
         elif value <= 0:
             value = 0
-            chip.output_percent(channel=chan,percent=value)
+            chip.output_percent(channel=chan, percent=value)
 
         else:
             chip.output_percent(channel=chan, percent=value)
