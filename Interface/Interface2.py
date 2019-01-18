@@ -76,8 +76,8 @@ class Interface2:
                 )
                 total = 0
             i += 1
-
-        print("Nb of traces : "+i)
+        print("Nb of traces : ")
+        print(i)
         data = trace
         # add buttons to select some trace
         layout = dict(
