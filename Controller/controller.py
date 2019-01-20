@@ -2,15 +2,16 @@
 # the controller
 # --------------------------------------------------------------------------- #
 from IO.INOUT import InOut
-import Interface.Interface2 as face
-import Cloud.uploadDrive as cloud
+from Interface.graphic import Graphic
+from Cloud.driveManager import DriveManager
+
 
 class Controller:
     """ the controller manage the connection between
     the venus the raspberry and the cloud
     """
     AO_PIN = ['a', 'b']  # Channel of 4-20mA output
-    RELAY_PINS = [37,38,40]  # pin of each relay
+    RELAY_PINS = [37, 38, 40]  # pin of each relay
     DI_PIN = [1, 2, 3, 4]  # Channel of digital input
     NBR_RELAY = len(RELAY_PINS)  # nbr of relay
 
@@ -41,16 +42,17 @@ class Controller:
 
         self.read_modbus_values()
         try:
-            if cloud.UploadDrive.internet_on():
+            if DriveManager.internet_on():
                 self.connect_cloud()
                 self.read_cloud()
-        except ConnectionAbortedError as err:
-            self.check_output()
+        except ConnectionAbortedError:
+            print("ConnectionAbortedError")
+        self.check_output()
         try:
-            if cloud.UploadDrive.internet_on():
+            if DriveManager.internet_on():
                 self.write_cloud()
                 self.create_plot()
-        except ConnectionAbortedError as err:
+        except ConnectionAbortedError:
             print("ConnectionAbortedError")
         self.write_modbus_values()
 
@@ -99,6 +101,7 @@ class Controller:
         Set all output
         :return:
         """
+        self.data_inout.clear()
         data = self.check_consumption()
         power_pv = (data[4] + data[5] + data[6])  # Power on PV
         power_grid = (data[1] + data[2] + data[3])  # Power load
@@ -125,9 +128,9 @@ class Controller:
         relay3_permit = InOut.read_digital_input(self.DI_PIN[3])
         power_supply = 0
 
-        #TEST
+        # TEST
         ############
-        soc_batt = 100
+        # soc_batt = 100
         #############
 
         # SET ANALOG OUTPUT (4-20mA)
@@ -179,7 +182,7 @@ class Controller:
             self.data_inout.append(1)
             self.data_inout.append(100)
             InOut.set_relay_value(self.RELAY_PINS[2], 1)
-            power_supply = power_supply + power_nom_relay3
+            # power_supply = power_supply + power_nom_relay3
         else:
             self.data_inout.append("State_relay_3")
             InOut.set_relay_value(self.RELAY_PINS[2], 0)
@@ -231,7 +234,7 @@ class Controller:
                 self.command.clear()
                 for line in lines:
                     self.command.append(line.split(';'))
-                file.close
+                file.close()
 
     def read_modbus_values(self):
         """
@@ -239,7 +242,7 @@ class Controller:
         :return:
         """
         self.client_modbus.connect()
-        self.data = self.client_modbus.get_registers()
+        self.data = self.client_modbus.get_registers().copy()
         self.client_modbus.disconnect()
 
     def create_plot(self):
@@ -247,7 +250,7 @@ class Controller:
         #TODO Connard
         :return:
         """
-        face.Interface2.show_values()
+        Graphic.show_values()
 
     def write_modbus_values(self):
         """

@@ -1,2 +1,2 @@
-from Interface.Interface2 import Interface2 as face
+from Interface.graphic import Graph as face
 face.Interface2.show_values()

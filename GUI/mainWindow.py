@@ -5,7 +5,7 @@ from tkinter import *
 from time import *
 import numpy as np
 
-from Cloud.uploadDrive import UploadDrive
+from Cloud.driveManager import DriveManager
 from Controller.controller import Controller
 from Modbus.clientModBus import ClientModBus
 from Controller.localDataBase import LocalDataBase
@@ -24,7 +24,7 @@ class MainWindow:
         self.is_quit = 0
 
         client_modbus = ClientModBus("153.109.14.172", 502)  # the clientmodbus
-        client_cloud = UploadDrive()  # the client cloud
+        client_cloud = DriveManager()  # the client cloud
         database = LocalDataBase()
         self.controller = Controller(client_modbus, client_cloud, database)  # create new controller with clients
 

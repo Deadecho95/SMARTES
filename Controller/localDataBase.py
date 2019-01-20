@@ -46,8 +46,8 @@ class LocalDataBase:
                     file.write(value + ",")
                 i = i+1
                 print("Header Written")
-            file.write("\n") # end of line
-            self.header = True # header done
+            file.write("\n")  # end of line
+            self.header = True  # header done
             file.close()
 
         # Write the values date;val1;val2;val3
@@ -67,5 +67,3 @@ class LocalDataBase:
     """
     def delete_file(self):
         os.remove(self.path)
-
-
