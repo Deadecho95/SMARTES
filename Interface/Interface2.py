@@ -29,14 +29,19 @@ class Interface2:
         trace = []
         legend = []
         visible = []
+        isvisible = False
         i = 0
         color = ["RED", "BLUE", "DARKGREEN", "ORANGE", "BLACK", "CYAN", "PURPLE"]
         # add trace for each argument and add a trace for the total of 3 phases
         for arg in arg_list:
-            isVisible = 'legendonly'
-            if i != 0 and i < len(arg_list) - 2:
-                if arg.find("Percent_Soc_Battery"):
-                    isVisible = True
+
+            if i != 0 and i < len(arg_list) - 1:
+                if arg == "Percent_Soc_Battery":
+                    isvisible = True
+                elif arg.find("State_relay") != -1 or arg == "AO_Current4-20":
+                    isvisible = True
+                else:
+                    isvisible = False
                 trace.append(
                     go.Scatter(
                         x=df['datetime'],
@@ -44,23 +49,24 @@ class Interface2:
                         name=arg,
                         line=dict(color=color[i % len(color)]),
                         opacity=0.8,
-                        visible=isVisible))
+                        visible=isvisible))
             if (arg.find("1") != -1) or (arg.find("2") != -1):
                 total += df[arg]
-
-            if arg.find("3") != -1:
-                if arg.find("Power_Consumption_Total"):
+            color1 = "WHITE"
+            if arg.find("L3") != -1:
+                if arg == "Power_Consumption_L3":
                     color1 = "GREEN"
-                if arg.find("Power_PvOnGrid"):
+                    isvisible = 'legendonly'
+                elif arg == "Power_PvOnGrid_L3":
                     color1 = "ORANGE"
-                    isVisible=True
-                if arg.find("Power_Grid"):
+                    isvisible = True
+                elif arg == "Power_Grid_L3":
                     color1 = "RED"
-                    isVisible=True
-                if arg.find("Power_Genset"):
+                    isvisible = True
+                elif arg == "Power_Genset_L3":
                     color1 = "PURPLE"
-                else:
-                    color1 = "GREY"
+                    isvisible = 'legendonly'
+
                 trace.append(
                     go.Scatter(
                         x=df['datetime'],
@@ -68,7 +74,7 @@ class Interface2:
                         name=arg.replace("L3", "Total"),
                         line=dict(color=color1),
                         opacity=0.8,
-                        visible=isVisible
+                        visible=isvisible
                     )
                 )
                 total = 0
