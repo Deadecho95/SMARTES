@@ -53,6 +53,7 @@ class Graphic:
                 total += df[arg]
             color1 = "WHITE"
             if arg.find("L3") != -1:
+                total += df[arg]
                 if arg == "Power_Consumption_L3":
                     color1 = "GREEN"
                     is_visible = 'legendonly'
