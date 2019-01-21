@@ -4,12 +4,11 @@
 from tkinter import *
 from time import *
 import numpy as np
-"""
 from Cloud.driveManager import DriveManager
 from Controller.controller import Controller
 from Modbus.clientModBus import ClientModBus
 from Controller.localDataBase import LocalDataBase
-"""
+
 
 class MainWindow:
     """
@@ -23,12 +22,12 @@ class MainWindow:
         self.is_running = 0
         self.is_quit = 0
 
-        """client_modbus = ClientModBus("153.109.14.172", 502)  # the clientmodbus
+        client_modbus = ClientModBus("153.109.14.172", 502)  # the clientmodbus
         client_cloud = DriveManager()  # the client cloud
         database = LocalDataBase()
         self.controller = Controller(client_modbus, client_cloud, database)  # create new controller with clients
 
-        """
+
         self.window = Tk()
         self.window.configure(background='white')
         self.window.protocol('WM_DELETE_WINDOW')
