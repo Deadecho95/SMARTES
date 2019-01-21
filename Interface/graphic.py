@@ -1,7 +1,6 @@
 import plotly.graph_objs as go
 import pandas as pd
 import plotly.offline
-import Cloud.uploadDrive as drive
 
 
 class Graphic:
@@ -41,7 +40,7 @@ class Graphic:
                 elif arg.find("State_relay") != -1 or arg == "AO_Current4-20":
                     is_visible = True
                 else:
-                    is_visible = False
+                    is_visible = 'legendonly'
                 trace.append(
                     go.Scatter(
                         x=df['datetime'],
