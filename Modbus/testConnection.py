@@ -55,7 +55,7 @@ UNIT = [46,
 
 unit = 100
 for y in range(0, len(UNIT)):
-    client = ModbusClient("153.109.14.168", port=502)
+    client = ModbusClient("153.109.5.95", port=502)
     client.connect()
 
     temperature = client.read_holding_registers(800, 20, unit=UNIT[y])
