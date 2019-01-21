@@ -8,7 +8,7 @@ chrome_path = '/usr/lib/firefox-esr %s'
 
 webbrowser.get(chrome_path).open(url)
 """""
-import Cloud.driveManager as drive
+import Cloud.uploadDrive as drive
 while True:
     if drive.UploadDrive.internet_on():
         try:
