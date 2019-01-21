@@ -21,14 +21,13 @@ class Controller:
         :param client_cloud is the client for the cloud
         :param database is the local database
         """
-        
         self.run = 0
         self.command = []  # array from commands
         self.data = []  # all data from modbus
         self.client_modbus = client_modbus
         self.client_cloud = client_cloud
         self.database = database
-        self.data_inout = []
+        self.data_inout = [] #Data of output to interface
 
         InOut.init()  # init IO
         for y in range(0, self.NBR_RELAY):
@@ -122,10 +121,10 @@ class Controller:
             if self.command[y][0] == "PowerNomAO":
                 power_nom_ao = int(self.command[y][2])
 
-        analog_out_permit = InOut.read_digital_input(self.DI_PIN[0])
-        relay1_permit = InOut.read_digital_input(self.DI_PIN[1])
-        relay2_permit = InOut.read_digital_input(self.DI_PIN[2])
-        relay3_permit = InOut.read_digital_input(self.DI_PIN[3])
+        analog_out_permit = InOut.read_digital_input(self.DI_PIN[0])    #Disable Out if pin 1 input is true
+        relay1_permit = InOut.read_digital_input(self.DI_PIN[1])    #Disable Out if pin 2input is true
+        relay2_permit = InOut.read_digital_input(self.DI_PIN[2])    #Disable Out if pin 3 input is true
+        relay3_permit = InOut.read_digital_input(self.DI_PIN[3])    #Disable Out if pin 4 input is true
         power_supply = 0
 
         # TEST
