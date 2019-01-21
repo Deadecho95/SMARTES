@@ -33,7 +33,7 @@ class UploadDrive:
             access_type='offline',
             # Enable incremental authorization. Recommended as a best practice.
             include_granted_scopes='true')
-        """""
+        
         self.gauth.LoadCredentialsFile("mycreds.txt")
         if self.gauth.credentials is None:
             # Authenticate if they're not there
@@ -47,7 +47,15 @@ class UploadDrive:
         # Save the current credentials to a file
         self.gauth.SaveCredentialsFile("mycreds.txt")
 
-
+        from googleapiclient.discovery import build
+        from oauth2client.client import GoogleCredentials
+        cred = oauth2client.client.GoogleCredentials(access_token, client_id, client_secret,
+                                                     refresh_token, expires_at,
+                                                     "https://accounts.google.com/o/oauth2/token", some_user_agent)
+        http = cred.authorize(httplib2.Http())
+        cred.refresh(http)
+        self.gmail_service = discovery.build('gmail', 'v1', credentials=cred)
+"""""
 
     def write_file_on_cloud(self, path, title="values.csv"):
         """Create GoogleDriveFile instance

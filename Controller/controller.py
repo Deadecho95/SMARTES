@@ -135,10 +135,14 @@ class Controller:
         # SET ANALOG OUTPUT (4-20mA)
         if (power_pv-power_grid >= 1) and (soc_batt >= 99) and analog_out_permit == 1 and power_nom_ao > 0:
             self.data_inout.append("AO_Current4-20")
-            InOut.set_analog_output(self.AO_PIN[0], (power_pv-power_grid)/power_nom_ao*100)
+            percent = (power_pv-power_grid)/power_nom_ao*100
+            InOut.set_analog_output(self.AO_PIN[0], percent)
             power_supply = power_nom_ao
             self.data_inout.append(1)
-            self.data_inout.append((power_pv - power_grid) / power_nom_ao * 100)
+            if (power_pv - power_grid)>= power_nom_ao:
+                self.data_inout.append(100)
+            else:
+                self.data_inout.append((power_pv - power_grid) / power_nom_ao * 100)
         else:
             self.data_inout.append("AO_Current4-20")
             InOut.set_analog_output(self.AO_PIN[0], 0)
