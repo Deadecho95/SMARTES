@@ -53,15 +53,16 @@ UNIT = [46,
 225
 ]
 
-unit = 100
-for y in range(0, len(UNIT)):
-    client = ModbusClient("153.109.5.95", port=502)
-    client.connect()
 
-    temperature = client.read_holding_registers(800, 20, unit=UNIT[y])
-    if temperature.isError() != 0:    # test that we are not an error
-        print("temperature:", temperature)
-    else:
-        for y in range(0, len(temperature.registers)): # stock registers in the
-            print(temperature.registers[y])
-    client.close()
+unit = 100
+
+client = ModbusClient("153.109.14.172", port=502)
+client.connect()
+
+batt_soc = client.read_holding_registers(address=843, count=1, unit=100)
+if batt_soc.isError() != 0:    # test that we are not an error
+    print("Bat_soc: ", batt_soc)
+else:
+    for y in range(0, len(batt_soc.registers)): # print the value
+        print("Bat_soc: ", batt_soc.registers[y])
+client.close()
